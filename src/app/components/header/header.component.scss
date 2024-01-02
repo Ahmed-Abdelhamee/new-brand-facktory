@@ -4,6 +4,7 @@ a:hover{
 }
 .position-fixed{
     width: 100%;
+    z-index: 5;
 }
 .departments{
     padding-right: 5%
@@ -78,7 +79,6 @@ form.d-flex{
 .homeTooles-sublinks-div,
 .owenedBy-sublinks-div{
     display: none;
-    background-color: transparent;
 }
 
 .ocasion-link:hover + .ocasion-sublinks-div,
@@ -102,4 +102,9 @@ form.d-flex{
 .owenedBy-link:hover + .owenedBy-sublinks-div,
 .owenedBy-sublinks-div:hover{
     display: block;
+}
+
+.searchItem{
+    position: relative;
+    z-index: 2;
 }

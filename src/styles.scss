@@ -5,6 +5,27 @@
     box-sizing: border-box;
     direction: rtl;
 }
-[class*=""]{
+[class*="col-"]{
+    float: left;
     width: 100%;
+}
+
+.global-padding{
+    margin-top: 105px;
+    background-color: #eeeeee73;
+}
+.product{
+    border: none !important;
+    float: right;
+}
+.product img{
+    width: 100%;
+}
+.card-title{
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+.card-text{
+    width: 100%;
+    overflow: hidden;
 }

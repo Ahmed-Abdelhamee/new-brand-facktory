@@ -1,0 +1,21 @@
+.nav-item ,.dropdown-item{
+    text-transform: capitalize;
+}
+
+
+svg {
+    margin-right: 8px;
+}
+.group-title-link{
+    padding: 0px;
+}
+.group-title-link .nav-item{
+    padding: 2px 15px;
+    border-radius: 3px;
+}
+.group-title-link .nav-item:hover{
+    background-color: #000000ba;
+}
+.group-title-link .nav-item:hover .nav-link{
+    color: white;
+}
