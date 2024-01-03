@@ -1,10 +1,8 @@
-a:hover{
-    border-radius: 3px;
-    background-color: #f2f2ff;
-}
+
 .position-fixed{
     width: 100%;
     z-index: 5;
+    background-color: white;
 }
 .departments{
     padding-right: 5%
@@ -19,7 +17,7 @@ a:hover{
     font-size: 1rem;
 }
 .active,.text-danger{
-    font-weight: 600;
+    font-weight: 700;
 }
 .navbar-nav{
     width: 100%;
@@ -34,6 +32,10 @@ a:hover{
 .nav-link{
     position: relative;
     z-index: 2;
+}
+.active:hover{
+    border-radius: 3px;
+    background-color: #f2f2ff;
 }
 form.d-flex{
     padding-left: 4%;

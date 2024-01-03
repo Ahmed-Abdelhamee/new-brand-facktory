@@ -1,9 +1,10 @@
-a:hover{
-    border-radius: 3px;
-    background-color: #f2f2ff;
-}
+
+// -------------------------------------------------
 .position-fixed{
     width: 100%;
+    position: fixed;
+    top: 0px;
+    z-index: 2;
 }
 .departments{
     padding-right: 5%
@@ -35,6 +36,27 @@ a:hover{
     position: relative;
     z-index: 2;
 }
+.nav-link:hover{
+    border-radius: 3px;
+    background-color: #e1e1ff;
+}
 form.d-flex{
     padding-left: 4%;
+}
+.bg-light{
+    background-color: white !important;
+}
+// -------------------------------------------------
+
+svg{
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    height: 23px;
+    width: 23px;
+    z-index: 2;
+    fill: darkgrey;
+}
+svg:hover{
+    fill: #ff1212;
 }
