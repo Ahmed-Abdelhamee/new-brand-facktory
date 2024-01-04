@@ -1,8 +1,7 @@
 .nav-item ,.dropdown-item{
     text-transform: capitalize;
 }
-
-
+// header & links
 svg {
     margin-right: 8px;
 }
@@ -18,4 +17,19 @@ svg {
 }
 .group-title-link .nav-item:hover .nav-link{
     color: white;
+}
+
+// dash style 
+.dash{
+    margin-top: 75px;
+}
+th{
+    padding-right: 15px;
+}
+.small-image{
+    width: 75px;
+    height: 65px;
+}
+.form-label{
+    margin-right: 6px;
 }

@@ -1,45 +1,93 @@
-<div class="col-12">
-    <div class="col-sm-9 col-lg-9 col-md-9 bg-light" >
-        asd
+<nav class="navbar navbar-light bg-light fixed-top">
+  <div class="container-fluid">
+    <div class="text-center w-100">
+      <a class="navbar-brand text-capitalize" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-sliders m-2" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1z"/>
+        </svg>
+        ecommerce
+      </a>
     </div>
-    <div class="col-sm-3 col-lg-3 col-md-3 bg-light" >
-        
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title text-capitalize" id="offcanvasNavbarLabel">ecommerce</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+         
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/">الصفحة الرئيسية</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/">رجالي</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/">نسائي</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/">اطقال</a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" routerLink="/">Link</a>
+          </li> -->
+        </ul>
+      </div>
     </div>
-    <nav class="navbar navbar-light bg-light fixed-top">
-        <div class="container-fluid">
-            <div class="text-center w-100">
-                <a class="navbar-brand text-capitalize" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-sliders m-2" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1z"/>
-                    </svg>
-                    ecommerce </a>
-            </div>
-          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title text-capitalize" id="offcanvasNavbarLabel">ecommerce</h5>
-              <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-               
-                <li class="nav-item">
-                  <a class="nav-link" routerLink="/">الصفحة الرئيسية</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" routerLink="/">رجالي</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" routerLink="/">Link</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" routerLink="/">Link</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" routerLink="/">Link</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </nav>
+  </div>
+</nav>
+<div class="col-12 dash">
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Handle</th>
+          <th scope="col">image</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>mdo</td>
+          <td><img class="small-image" src="assets/36.png" alt=""></td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>fat</td>
+          <td><img class="small-image" src="assets/36.png" alt=""></td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td colspan="2">Larry the Bird</td>
+          <td>twitter</td>
+          <td><img class="small-image" src="assets/36.png" alt=""></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <button class="btn btn-primary">اضافة منتج</button>
+  <form>
+    <div class="form-group p-4">
+      <input class="form-control mb-2" type="text" placeholder="اسم المنتج" aria-label="default input example">
+      <input class="form-control mb-2" type="text" placeholder="تفاصيل المنتج" aria-label="default input example">
+      <input class="form-control mb-2" type="text" placeholder="سعر المنتج" aria-label="default input example">
+      <input class="form-control mb-2" type="text" placeholder="السعر المطلوب / السعر بعد الخصم" aria-label="default input example">
+      <input class="form-control mb-2" type="text" placeholder="اسم المنتج" aria-label="default input example">
+      <div class="mb-3">
+        <label for="formFileMultiple" class="form-label mr-2">صور المنتج</label>
+        <input class="form-control" type="file" id="formFileMultiple" multiple>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-primary" type="submit">اضافة </button>
+      </div>
+    </div>
+  </form>
+  
 </div>

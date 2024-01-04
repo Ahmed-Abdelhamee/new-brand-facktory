@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./women.component.scss']
 })
 export class WomenComponent {
-
+  price:number=10;
+  price2:number=100;
 }

@@ -36,11 +36,33 @@
 .product img:last-of-type{
     display: none;
 }
+.card-body{
+    padding-bottom: 0px !important;
+}
 .card-title{
     font-size: 1.1rem;
     font-weight: 500;
 }
 .card-text{
-    width: 100%;
     overflow: hidden;
+    max-height: 50px;
+    text-overflow: ellipsis;
+    display: inline-block;
+    margin-bottom: 0px;
+}
+.btn{
+    font-size: 14px !important;
+    margin-right: 25px;
+}
+.btn-more{
+    background: none;
+    border: none;
+    background-color: #e7e7e7;
+    padding: 10px;
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+.btn-more:hover{
+    color: cornsilk;
+    background-color: #478e91;
 }
