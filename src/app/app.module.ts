@@ -11,6 +11,7 @@ import { MenComponent } from './components/men/men.component';
 import { WomenComponent } from './components/women/women.component';
 import { KidsComponent } from './components/kids/kids.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
 @NgModule({
@@ -28,9 +29,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AdminModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    // write this special code for upload img 
+    // { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
+    {provide : LocationStrategy,useClass:HashLocationStrategy}
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
