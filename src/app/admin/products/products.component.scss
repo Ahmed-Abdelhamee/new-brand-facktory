@@ -1,0 +1,56 @@
+// dash style 
+.dash{
+    margin-top: 75px;
+}
+th{
+    text-align: center;
+    padding-right: 15px;
+}
+td{
+    text-align: center;
+}
+.small-image{
+    width: 75px;
+    height: 65px;
+    border-radius: 10px;
+}
+.form-label{
+    margin-right: 6px;
+}
+input[type="file"]{
+    height: 150px;
+    opacity: 0;
+}
+.images-upload{
+    background-color: rgba(238, 238, 238, 0.842);
+    border-radius: 10px;
+}
+.images-upload:hover{
+    background-color: rgb(2 77 63 / 68%);
+}
+.svg-upload{
+    margin-top: -175px;
+    z-index: 2;
+    height: 70px;
+    width: 70px;
+    margin-right: calc(50% - 35px);
+    color: coral;
+}
+.btn-add{
+    margin-right: 25px;
+    margin-left: 5px;
+}
+.promo-Image-div{
+    margin-right: 15px;
+     float: right;
+}
+.delete-image-btn{
+    font-size: large;
+    background: none;
+    border: none;
+    border-radius: 50%;
+    position: relative;
+    top: -32px;
+    right: 5px;
+    z-index: 2;
+}
