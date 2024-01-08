@@ -28,7 +28,7 @@
             <td><img class="small-image" [src]="item.productImages['0'].img" alt=""></td>
             <td> 
               <button type="button" class="btn btn-warning">edit</button>
-              <button type="button" class="btn btn-danger m-1">X</button>
+              <button type="button" class="btn btn-danger m-1" (click)="del(item)">X</button>
             </td>
           </tr>
         </tbody>

@@ -1,9 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { product } from 'src/app/model/interfaces/product.interface';
 import { DataService } from 'src/app/model/services/data.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-products',
@@ -11,32 +13,34 @@ import { DataService } from 'src/app/model/services/data.service';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit , OnChanges{
-  
+  // important arrays 
   photosPromo:any[]=[];
   photosFiles:File[]=[];
   photosSize:number[]=[];
   products:product[]=[]
   adultLinks:string[]=["occasion","clothes","shoes","bags","accessiores","jewellary","whatches","homeWare"];
   kidsLinks:string[]=["occasion","baby-0-36-monthes","kids-2-12","teenagers"]
-  
+  // variables for set a control
   numberOfImages!: number;  
   control:string="add-product";
-  uploadingCheck:string="";
   numberOfPhotos:number=0;
+  globalProduct!:product;
+  globalKey:string=""
 
   @Input() typeOfDataFromParent:string=""
   
-  constructor(private formBuilder:FormBuilder,private toastr:ToastrService , private dataServ:DataService , private firestorage:AngularFireStorage){ }
-
+  constructor(private formBuilder:FormBuilder,private toastr:ToastrService , private dataServ:DataService , private firestorage:AngularFireStorage,private http:HttpClient){ }
+  // to set the data depending on the choice from parent
   ngOnChanges() {
     this.products=[]
     this.dataServ.getDataAPI(this.typeOfDataFromParent).subscribe((data)=>{
       for (const key in data) {
         this.products.push(data[key])
       }
+      this.products.filter(item => item.department == "occasion")
     })
   }
-
+  // product input
   product=this.formBuilder.group({
     id:[new Date().getTime(),],
     type:["",Validators.required],
@@ -55,7 +59,7 @@ export class ProductsComponent implements OnInit , OnChanges{
   ngOnInit(): void {
     
   }
-
+  // promo upload to show which files uploaded and the size of each photo
   upload(event:any){
     const files=event.target.files;
     this.photosSize=[];  // array for identify the big files
@@ -74,7 +78,7 @@ export class ProductsComponent implements OnInit , OnChanges{
     }
   }
 
-  /// uploading file products on firebase 
+  /// uploading files & products on firebase 
   async activeUpload(){
     this.toastr.info("يتم رفع  تفاصيل المنتج حاليا")
     for(let i=0; i < this.photosFiles.length ; i++){
@@ -88,9 +92,8 @@ export class ProductsComponent implements OnInit , OnChanges{
         this.images.push(uploadImage) // form array - only push a FormGroup object 
     }
   }
-  /// uploading file products on firebase 
+  /// sending the data to firebase backend 
   submit(){
-    this.uploadingCheck="uploadingImage";
     if( (this.product.get("prePrice")?.value!>this.product.get("price")?.value! || this.product.get("prePrice")?.value! <=0 ) &&
          this.product.get("price")?.value! >0 &&
          this.product.get("type")?.value!='' &&
@@ -107,5 +110,42 @@ export class ProductsComponent implements OnInit , OnChanges{
       this.toastr.error("راجع بيانات المنتج")
     }
   }
+
+   del(item:product){
+    this.globalProduct=item;
+    this.dataServ.getDataAPI(item.type).subscribe(data =>{
+      for (const key in data) {
+        if(item.id==data[key].id){
+          // this.keyForDeleteOrEdit=key;
+          this.http.delete(`${environment.firebase.databaseURL}/${item.type}/${key}.json`).subscribe((data)=>{
+            this.toastr.success("تم حذف المنتج","");
+            this.ngOnChanges()            
+          })
+          for (const temp in item.productImages) {
+            this.firestorage.storage.refFromURL(item.productImages[temp].img).delete()
+          }
+          break;
+        }
+      }
+    })
+  }
+
+  // // -------------- delete product --------------
+  // del(item:product){
+  //   /* this variable for identify which data will be edit */ let checkBasicPage=item.selectedPage! == "basic-page"? `${item.selectedPage!}-${item.basicPagePart!}`:`${item.selectedPage!}`;
+  //       this.dataServ.getDataAPI(checkBasicPage).subscribe(data =>{
+  //         for (const key in data) {
+  //           if(item.id==data[key].id){
+  //             this.keyForDeleteOrEdit=key;
+  //             this.http.delete(`${environment.firebase.databaseURL}/${checkBasicPage}/${key}.json`).subscribe((data)=>{
+  //               this.toastr.success("تم حذف المنتج","");
+  //               this.ngOnChanges()            
+  //             })
+  //             this.firestorage.storage.refFromURL(this.deleteProduct.photoUrl!).delete()
+  //             break;
+  //           }
+  //         }
+  //       })
+  //     }
 
 }
