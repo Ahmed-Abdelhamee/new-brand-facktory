@@ -22,7 +22,7 @@ export class ProductsComponent implements  OnChanges{
   kidsLinks:string[]=["occasion","baby-0-36-monthes","kids-2-12","teenagers"]
   // variables for set a control
   numberOfImages!: number;  
-  control:string="add-product";
+  control:string="";
   globalProduct:product={} as product;
   globalKey:string=""
 
