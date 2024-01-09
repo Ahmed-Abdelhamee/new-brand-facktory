@@ -11,5 +11,5 @@ import { product } from '../model/interfaces/product.interface';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent {
-  typeOfDataFromParent:string="basic"
+  typeOfDataFromParent:string="basic-bage"
 }

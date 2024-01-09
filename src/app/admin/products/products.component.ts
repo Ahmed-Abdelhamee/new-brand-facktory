@@ -24,7 +24,8 @@ export class ProductsComponent implements  OnChanges{
   numberOfImages!: number;  
   control:string="";
   globalProduct:product={} as product;
-  globalKey:string=""
+  globalKey:string="";
+  productsFilter:any="";
 
   @Input() typeOfDataFromParent:string="";
 
@@ -53,8 +54,9 @@ export class ProductsComponent implements  OnChanges{
       for (const key in data) {
         this.products.push(data[key])
       }
-      this.products.filter(item => item.department == "occasion")
+      this.products=this.products.filter(item => item.department == this.productsFilter )
     })
+    console.log(this.productsFilter)
   }
   //empty product for adding 
   emptyProuct(){

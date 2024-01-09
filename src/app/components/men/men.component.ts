@@ -19,13 +19,13 @@ export class MenComponent implements OnInit {
       for (const key in data) {
         this.allproducts.push(data[key])
       }
-      this.products=this.allproducts.filter(item => item.department =="occasion")
+      this.products=this.allproducts.filter(item => item.department =="occasion").reverse()
     })
   }
   price:number=10;
   price2:number=100;
 
   filter(part:string){
-    this.products=this.allproducts.filter(item => item.department == part)
+    this.products=this.allproducts.filter(item => item.department == part).reverse()
   }
 }
