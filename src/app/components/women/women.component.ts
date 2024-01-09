@@ -9,6 +9,7 @@ import { DataService } from 'src/app/model/services/data.service';
 })
 export class WomenComponent implements OnInit {
 
+  allproducts:product[]=[]
   products:product[]=[]
   
   constructor(private dataServ:DataService){}
@@ -16,11 +17,15 @@ export class WomenComponent implements OnInit {
   ngOnInit(): void {
     this.dataServ.getDataAPI("women").subscribe((data)=>{
       for (const key in data) {
-        this.products.push(data[key])
+        this.allproducts.push(data[key])
       }
-      this.products=this.products.filter(item => item.department =="occasion")
+      this.products=this.allproducts.filter(item => item.department =="occasion")
     })
   }
   price:number=10;
   price2:number=100;
+
+  filter(part:string){
+    this.products=this.allproducts.filter(item => item.department == part)
+  }
 }

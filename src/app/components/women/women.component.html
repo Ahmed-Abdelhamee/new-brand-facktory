@@ -6,28 +6,28 @@
       <div class="collapse navbar-collapse " id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link text-danger ocasion-link" aria-current="page" routerLink="#">خصومات</a>
+            <a class="nav-link text-danger ocasion-link" aria-current="page" (click)="filter('occasion')">خصومات</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link clothes-link" routerLink="#">ملابس</a>
+            <a class="nav-link clothes-link" (click)="filter('clothes')">ملابس</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link shoes-link" routerLink="#">احذية</a>
+            <a class="nav-link shoes-link" (click)="filter('shoes')">احذية</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link bags-link" routerLink="#">شنط</a>
+            <a class="nav-link bags-link" (click)="filter('bags')">شنط</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link accessoires-link" routerLink="#">اكسسوارات</a>
+              <a class="nav-link accessoires-link" (click)="filter('accessiores')">اكسسوارات</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link jewellery-link" routerLink="#">مجوهرات</a>
+              <a class="nav-link jewellery-link" (click)="filter('jewellary')">مجوهرات</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link homeTooles-link" routerLink="#">ساعات</a>
+            <a class="nav-link homeTooles-link" (click)="filter('whatches')">ساعات</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link homeTooles-link" routerLink="#">الادوات المنزلية</a>
+              <a class="nav-link homeTooles-link" (click)="filter('homeWare')">الادوات المنزلية</a>
           </li>
         </ul>
         <form class="d-flex" role="search">
@@ -48,7 +48,8 @@
       <div class="card-body">
         <p class="card-title">{{item.title}}</p>
         <p class="card-text">{{item.details}} </p>
-        <p>{{item.price}}د.ك {{ (item.prePrice - item.price ) / item.prePrice *100 | number:'.1-2'}}%   <span class="text-decoration-line-through ml-2"> {{item.prePrice}} د.ك</span></p>
+        <p *ngIf="item.department=='occasion'">{{item.price}} د.ك {{ (item.prePrice - item.price ) / item.prePrice *100 | number:'.1-2'}}%   <span class="text-decoration-line-through ml-2"> {{item.prePrice}} د.ك</span></p>
+        <p *ngIf="item.department!='occasion'">{{item.price}} د.ك </p>
       </div>
       <div class="text-center">
         <button class="btn-more">تفاصيل </button>

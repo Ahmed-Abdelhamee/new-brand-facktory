@@ -12,10 +12,18 @@ export class DataService {
 
   constructor( private http : HttpClient , private toastr : ToastrService ) { }
   
-  createe(product:any){
-    this.http.post(`${environment.firebase.databaseURL}/${product.type}.json`,product).subscribe((data)=>{
-      this.toastr.success("تم اضافة المنتج","عملية ناجحة"); 
-    })
+  createe(key:string ,action:string , product:any){
+    if(action=="add-product"){
+      this.http.post(`${environment.firebase.databaseURL}/${product.type}.json`,product).subscribe((data)=>{
+        this.toastr.success("تم اضافة المنتج","عملية ناجحة"); 
+      })
+    }else{
+      console.log(product)
+      this.http.put(`${environment.firebase.databaseURL}/${product.type}/${key}.json`,product).subscribe((data)=>{
+        this.toastr.warning("تم تعديل المنتج","عملية ناجحة"); 
+      })
+    }
+   
   }
 
   getDataAPI(type:string):Observable<product[]>{

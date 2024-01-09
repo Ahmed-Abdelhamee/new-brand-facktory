@@ -1,139 +1,55 @@
 <nav class="navbar position-fixed navbar-expand-lg bg-body-tertiary bg-light mt-5">
-    <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse " id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link text-danger ocasion-link" aria-current="page" routerLink="#">خصومات</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link clothes-link" routerLink="#">ملابس</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link shoes-link" routerLink="#">احذية</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link bags-link" routerLink="#">شنط</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link accessoires-link" routerLink="#">اكسسوارات</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link jewellery-link" routerLink="#">مجوهرات</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link homeTooles-link" routerLink="#">ساعات</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link homeTooles-link" routerLink="#">الادوات المنزلية</a>
-          </li>
-        </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2 searchItem" type="search" placeholder="Search" aria-label="Search">
-          <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
-        </form>
-      </div>
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse " id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link text-danger ocasion-link" aria-current="page" (click)="filter('occasion')">خصومات</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link clothes-link" (click)="filter('clothes')">ملابس</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link shoes-link" (click)="filter('shoes')">احذية</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link bags-link" (click)="filter('bags')">شنط</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link accessoires-link" (click)="filter('accessiores')">اكسسوارات</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link jewellery-link" (click)="filter('jewellary')">مجوهرات</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link homeTooles-link" (click)="filter('whatches')">ساعات</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link homeTooles-link" (click)="filter('homeWare')">الادوات المنزلية</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2 searchItem" type="search" placeholder="Search" aria-label="Search">
+        <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
+      </form>
     </div>
+  </div>
 </nav>
 <div class="col-12 global-padding">
-  <div class="col-sm-3 p-2">
+  <div class="col-sm-3 p-2" *ngFor="let item of products">
     <div class="card product">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
         <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1"/>
       </svg>
-      <img src="assets/36.png" class="card-img-top" alt="...">
-      <img src="assets/android.jpg" class="card-img-top" alt="...">
+      <img [src]="item.productImages['0'].img" class="" alt="...">
+      <img [src]="item.productImages['1'].img" class="" alt="...">
       <div class="card-body">
-        <p class="card-title">Canada Goose</p>
-        <p class="card-text">أفضل ما في التخفيضات: اختيارات خبراء  جديدنا كل يوم: من أشهر الماركات والبوتيكات إليك </p>
-        <p>{{price}}د.ك {{ (price2 -price ) / price2 *100}}%   <span class="text-decoration-line-through ml-2"> {{price2}} د.ك</span></p>
-      </div>
-      <div class="text-center">
-        <button class="btn-more">تفاصيل </button>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-3 p-2">
-    <div class="card product">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
-        <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1"/>
-      </svg>
-      <img src="assets/36.png" class="card-img-top" alt="...">
-      <img src="assets/android.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <p class="card-title">Canada Goose</p>
-        <p class="card-text">أفضل ما في التخفيضات: اختيارات خبراء  جديدنا كل يوم: من أشهر الماركات والبوتيكات إليك </p>
-        <p>{{price}}د.ك {{ (price2 -price ) / price2 *100}}%   <span class="text-decoration-line-through ml-2"> {{price2}} د.ك</span></p>
-      </div>
-      <div class="text-center">
-        <button class="btn-more">تفاصيل </button>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-3 p-2">
-    <div class="card product">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
-        <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1"/>
-      </svg>
-      <img src="assets/36.png" class="card-img-top" alt="...">
-      <img src="assets/android.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <p class="card-title">Canada Goose</p>
-        <p class="card-text">أفضل ما في التخفيضات: اختيارات خبراء  جديدنا كل يوم: من أشهر الماركات والبوتيكات إليك </p>
-        <p>{{price}}د.ك {{ (price2 -price ) / price2 *100}}%   <span class="text-decoration-line-through ml-2"> {{price2}} د.ك</span></p>
-      </div>
-      <div class="text-center">
-        <button class="btn-more">تفاصيل </button>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-3 p-2">
-    <div class="card product">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
-        <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1"/>
-      </svg>
-      <img src="assets/36.png" class="card-img-top" alt="...">
-      <img src="assets/android.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <p class="card-title">Canada Goose</p>
-        <p class="card-text">أفضل ما في التخفيضات: اختيارات خبراء  جديدنا كل يوم: من أشهر الماركات والبوتيكات إليك </p>
-        <p>{{price}}د.ك {{ (price2 -price ) / price2 *100}}%   <span class="text-decoration-line-through ml-2"> {{price2}} د.ك</span></p>
-      </div>
-      <div class="text-center">
-        <button class="btn-more">تفاصيل </button>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-3 p-2">
-    <div class="card product">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
-        <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1"/>
-      </svg>
-      <img src="assets/36.png" class="card-img-top" alt="...">
-      <img src="assets/android.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <p class="card-title">Canada Goose</p>
-        <p class="card-text">أفضل ما في التخفيضات: اختيارات خبراء  جديدنا كل يوم: من أشهر الماركات والبوتيكات إليك </p>
-        <p>{{price}}د.ك {{ (price2 -price ) / price2 *100}}%   <span class="text-decoration-line-through ml-2"> {{price2}} د.ك</span></p>
-      </div>
-      <div class="text-center">
-        <button class="btn-more">تفاصيل </button>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-3 p-2">
-    <div class="card product">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
-        <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1"/>
-      </svg>
-      <img src="assets/36.png" class="card-img-top" alt="...">
-      <img src="assets/android.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <p class="card-title">Canada Goose</p>
-        <p class="card-text">أفضل ما في التخفيضات: اختيارات خبراء  جديدنا كل يوم: من أشهر الماركات والبوتيكات إليك </p>
-        <p>{{price}}د.ك {{ (price2 -price ) / price2 *100}}%   <span class="text-decoration-line-through ml-2"> {{price2}} د.ك</span></p>
+        <p class="card-title">{{item.title}}</p>
+        <p class="card-text">{{item.details}} </p>
+        <p *ngIf="item.department=='occasion'">{{item.price}} د.ك {{ (item.prePrice - item.price ) / item.prePrice *100 | number:'.1-2'}}%   <span class="text-decoration-line-through ml-2"> {{item.prePrice}} د.ك</span></p>
+        <p *ngIf="item.department!='occasion'">{{item.price}} د.ك </p>
       </div>
       <div class="text-center">
         <button class="btn-more">تفاصيل </button>

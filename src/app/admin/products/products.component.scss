@@ -8,6 +8,9 @@ th{
 }
 td{
     text-align: center;
+    word-break: break-all;
+    line-break: break-all;
+    background-color: #eee;
 }
 .small-image{
     width: 75px;
@@ -53,4 +56,24 @@ input[type="file"]{
     top: -32px;
     right: 5px;
     z-index: 2;
+}
+// -----------------------------------------------------
+.modal-content{
+    width: 125%;
+    margin-right: -12.5%;
+}
+.modal-title{
+    width: 100%;
+    text-transform: capitalize;
+    text-align: center;
+}
+
+@media screen and (max-width:600px){
+    .modal-content{
+        width: 100%;
+        margin-right: 0%;
+    }
+    textarea.form-control {
+        width: 160px;
+    }
 }

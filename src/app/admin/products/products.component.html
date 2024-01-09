@@ -1,6 +1,7 @@
 <div class="col-12 dash">
-    <button class="btn btn-primary btn-add" (click)="control='add-product'">اضافة منتج</button>
-    <button class="btn btn-secondary " (click)="control='show-product'">عرض المنتجات</button>
+    <button class="btn btn-primary btn-add" (click)="control='add-product';emptyProuct()">اضافة منتج</button>
+    <button class="btn btn-secondary " (click)="control='show-product';ngOnChanges()" [disabled]="control=='show-product'">عرض المنتجات</button>
+    <!-- table for show products  -->
     <div class="table-responsive" *ngIf="control=='show-product'">
       <table class="table table-hover">
         <thead>
@@ -20,39 +21,43 @@
           <tr *ngFor="let item of products; let i=index">
             <th scope="row">{{i+1}}</th>
             <td>{{item.title}}</td>
-            <td>{{item.details}}</td>
+            <td><textarea class="form-control" name="department" id="department" [value]="item.details" cols="30" rows="4" readonly></textarea></td>
             <td>{{item.department}}</td>
             <td>{{item.type}}</td>
             <td>{{item.prePrice}}</td>
             <td>{{item.price}}</td>
             <td><img class="small-image" [src]="item.productImages['0'].img" alt=""></td>
             <td> 
-              <button type="button" class="btn btn-warning">edit</button>
-              <button type="button" class="btn btn-danger m-1" (click)="del(item)">X</button>
+              <button type="button" class="btn btn-warning" (click)="edit(item);control='edit-product'">edit</button>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-danger m-1"  data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getItem(item)">X</button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-    <form [formGroup]="product" *ngIf="control=='add-product'" (ngSubmit)="submit()">
+    <!-- form for adding a product  -->
+    <form [formGroup]="product" *ngIf="control=='add-product'||control=='edit-product'" (ngSubmit)="submit()">
       <div class="form-group p-4">
         <label for="type">اختر النوع </label>
-        <select class="form-select mb-2" aria-label="Default select example" formControlName="type" id="type">
+        <select class="form-select mb-1" aria-label="Default select example" formControlName="type" id="type">
           <option value="men">men</option>
           <option value="women">women</option>
           <option value="kids">kids</option>
         </select>
         <label for="department">اختر فئة المنتج</label>
-        <select class="form-select mb-2" aria-label="Default select example" formControlName="department" id="department">
+        <select class="form-select mb-1" aria-label="Default select example" formControlName="department" id="department">
           <ng-container *ngIf="product.get('type')?.value != 'kids' "><option [value]="item" *ngFor="let item of adultLinks">{{item}}</option></ng-container>
           <ng-container *ngIf="product.get('type')?.value == 'kids' "><option [value]="item" *ngFor="let item of kidsLinks">{{item}}</option></ng-container>
         </select>
-        <input class="form-control mb-2" type="text" placeholder="اسم المنتج" aria-label="default input example" formControlName="title">
-        <input class="form-control mb-2" type="text" placeholder="تفاصيل المنتج" aria-label="default input example" formControlName="details">
-        <label for="department">سعر المنتج</label>
-        <input class="form-control mb-2" type="number" placeholder="سعر المنتج" aria-label="default input example" formControlName="prePrice">
+        <label for="department">اسم المنتج</label>
+        <input class="form-control mb-1" type="text" aria-label="default input example" formControlName="title">
+        <label for="department">تفاصيل المنتج </label>
+        <input class="form-control mb-1" type="text" aria-label="default input example" formControlName="details">
+        <label for="department">سعر المنتج قبل الخصم</label>
+        <input class="form-control mb-1" type="number" placeholder="سعر المنتج" aria-label="default input example" formControlName="prePrice">
         <label for="department">السعر المطلوب / السعر بعد الخصم</label>
-        <input class="form-control mb-2" type="number" placeholder="السعر المطلوب / السعر بعد الخصم" aria-label="default input example" formControlName="price">
+        <input class="form-control mb-1" type="number" placeholder="السعر المطلوب / السعر بعد الخصم" aria-label="default input example" formControlName="price">
         <div class="col-12">
           <label for="formFileMultiple" class="form-label mr-2">صور المنتج</label>
           <div class="images-upload">
@@ -63,18 +68,43 @@
             <path d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383m.653.757c-.757.653-1.153 1.44-1.153 2.056v.448l-.445.049C2.064 6.805 1 7.952 1 9.318 1 10.785 2.23 12 3.781 12h8.906C13.98 12 15 10.988 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3a4.53 4.53 0 0 0-2.941 1.1z"/>
           </svg>
         </div>
-        <div class="col-12 mb-3">
+        <div class="col-12 mb-1">
           <div *ngFor="let item of photosPromo" class="promo-Image-div">
-              <button class="delete-image-btn">x</button>
+              <!-- <button class="delete-image-btn">x</button> -->
               <img class="small-image" [src]="item" alt="">
           </div>
         </div>
         <br>
-        <p class="text-danger" *ngIf="photosSize.length !=0">  جحم الصور رقم<span *ngFor="let item of photosSize;"> -  {{item}}  </span> - اكبر من 50 KB **** يجب تبديلهم بحجم اصغر  **** قم بتحميل الصور مرة اخري</p>
+        <p class="text-danger" *ngIf="photosSize.length !=0">  جحم الصور رقم<span *ngFor="let item of photosSize;"> -  {{item}}  </span> - اكبر من 30 KB **** يجب تبديلهم بحجم اصغر  **** قم بتحميل الصور مرة اخري</p>
         <div class="text-center" *ngIf="photosSize.length ==0">
           <button class="btn btn-primary" type="submit">اضافة </button>
         </div>
       </div>
     </form>
-    
+    <!-- showing modal for delete -->
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="globalProduct">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5 text-danger" id="exampleModalLabel">delete a product</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div><strong>رقم المنتج :</strong> {{globalProduct.id}}</div>
+            <div><strong>عنوان المنتج :</strong> {{globalProduct.title}}</div>
+            <div><strong> القسم : </strong> {{globalProduct.department}}</div>
+            <div><strong>نوع المنتج : </strong> {{globalProduct.type}}</div>
+            <div><strong> السعر قبل الخصم :</strong> {{globalProduct.prePrice}}</div>
+            <div><strong>السعر المطلوب : </strong> {{globalProduct.price}}</div>
+            <div><strong>تفاصيل المنتج :</strong> <textarea class="form-control" name="department" id="department" [value]="globalProduct.details" cols="30" rows="4" readonly></textarea></div>
+            <img class="small-image m-2" [src]="item.img" alt=""  *ngFor="let item of globalProduct.productImages">
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteProd()">delete</button>
+            <button type="button" class="btn btn-success" data-bs-dismiss="modal">cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>

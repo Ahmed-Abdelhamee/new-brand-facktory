@@ -1,4 +1,23 @@
-
+@media screen and (max-width:"600px") {
+    .icons-div{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: fit-content;
+    }
+    .icon-link {
+        align-items: start;
+        width: 1.2em;
+        height: 1.2em;
+        margin-left: 10px;
+    }
+    .brand{
+        position: absolute;
+        top: 35px;
+        left: 4px;
+        width: fit-content;
+    }
+}
 .position-fixed{
     width: 100%;
     z-index: 5;
@@ -33,7 +52,7 @@
     position: relative;
     z-index: 2;
 }
-.active:hover{
+.active,.active:hover{
     border-radius: 3px;
     background-color: #f2f2ff;
 }
@@ -50,7 +69,13 @@ form.d-flex{
 }
 
 
-// --------------------------------------------------------
+
+
+
+
+
+// ---------------------------- old slider part ----------------------------
+/*
 .ocasion-sublinks-div,
 .news-sublinks-div,
 .brands-sublinks-div,
@@ -110,3 +135,4 @@ form.d-flex{
     position: relative;
     z-index: 2;
 }
+*/
