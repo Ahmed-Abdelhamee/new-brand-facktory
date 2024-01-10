@@ -3,12 +3,11 @@
     <button class="btn btn-primary btn-add" (click)="control='add-product';emptyProuct()" [disabled]="control=='add-product'" *ngIf="typeOfDataFromParent!='basic-bage'">اضافة منتج</button>
     <button class="btn btn-secondary " (click)="control='show-product';ngOnChanges()" [disabled]="control=='show-product'" *ngIf="typeOfDataFromParent!='basic-bage'">عرض المنتجات</button>
     <div class="col-12 p-2">
-      <select class="form-select" aria-label="Default select example" (change)="productsFilter=$event.target; productsFilter=productsFilter.value; ngOnChanges()"  *ngIf="typeOfDataFromParent!='basic-bage' && control=='show-product'">
+      <select class="form-select mb-2" aria-label="Default select example" (change)="productsFilter=$event.target; productsFilter=productsFilter.value; ngOnChanges()"  *ngIf="typeOfDataFromParent!='basic-bage' && control=='show-product'">
         <option selected>اختر فئة المنتجات</option>
         <ng-container *ngIf="typeOfDataFromParent != 'kids' "><option [value]="item" *ngFor="let item of adultLinks">{{item}}</option></ng-container>
         <ng-container *ngIf="typeOfDataFromParent == 'kids' "><option [value]="item" *ngFor="let item of kidsLinks">{{item}}</option></ng-container>
       </select>
-    </div>
 
     <!-- table for show products  -->
     <div class="table-responsive" *ngIf="control=='show-product'">
@@ -44,6 +43,8 @@
           </tr>
         </tbody>
       </table>
+    </div>
+
     </div>
 
     <!-- form for adding a product  -->

@@ -19,7 +19,8 @@ import { environment } from '../environments/environment';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { provideStorage,getStorage } from '@angular/fire/storage'; // write this special code for upload img 
 import {AngularFireModule, FIREBASE_OPTIONS} from '@angular/fire/compat'; // write this special code for upload img 
-import {HttpClientModule} from "@angular/common/http"
+import {HttpClientModule} from "@angular/common/http";
+import { ProductDetailsComponent } from './components/product-details/product-details.component'
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import {HttpClientModule} from "@angular/common/http"
     MenComponent,
     WomenComponent,
     KidsComponent,
+    ProductDetailsComponent,
   ],
   imports: [
     BrowserModule,

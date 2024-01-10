@@ -56,7 +56,7 @@ export class ProductsComponent implements  OnChanges{
       }
       this.products=this.products.filter(item => item.department == this.productsFilter )
     })
-    console.log(this.productsFilter)
+    console.log(this.products)
   }
   //empty product for adding 
   emptyProuct(){
@@ -144,6 +144,7 @@ export class ProductsComponent implements  OnChanges{
     } else{
       this.toastr.error("راجع بيانات المنتج")
     }
+    this.emptyProductImages()
   }
 
 // ------------------------------------------ edit product ------------------------------------------
