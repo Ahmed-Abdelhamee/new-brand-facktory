@@ -78,6 +78,12 @@ export class ProductsComponent implements  OnChanges{
       this.images.removeAt(0);
     }
   }
+  // empty department when type changes
+  emptyDep(){
+    this.product.patchValue({
+      department:''
+    })
+  }
 
   // ------------------------------------------ uploading product ------------------------------------------
   // promo upload to show which files uploaded and the size of each photo
@@ -144,7 +150,8 @@ export class ProductsComponent implements  OnChanges{
     } else{
       this.toastr.error("راجع بيانات المنتج")
     }
-    this.emptyProductImages()
+    this.emptyProductImages();
+    this.photosPromo=[]
   }
 
 // ------------------------------------------ edit product ------------------------------------------

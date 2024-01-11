@@ -1,9 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { FormArray, FormBuilder, Validators } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
-import { AngularFireStorage } from '@angular/fire/compat/storage';  // write this special code for upload img 
-import { DataService } from '../model/services/data.service';
-import { product } from '../model/interfaces/product.interface';
+import * as $ from 'jquery'
 
 @Component({
   selector: 'app-admin',
@@ -11,5 +7,12 @@ import { product } from '../model/interfaces/product.interface';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent {
-  typeOfDataFromParent:string="basic-bage"
+  typeOfDataFromParent:string="basic-bage";
+
+  setAcitve(link:string){
+    $(`#men`).removeClass("active")
+    $(`#women`).removeClass("active")
+    $(`#kids`).removeClass("active")
+    $(`#${link}`).addClass("active")
+  }
 }

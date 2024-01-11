@@ -19,14 +19,14 @@
           <li class="nav-item">
             <!-- <a class="nav-link" type="button" data-bs-dismiss="offcanvas" aria-label="Close" (click)="typeOfDataFromParent='basic-bag'">الصفحة الرئيسية</a> -->
           </li>
-          <li class="nav-item">
-            <a class="nav-link" type="button" data-bs-dismiss="offcanvas" aria-label="Close" (click)="typeOfDataFromParent='men'">رجالي</a>
+          <li class="nav-item" id="men" (click)="setAcitve('men')">
+            <a class="nav-link" type="button" data-bs-dismiss="offcanvas" aria-label="Close" (click)="typeOfDataFromParent='men';">رجالي</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" type="button" data-bs-dismiss="offcanvas" aria-label="Close" (click)="typeOfDataFromParent='women'">نسائي</a>
+          <li class="nav-item" id="women" (click)="setAcitve('women')">
+            <a class="nav-link" type="button" data-bs-dismiss="offcanvas" aria-label="Close" (click)="typeOfDataFromParent='women';">نسائي</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" type="button" data-bs-dismiss="offcanvas" aria-label="Close" (click)="typeOfDataFromParent='kids'">اطقال</a>
+          <li class="nav-item" id="kids" (click)="setAcitve('kids')">
+            <a class="nav-link" type="button" data-bs-dismiss="offcanvas" aria-label="Close" (click)="typeOfDataFromParent='kids';">اطفال</a>
           </li>
           <!-- <li class="nav-item">
             <a class="nav-link" routerLink="/">Link</a>
