@@ -1,19 +1,98 @@
 <div class="col-12 dash-padding p-4">
-    <form [formGroup]="addingHomeCarasouel">
-        <div class="form-group m-1">
-            <label for="type">اختر النوع </label>
-            <select class="form-select mb-1" aria-label="Default select example" formControlName="type" id="type">
-                <option value="men">men</option>
-                <option value="women">women</option>
-                <option value="kids">kids</option>
-            </select>
+  <button class="btn btn-primary btn-add" (click)="control='add-carasouel';" [disabled]="control=='add-carasouel'">اضافة صورة اعلي الصفحة</button>
+  <button class="btn btn-secondary " (click)="control='show-carasouel'; showdata()" [disabled]="control=='show-carasouel'">عرض صور الصفحات </button>
+  <button class="btn btn-secondary " (click)="control='edit-content'; showdata()" [disabled]="control=='edit-content'">عرض النص في كل صفحة </button>
+
+  <form [formGroup]="addingHomeCarasouel" (ngSubmit)="submit()" *ngIf="control=='add-carasouel' || control=='edit-carasouel'">
+    <div class="form-group m-2">
+      <label class="mb-2" for="type">اختر النوع </label>
+      <select class="form-select mb-1" aria-label="Default select example" formControlName="type" id="type">
+        <option value="men">men</option>
+        <option value="women">women</option>
+        <option value="kids">kids</option>
+      </select>
+    </div>
+    <div class="form-group m-2">
+      <label class="mb-2" for="type">اختر الصورة في بداية الصفحة </label>
+      <input type="file" class="form-control" name="carasouel" id="carasouel" (change)="upload($event)">
+      <img class="small-image m-3" [src]="photoPromo" alt="" *ngIf="photoPromo!=''">
+    </div>
+    <div class="text-center mt-3">
+      <button class="btn btn-primary" type="submit" *ngIf="photoSize">اضافة</button>
+      <p class="text-danger" *ngIf="!photoSize">حجم الصورة اكبر من kb 100 </p>
+    </div>
+  </form>
+
+  <!-- view carasoul table -->
+  <div class="col-12 table-div" *ngIf="control=='show-carasouel'">
+    <table class="table table-striped text-center">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">carasoul</th>
+          <th scope="col">type</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of datalist;let i=index">
+          <th scope="row" class="item">{{i+1}}</th>
+          <td><img [src]="item.img" class="small-image" alt=""></td>
+          <td><p>{{item.type}}</p> </td>
+          <td class="item">
+            <button class="btn btn-warning m-1" (click)="findItem(item); control='edit-carasouel'">edit</button>  
+            <button class="btn btn-danger m-1" (click)="globalObject=item; control='delete-item'" data-bs-toggle="modal" data-bs-target="#exampleModal">X</button>  
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- <table class="table table-striped text-center">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">title</th>
+          <th scope="col">paragraph</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of datalist;let i=index">
+          <th scope="row" class="item">{{i+1}}</th>
+          <td><img [src]="item.img" class="small-image" alt=""></td>
+          <td class="paragraphContent">
+            <p>{{item.title}}</p>
+          </td>
+          <td class="paragraphContent">
+            <p>{{item.paragraph}}</p>
+          </td>
+          <td class="item">
+            <button class="btn btn-warning m-1" (click)="openPart('form',type_of_data_in_part,'edit');update(item,'edit')">edit</button>  
+            <button class="btn btn-danger m-1" (click)="DeleteSure(item)">delete</button>  
+          </td>
+        </tr>
+      </tbody>
+    </table> -->
+
+
+  <!-- Modal -->
+  <div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-center">
+            <img [src]="globalObject.img" alt="" height="350px">
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button type="button" class="btn btn-danger" (click)="del(globalObject)">delete</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancel</button>
+          </div>
         </div>
-        <div class="form-group">
-            <label for="type">اختر الصورة في بداية الصفحة </label>
-            <input type="file" class="form-control" name="carasouel" id="carasouel" formControlName="carasouel">
-        </div>
-        <div class="text-center">
-            <button class="btn btn-primary" type="submit">اضافة</button>
-        </div>
-    </form>
+      </div>
+    </div>
+    </div>
+  </div>
 </div>

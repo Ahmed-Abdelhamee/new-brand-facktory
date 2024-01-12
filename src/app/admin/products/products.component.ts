@@ -124,34 +124,37 @@ export class ProductsComponent implements  OnChanges{
   
   // ------------------------------------------ add product ------------------------------------------
   // --------- sending the data to firebase backend ---------
-  submit(){
-    if((this.product.get("prePrice")?.value!>this.product.get("price")?.value! || this.product.get("prePrice")?.value! <=0 ) &&
-        this.product.get("price")?.value! >0  &&  this.product.get("type")?.value!='' &&
-        this.product.get("department")?.value!=''  &&  this.product.get("title")?.value!='' &&
-        this.product.get("details")?.value!=''  &&  this.photosPromo.length>1 &&  this.control== "add-product") {
+  submit() {
+    if ((this.product.get("prePrice")?.value! > this.product.get("price")?.value! || this.product.get("prePrice")?.value! <= 0) &&
+      this.product.get("price")?.value! > 0 && this.product.get("type")?.value != '' &&
+      this.product.get("department")?.value != '' && this.product.get("title")?.value != '' &&
+      this.product.get("details")?.value != '' && this.photosPromo.length > 1) {
+
+      if (this.control == "add-product") {
         this.product.patchValue({
-          id:new Date().getTime(),
+          id: new Date().getTime(),
         })
-        this.activeUpload().then(()=>{
-          this.dataServ.createe('',"add-product",this.product.value)
+        this.activeUpload().then(() => {
+          this.dataServ.createe('', "add-product", this.product.value)
           this.emptyProuct();
         })
-    // --------- for editing the products ---------
-    }else if(this.control== "edit-product" ){
-      // if there are a new uploads 
-      if(this.photosFiles.length!=0){
-        this.emptyProductImages()
-        this.activeUpload().then(()=>{
-          this.dataServ.createe(this.globalKey,"edit-product",this.product.value)
+      }// --------- for editing the products ---------
+      else if (this.control == "edit-product") {
+        // if there are a new uploads 
+        if (this.photosFiles.length != 0) {
+          this.emptyProductImages()
+          this.activeUpload().then(() => {
+            this.dataServ.createe(this.globalKey, "edit-product", this.product.value)
+            this.emptyProuct();
+          })
+          this.deleteImagesFromFireStorage()
+          // if there is no any new uploads
+        } else {
+          this.dataServ.createe(this.globalKey, "edit-product", this.product.value)
           this.emptyProuct();
-        })
-        this.deleteImagesFromFireStorage()
-      // if there is no any new uploads
-      }else{
-        this.dataServ.createe(this.globalKey,"edit-product",this.product.value)
-        this.emptyProuct();
+        }
       }
-    } else{
+    } else {
       this.toastr.error("راجع بيانات المنتج")
     }
   }
@@ -192,7 +195,7 @@ export class ProductsComponent implements  OnChanges{
       }
     })
   }
-  // for the active delete from database
+  // for the active delete from database server
   deleteProd(){
     this.toastr.info("يتم حذف المنتج حاليا")
     /* this variable for identify which data will be edit */
