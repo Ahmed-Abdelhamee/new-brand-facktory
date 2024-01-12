@@ -1,3 +1,4 @@
+<!-- products header links for filter -->
 <nav class="navbar position-fixed navbar-expand-lg bg-body-tertiary bg-light mt-5">
     <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -5,17 +6,17 @@
       </button>
       <div class="collapse navbar-collapse " id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link text-danger ocasion-link" aria-current="page" (click)="filter('occasion')">خصومات</a>
+          <li class="nav-item" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="nav-link text-danger ocasion-link" aria-current="page" (click)="filter('occasion')" id="occasion" >خصومات</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link clothes-link" (click)="filter('baby-0-36-monthes')">صغار (0-36 شهرًا)</a>
+          <li class="nav-item" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="nav-link clothes-link" (click)="filter('baby-0-36-monthes')" id="baby-0-36-monthes" >صغار (0-36 شهرًا)</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link shoes-link" (click)="filter('kids-2-12')">بنات واولاد (2-12 سنة)</a>
+          <li class="nav-item" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="nav-link shoes-link" (click)="filter('kids-2-12')" id="kids-2-12" >بنات واولاد (2-12 سنة)</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link bags-link" (click)="filter('teenagers')">فتيات وشباب (13-16 سنة)
+          <li class="nav-item" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="nav-link bags-link" (click)="filter('teenagers')" id="teenagers" >فتيات وشباب (13-16 سنة)
             </a>
           </li>
         </ul>
@@ -26,10 +27,12 @@
       </div>
     </div>
 </nav>
+
+<!-- products view -->
 <div class="col-12 global-padding">
   <div class="col-sm-3 p-2" *ngFor="let item of products">
-    <div class="card product">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
+    <div class="card product" (click)="productDetails(item)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16" (click)="setFavourites(item)">
         <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1"/>
       </svg>
       <img [src]="item.productImages['0'].img" class="" alt="...">

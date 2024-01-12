@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { product } from 'src/app/model/interfaces/product.interface';
 import { DataService } from 'src/app/model/services/data.service';
+import * as $ from 'jquery'
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-men',
@@ -12,20 +15,41 @@ export class MenComponent implements OnInit {
   allproducts:product[]=[]
   products:product[]=[]
   
-  constructor(private dataServ:DataService){}
+  constructor(private dataServ:DataService,private route:Router){}
 
   ngOnInit(): void {
     this.dataServ.getDataAPI("men").subscribe((data)=>{
       for (const key in data) {
         this.allproducts.push(data[key])
       }
-      this.products=this.allproducts.filter(item => item.department =="occasion").reverse()
+      this.products=this.allproducts.filter(item => item.department =="occasion").reverse();
+      this.setLinkActive("occasion")
     })
   }
-  price:number=10;
-  price2:number=100;
 
   filter(part:string){
     this.products=this.allproducts.filter(item => item.department == part).reverse()
+    this.setLinkActive(part)
+  }
+
+  setLinkActive(part:string){
+    $(`#occasion`).removeClass("text-danger")
+    $(`#clothes`).removeClass("text-danger")
+    $(`#shoes`).removeClass("text-danger")
+    $(`#bags`).removeClass("text-danger")
+    $(`#accessiores`).removeClass("text-danger")
+    $(`#jewellary`).removeClass("text-danger")
+    $(`#whatches`).removeClass("text-danger")
+    $(`#homeWare`).removeClass("text-danger")
+
+    $(`#${part}`).addClass("text-danger")
+  }
+  
+  setFavourites(item:product){
+
+  }
+
+  productDetails(item:product){
+    this.route.navigate([`/product/${item.type}-${item.id}`])
   }
 }

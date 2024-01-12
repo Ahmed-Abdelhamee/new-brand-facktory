@@ -1,0 +1,35 @@
+
+@media screen and (max-width:991px) and (min-width:601px) {
+    img.img-details{
+        height: 320px;
+    }
+}
+
+@media screen and (max-width:600px) {
+    img.img-details{
+        height: 320px;
+        margin-right: 10%;
+    }
+}
+
+.img-details{
+    width: 80%;
+    height: 410px;
+    margin-bottom: 10px;
+    border-radius: 7px;
+}
+.title{
+    font-size: 25px;
+    font-weight: 500;
+    background: aliceblue;
+    padding: 25px;
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+.text{
+    font-size: 1.2em;
+    background: rgb(240, 240, 240);
+    padding: 25px;
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}

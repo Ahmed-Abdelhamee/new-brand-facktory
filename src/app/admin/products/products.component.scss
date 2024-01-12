@@ -1,5 +1,5 @@
 // dash style 
-.dash{
+.dash-padding{
     margin-top: 75px;
 }
 th{
@@ -20,7 +20,7 @@ td{
 .form-label{
     margin-right: 6px;
 }
-input[type="file"]{
+input[type="file"].product-photos{
     height: 150px;
     opacity: 0;
 }

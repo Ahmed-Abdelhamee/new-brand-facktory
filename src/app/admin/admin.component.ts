@@ -7,9 +7,10 @@ import * as $ from 'jquery'
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent {
-  typeOfDataFromParent:string="basic-bage";
+  typeOfDataFromParent:string="basic-page";
 
   setAcitve(link:string){
+    $(`#basic`).removeClass("active")
     $(`#men`).removeClass("active")
     $(`#women`).removeClass("active")
     $(`#kids`).removeClass("active")

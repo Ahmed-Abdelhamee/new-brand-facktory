@@ -1,1 +1,18 @@
-<p>product-details works!</p>
+
+<div class="col-12 global-padding">
+    <div class="container-fluid">
+        <div class="col-sm-8 pb-5">
+            <div  class="col-lg-6 col-md-6 col-ms-6" *ngFor="let item of product.productImages; let i=index">
+                <img  [src]="item.img" alt="" class="img-details">
+            </div>
+        </div>
+        <div class="col-sm-4 p-4">
+            <p class="title text-dark">{{product.title}}</p>
+            <p class="text  text-dark">{{product.details}}</p>
+            <p class="text  text-dark text-decoration-line-through" *ngIf="product.department=='occasion'">{{product.prePrice}} د.ك</p>
+            <p class="text  text-dark">{{product.price}} د.ك</p>
+           
+        </div>
+       
+    </div>
+</div>

@@ -77,6 +77,7 @@ export class ProductsComponent implements  OnChanges{
     for (let i in this.images) { // delete all the images
       this.images.removeAt(0);
     }
+    this.photosPromo=[]
   }
   // empty department when type changes
   emptyDep(){
@@ -133,6 +134,7 @@ export class ProductsComponent implements  OnChanges{
         })
         this.activeUpload().then(()=>{
           this.dataServ.createe('',"add-product",this.product.value)
+          this.emptyProuct();
         })
     // --------- for editing the products ---------
     }else if(this.control== "edit-product" ){
@@ -141,17 +143,17 @@ export class ProductsComponent implements  OnChanges{
         this.emptyProductImages()
         this.activeUpload().then(()=>{
           this.dataServ.createe(this.globalKey,"edit-product",this.product.value)
+          this.emptyProuct();
         })
         this.deleteImagesFromFireStorage()
       // if there is no any new uploads
       }else{
         this.dataServ.createe(this.globalKey,"edit-product",this.product.value)
+        this.emptyProuct();
       }
     } else{
       this.toastr.error("راجع بيانات المنتج")
     }
-    this.emptyProductImages();
-    this.photosPromo=[]
   }
 
 // ------------------------------------------ edit product ------------------------------------------

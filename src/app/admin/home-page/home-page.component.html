@@ -1,1 +1,19 @@
-<p>home-page works!</p>
+<div class="col-12 dash-padding p-4">
+    <form [formGroup]="addingHomeCarasouel">
+        <div class="form-group m-1">
+            <label for="type">اختر النوع </label>
+            <select class="form-select mb-1" aria-label="Default select example" formControlName="type" id="type">
+                <option value="men">men</option>
+                <option value="women">women</option>
+                <option value="kids">kids</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="type">اختر الصورة في بداية الصفحة </label>
+            <input type="file" class="form-control" name="carasouel" id="carasouel" formControlName="carasouel">
+        </div>
+        <div class="text-center">
+            <button class="btn btn-primary" type="submit">اضافة</button>
+        </div>
+    </form>
+</div>

@@ -7,5 +7,8 @@ import * as $ from 'jquery'
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-
+  getFavourites(){
+    console.log(localStorage.getItem("department"))
+      localStorage.setItem("department","kkk")
+  }
 }
