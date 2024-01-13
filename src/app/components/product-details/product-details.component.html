@@ -11,7 +11,12 @@
             <p class="text  text-dark">{{product.details}}</p>
             <p class="text  text-dark text-decoration-line-through" *ngIf="product.department=='occasion'">{{product.prePrice}} د.ك</p>
             <p class="text  text-dark">{{product.price}} د.ك</p>
-           
+            <div class="text-center">
+                <a href="https://wa.me/{{temp.social}}?text=مرحباً اريد الحصول علي هذا المنتج : %0aاسم المنتج%20:%20{{product.title}}%0aتفاصيل المنتج : %20{{product.details}}%0aالسعر المطلوب%20:%20{{product.price}} د.ك " *ngFor="let temp of whatsapp" target="_blank" class="btn btn-success request" style="font-size: 16px !important">
+                اطلب الان
+                <i class="bi bi-whatsapp"></i>
+            </a>
+            </div>
         </div>
        
     </div>

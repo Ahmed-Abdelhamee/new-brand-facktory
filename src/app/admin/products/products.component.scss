@@ -57,6 +57,19 @@ input[type="file"].product-photos{
     right: 5px;
     z-index: 2;
 }
+.btn{
+    font-size: 14px;
+    margin-top: 5px;
+}
+.btn-secondary{
+    margin-right: 5px;
+}
+.social-btn{
+    margin: 5px;
+}
+.social-btn:last-of-type{
+    margin-left: 25px;
+}
 // -----------------------------------------------------
 .modal-content{
     width: 125%;

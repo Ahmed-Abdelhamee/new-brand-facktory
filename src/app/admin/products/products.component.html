@@ -1,18 +1,20 @@
 <div class="col-12 dash-padding">
+
   <!-- control buttons -->
-  <button class="btn btn-primary btn-add" (click)="control='add-product';emptyProuct()" [disabled]="control=='add-product'">اضافة منتج</button>
-  <button class="btn btn-secondary " (click)="control='show-product';ngOnChanges()" [disabled]="control=='show-product'">عرض المنتجات</button>
-  <div class="form-group p-3">
-    <select class="form-select" aria-label="Default select example" (change)="productsFilter=$event.target; productsFilter=productsFilter.value; ngOnChanges()" *ngIf="control=='show-product'">
-      <option selected>اختر فئة المنتجات</option>
-      <ng-container *ngIf="typeOfDataFromParent != 'kids' ">
-        <option [value]="item" *ngFor="let item of adultLinks">{{item}}</option>
-      </ng-container>
-      <ng-container *ngIf="typeOfDataFromParent == 'kids' ">
-        <option [value]="item" *ngFor="let item of kidsLinks">{{item}}</option>
-      </ng-container>
-    </select>
+  <div class="d-flex justify-content-start">
+    <button class="btn btn-primary btn-add" (click)="control='add-product';emptyProuct()" [disabled]="control=='add-product'">اضافة منتج</button>
+    <button class="btn btn-secondary " (click)="control='show-product';ngOnChanges()" [disabled]="control=='show-product'">عرض المنتجات</button>
   </div>
+
+    <select class="form-select mt-1" aria-label="Default select example" (change)="productsFilter=$event.target; productsFilter=productsFilter.value; ngOnChanges()" *ngIf="control=='show-product'">
+    <option selected>اختر فئة المنتجات</option>
+    <ng-container *ngIf="typeOfDataFromParent != 'kids' ">
+      <option [value]="item" *ngFor="let item of adultLinks">{{item}}</option>
+    </ng-container>
+    <ng-container *ngIf="typeOfDataFromParent == 'kids' ">
+      <option [value]="item" *ngFor="let item of kidsLinks">{{item}}</option>
+    </ng-container>
+  </select>
 
   <!-- table for show products  -->
   <div class="table-responsive" *ngIf="control=='show-product'">
@@ -55,32 +57,55 @@
   <!-- form for adding a product  -->
   <form [formGroup]="product" *ngIf="control=='add-product'||control=='edit-product'" (ngSubmit)="submit()">
     <div class="form-group p-4">
-      <label for="type">اختر النوع </label>
-      <select class="form-select mb-1" aria-label="Default select example" formControlName="type" id="type" (change)="emptyDep()">
-        <option value="men">men</option>
-        <option value="women">women</option>
-        <option value="kids">kids</option>
-      </select>
-      <label for="department">اختر فئة المنتج</label>
-      <select class="form-select mb-1" aria-label="Default select example" formControlName="department" id="department">
-        <option value=""></option>
-        <ng-container *ngIf="product.get('type')?.value != 'kids' ">
-          <option [value]="item" *ngFor="let item of adultLinks">{{item}}</option>
-        </ng-container>
-        <ng-container *ngIf="product.get('type')?.value == 'kids' ">
-          <option [value]="item" *ngFor="let item of kidsLinks">{{item}}</option>
-        </ng-container>
-      </select>
-      <label for="department">اسم المنتج</label>
-      <input class="form-control mb-1" type="text" aria-label="default input example" formControlName="title">
-      <label for="department">تفاصيل المنتج </label>
-      <input class="form-control mb-1" type="text" aria-label="default input example" formControlName="details">
-      <label for="department">سعر المنتج قبل الخصم</label>
-      <input class="form-control mb-1" type="number" placeholder="سعر المنتج" aria-label="default input example"
-        formControlName="prePrice">
-      <label for="department">السعر المطلوب / السعر بعد الخصم</label>
-      <input class="form-control mb-1" type="number" placeholder="السعر المطلوب / السعر بعد الخصم"
-        aria-label="default input example" formControlName="price">
+      <div class="form-group">
+        <label for="type">اختر النوع </label>
+        <select class="form-select mb-1" aria-label="Default select example" formControlName="type" id="type" (change)="emptyDep()">
+          <option value="men">men</option>
+          <option value="women">women</option>
+          <option value="kids">kids</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="department">اختر فئة المنتج</label>
+        <select class="form-select mb-1" aria-label="Default select example" formControlName="department" id="department">
+          <option value=""></option>
+          <ng-container *ngIf="product.get('type')?.value != 'kids' ">
+            <option [value]="item" *ngFor="let item of adultLinks">{{item}}</option>
+          </ng-container>
+          <ng-container *ngIf="product.get('type')?.value == 'kids' ">
+            <option [value]="item" *ngFor="let item of kidsLinks">{{item}}</option>
+          </ng-container>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="department">اسم المنتج</label>
+        <input class="form-control mb-1" type="text" aria-label="default input example" formControlName="title">
+      </div>
+      <div class="form-group">
+        <label for="department">تفاصيل المنتج </label>
+        <input class="form-control mb-1" type="text" aria-label="default input example" formControlName="details">
+      </div>
+      <div class="form-group">
+        <label for="department">سعر المنتج قبل الخصم</label>
+        <input class="form-control mb-1" type="number" placeholder="سعر المنتج" aria-label="default input example" formControlName="prePrice">
+      </div>
+      <div class="form-group">
+        <label for="department">السعر المطلوب / السعر بعد الخصم</label>
+        <input class="form-control mb-1" type="number" placeholder="السعر المطلوب / السعر بعد الخصم" aria-label="default input example" formControlName="price">
+      </div>
+      <!-- <div class="form-group">
+        <fieldset>
+          <div>
+            <input type="checkbox" id="scales" name="scales" value="scales" checked formControlName="size"/>
+            <label for="scales">Scales</label>
+          </div>
+          <div>
+            <input type="checkbox" id="horns" name="horns" value="horns" formControlName="size" />
+            <label for="horns">Horns</label>
+          </div>
+        </fieldset>
+      </div> -->
+      
       <div class="col-12">
         <label for="formFileMultiple" class="form-label mr-2">صور المنتج</label>
         <div class="images-upload">
@@ -136,4 +161,6 @@
       </div>
     </div>
   </div>
+  
 </div>
+  

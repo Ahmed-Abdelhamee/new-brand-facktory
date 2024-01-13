@@ -34,6 +34,20 @@ export class HomePageComponent {
     img: [""]
   })
 
+  whatsapp=this.formBuilder.group({
+    id:["phone"],
+    social:[""],
+  })
+
+  instagram=this.formBuilder.group({
+    id:["instagram"],
+    social:[""],
+  })
+
+  snapchat=this.formBuilder.group({
+    id:["snapchat"],
+    social:[""],
+  })
   // -------------- promo upload --------------
   upload(event: any) {
     this.photoFile = event.target.files[0];
@@ -134,6 +148,18 @@ export class HomePageComponent {
         }
       }
     })
+  }
+
+  
+  //------------------------------------ update what's app ------------------------------------
+  submitWhats(){
+    this.dataServ.updateWhatsapp(this.whatsapp.value)
+  }
+  submitInstagram(){
+    this.dataServ.updateInstagram(this.instagram.value)
+  }
+  submitSnapChat(){
+    this.dataServ.updateSnapChat(this.snapchat.value)
   }
 
 }

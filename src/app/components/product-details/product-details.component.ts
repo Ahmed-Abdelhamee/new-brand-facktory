@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { product } from 'src/app/model/interfaces/product.interface';
+import { social } from 'src/app/model/interfaces/social.interface';
 import { DataService } from 'src/app/model/services/data.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class ProductDetailsComponent implements OnInit {
 
   
   getLinkData:any="";
-
+  whatsapp:social[]=[]
   product:product={} as product;
 
   constructor( private router:ActivatedRoute, private dataServ:DataService){
@@ -27,6 +28,8 @@ export class ProductDetailsComponent implements OnInit {
       }
       console.log(this.product)
     })
+    // ----------------------- get whatsapp -----------------------
+      this.whatsapp=dataServ.returnSoical("whatsapp");
   }
 
   ngOnInit(): void {

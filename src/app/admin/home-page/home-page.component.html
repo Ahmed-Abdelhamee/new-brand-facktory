@@ -1,8 +1,19 @@
-<div class="col-12 dash-padding p-4">
-  <button class="btn btn-primary btn-add" (click)="control='add-carasouel';" [disabled]="control=='add-carasouel'">اضافة صورة اعلي الصفحة</button>
-  <button class="btn btn-secondary " (click)="control='show-carasouel'; showdata()" [disabled]="control=='show-carasouel'">عرض صور الصفحات </button>
-  <button class="btn btn-secondary " (click)="control='edit-content'; showdata()" [disabled]="control=='edit-content'">عرض النص في كل صفحة </button>
 
+<div class="col-12 dash-padding">
+    <!-- Button trigger modal -->
+    <div class="d-flex justify-content-end">
+      <button type="button" class="btn btn-success social-btn" data-bs-toggle="modal" data-bs-target="#exampleModal"> <i class="bi bi-whatsapp"></i>  تعديل واتساب </button>
+      <button type="button" class="btn btn-warning social-btn" data-bs-toggle="modal" data-bs-target="#exampleModal2"> <i class="bi bi-snapchat"></i>  تعديل سناب شات </button>
+      <button type="button" class="btn btn-danger social-btn" data-bs-toggle="modal" data-bs-target="#exampleModal3"> <i class="bi bi-instagram"></i>  تعديل انستجرام </button>
+    </div>
+  
+        <!-- Button trigger modal -->
+        <div class="d-flex justify-content-start">
+          <button class="btn btn-primary btn-add" (click)="control='add-carasouel';" [disabled]="control=='add-carasouel'">اضافة صورة اعلي الصفحة</button>
+          <button class="btn btn-secondary" (click)="control='show-carasouel'; showdata()" [disabled]="control=='show-carasouel'">عرض صور الصفحات </button>
+          <button class="btn btn-secondary" (click)="control='edit-content'; showdata()" [disabled]="control=='edit-content'">عرض النص في كل صفحة </button>
+        </div>
+ 
   <form [formGroup]="addingHomeCarasouel" (ngSubmit)="submit()" *ngIf="control=='add-carasouel' || control=='edit-carasouel'">
     <div class="form-group m-2">
       <label class="mb-2" for="type">اختر النوع </label>
@@ -94,5 +105,73 @@
       </div>
     </div>
     </div>
+  </div>
+</div>
+
+
+<!-- form for what's app -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body p-2">
+              <form [formGroup]="whatsapp" (ngSubmit)="submitWhats()">
+                  <div class="form-group">
+                      <label for="whatsapp" class="text-success"> <i class="bi bi-whatsapp"></i>  رقم الواتساب</label>
+                      <input type="text" class="form-control" id="whatsapp" formControlName="social">
+                  </div>
+                  <div class="text-center">
+                      <button type="submit" class="btn btn-success" data-bs-dismiss="modal">save</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- form for snapchat -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body p-2">
+              <form [formGroup]="snapchat" (ngSubmit)="submitSnapChat()">
+                  <div class="form-group">
+                      <label for="snapchat" class="text-warning"> <i class="bi bi-snapchat"></i>  لينك سناب شات</label>
+                      <input type="text" class="form-control" id="snapchat" formControlName="social">
+                  </div>
+                  <div class="text-center">
+                      <button type="submit" class="btn btn-warning" data-bs-dismiss="modal">save</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- form for Instagram -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body p-2">
+              <form [formGroup]="instagram" (ngSubmit)="submitInstagram()">
+                  <div class="form-group">
+                      <label for="instagram" class="text-danger"> <i class="bi bi-instagram"></i>  لينك الانستجرام</label>
+                      <input type="text" class="form-control" id="instagram" formControlName="social">
+                  </div>
+                  <div class="text-center">
+                      <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">save</button>
+                  </div>
+              </form>
+          </div>
+      </div>
   </div>
 </div>
