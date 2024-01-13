@@ -45,7 +45,7 @@ export class DataService {
 
   // delete data
   del(type:string,key:string){
-    this.http.delete(`${environment.firebase.databaseURL}/${type}/${key}.json`).subscribe((data)=>{
+    return this.http.delete(`${environment.firebase.databaseURL}/${type}/${key}.json`).subscribe((data)=>{
       this.toastr.success("تم حذف الصورة","عملية ناجحة"); 
     })
   }

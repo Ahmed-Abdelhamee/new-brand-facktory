@@ -3,8 +3,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { DataService } from 'src/app/model/services/data.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { ToastrService } from 'ngx-toastr';
-import { product } from 'src/app/model/interfaces/product.interface';
 import { homeCarasouel } from 'src/app/model/interfaces/homeCarasouel.interface';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-home-page',
@@ -24,7 +25,8 @@ export class HomePageComponent {
   globalObject: homeCarasouel={} as homeCarasouel;
   updateKey: string = ""
 
-  constructor(private dataServ: DataService, private formBuilder: FormBuilder, private firestorage: AngularFireStorage, private toastr: ToastrService) { }
+  constructor(private dataServ: DataService, private formBuilder: FormBuilder, 
+    private firestorage: AngularFireStorage, private toastr: ToastrService, private http:HttpClient) { }
 
   addingHomeCarasouel = this.formBuilder.group({
     id: [new Date().getTime()],
@@ -124,11 +126,13 @@ export class HomePageComponent {
     this.dataServ.getDataAPI("carasouel").subscribe(data => {
       for (const key in data) {
         if (data[key].id == item.id) {
-          this.dataServ.del("carasouel",key)
+          this.http.delete(`${environment.firebase.databaseURL}/carasouel/${key}.json`).subscribe(()=>{
+            this.toastr.success("تم حذف الصورة","عملية ناجحة"); 
+            this.showdata()
+          })
           break;
         }
       }
-      this.showdata()
     })
   }
 
