@@ -1,20 +1,20 @@
-<div class="col-12 dash-padding">
-
+<div class="col-12 dash-padding" *ngIf="typeOfDataFromParent!='basic-page' && typeOfDataFromParent!='login'">
   <!-- control buttons -->
   <div class="d-flex justify-content-start">
     <button class="btn btn-primary btn-add" (click)="control='add-product';emptyProuct()" [disabled]="control=='add-product'">اضافة منتج</button>
     <button class="btn btn-secondary " (click)="control='show-product';ngOnChanges()" [disabled]="control=='show-product'">عرض المنتجات</button>
   </div>
-
-    <select class="form-select mt-1" aria-label="Default select example" (change)="productsFilter=$event.target; productsFilter=productsFilter.value; ngOnChanges()" *ngIf="control=='show-product'">
-    <option selected>اختر فئة المنتجات</option>
-    <ng-container *ngIf="typeOfDataFromParent != 'kids' ">
-      <option [value]="item" *ngFor="let item of adultLinks">{{item}}</option>
-    </ng-container>
-    <ng-container *ngIf="typeOfDataFromParent == 'kids' ">
-      <option [value]="item" *ngFor="let item of kidsLinks">{{item}}</option>
-    </ng-container>
-  </select>
+  <div class="form-group p-3">
+    <select class="form-select" aria-label="Default select example" (change)="productsFilter=$event.target; productsFilter=productsFilter.value; ngOnChanges()" *ngIf="control=='show-product'">
+      <option selected>اختر فئة المنتجات</option>
+      <ng-container *ngIf="typeOfDataFromParent != 'kids' ">
+        <option [value]="item" *ngFor="let item of adultLinks">{{item}}</option>
+      </ng-container>
+      <ng-container *ngIf="typeOfDataFromParent == 'kids' ">
+        <option [value]="item" *ngFor="let item of kidsLinks">{{item}}</option>
+      </ng-container>
+    </select>
+  </div>
 
   <!-- table for show products  -->
   <div class="table-responsive" *ngIf="control=='show-product'">
@@ -92,20 +92,7 @@
       <div class="form-group">
         <label for="department">السعر المطلوب / السعر بعد الخصم</label>
         <input class="form-control mb-1" type="number" placeholder="السعر المطلوب / السعر بعد الخصم" aria-label="default input example" formControlName="price">
-      </div>
-      <!-- <div class="form-group">
-        <fieldset>
-          <div>
-            <input type="checkbox" id="scales" name="scales" value="scales" checked formControlName="size"/>
-            <label for="scales">Scales</label>
-          </div>
-          <div>
-            <input type="checkbox" id="horns" name="horns" value="horns" formControlName="size" />
-            <label for="horns">Horns</label>
-          </div>
-        </fieldset>
-      </div> -->
-      
+      </div>      
       <div class="col-12">
         <label for="formFileMultiple" class="form-label mr-2">صور المنتج</label>
         <div class="images-upload">
@@ -161,6 +148,6 @@
       </div>
     </div>
   </div>
-  
 </div>
   
+

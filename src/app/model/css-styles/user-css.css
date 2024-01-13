@@ -73,9 +73,18 @@ svg:hover{
 .global-padding{
     margin-top: 105px;
 }
-.special-height-page-top{
-    background-color: #478e91;
+.page-top-content{
+    height: 450px;
 }
+.page-top-image{
+    height: 100%;
+    width: 100%;
+}
+.page-top-text-content{
+    padding: 60px 40px;
+}
+
+
 .carousel-item{
     display: flex;
     justify-content:center ;
@@ -160,6 +169,9 @@ svg:hover{
 }
 
 @media screen and (max-width:600px) {
+    .page-top-text-content{
+        padding: 15px;
+    }
     .mt-5 {
         margin-top: 75px !important;
     }

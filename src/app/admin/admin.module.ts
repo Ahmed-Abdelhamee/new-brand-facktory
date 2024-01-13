@@ -6,13 +6,15 @@ import { AdminComponent } from './admin.component';
 import { ProductsComponent } from './products/products.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomePageComponent } from './home-page/home-page.component';
+import { DashLoginComponent } from './dash-login/dash-login.component';
 
 
 @NgModule({
   declarations: [
     AdminComponent,
     ProductsComponent,
-    HomePageComponent
+    HomePageComponent,
+    DashLoginComponent
   ],
   imports: [
     CommonModule,

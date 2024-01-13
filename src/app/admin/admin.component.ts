@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import * as $ from 'jquery'
 
 @Component({
@@ -7,7 +8,8 @@ import * as $ from 'jquery'
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent {
-  typeOfDataFromParent:string="basic-page";
+
+  typeOfDataFromParent:string="";
 
   setAcitve(link:string){
     $(`#basic`).removeClass("active")

@@ -3,6 +3,8 @@ import { product } from 'src/app/model/interfaces/product.interface';
 import { DataService } from 'src/app/model/services/data.service';
 import * as $ from 'jquery'
 import { Router } from '@angular/router';
+import { carasouel } from 'src/app/model/interfaces/carasouel.interface';
+import { textContent } from 'src/app/model/interfaces/textContent.interface';
 
 
 @Component({
@@ -13,18 +15,36 @@ import { Router } from '@angular/router';
 export class MenComponent implements OnInit {
 
   allproducts:product[]=[]
-  products:product[]=[]
+  products:product[]=[];
+  carasouels:carasouel[]=[]
+  textContent!:textContent;
   
-  constructor(private dataServ:DataService,private route:Router){}
-
-  ngOnInit(): void {
-    this.dataServ.getDataAPI("men").subscribe((data)=>{
+  constructor(private dataServ:DataService,private route:Router){
+    // get products
+    dataServ.getDataAPI("men").subscribe((data)=>{
       for (const key in data) {
         this.allproducts.push(data[key])
       }
       this.products=this.allproducts.filter(item => item.department =="occasion").reverse();
       this.setLinkActive("occasion")
     })
+    // get carasouel 
+    dataServ.getpagesCarasouelAPI("carasouel").subscribe(data=>{
+      for (const key in data) {
+        if(data[key].type=="men")
+        this.carasouels.push(data[key])
+      }
+    })
+    // get text content 
+    dataServ.getpagesContentAPI("pagesTitles").subscribe(data=>{
+      for (const key in data) {
+        this.textContent=(data[key]);
+      }
+    })
+  }
+
+  ngOnInit(): void {
+    
   }
 
   filter(part:string){

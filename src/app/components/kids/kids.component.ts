@@ -3,6 +3,8 @@ import { product } from 'src/app/model/interfaces/product.interface';
 import { DataService } from 'src/app/model/services/data.service';
 import * as $ from 'jquery'
 import { Router } from '@angular/router';
+import { carasouel } from 'src/app/model/interfaces/carasouel.interface';
+import { textContent } from 'src/app/model/interfaces/textContent.interface';
 
 @Component({
   selector: 'app-kids',
@@ -13,17 +15,35 @@ export class KidsComponent implements OnInit {
 
   allproducts:product[]=[]
   products:product[]=[]
+  carasouels:carasouel[]=[]
+  textContent!:textContent;
   
-  constructor(private dataServ:DataService, private route:Router){}
-
-  ngOnInit(): void {
+  constructor(private dataServ:DataService, private route:Router){
+    // get products
     this.dataServ.getDataAPI("kids").subscribe((data)=>{
       for (const key in data) {
         this.allproducts.push(data[key])
       }
       this.products=this.allproducts.filter(item => item.department =="occasion").reverse()
     })
+    // get carasouel 
+    dataServ.getpagesCarasouelAPI("carasouel").subscribe(data=>{
+      for (const key in data) {
+        if(data[key].type=="kids")
+        this.carasouels.push(data[key])
+      }
+    })
+    // get text content 
+    dataServ.getpagesContentAPI("pagesTitles").subscribe(data=>{
+      for (const key in data) {
+        this.textContent=(data[key]);
+      }
+    })
     this.setLinkActive("occasion")
+  }
+
+  ngOnInit(): void {
+    
   }
 
   filter(part:string){

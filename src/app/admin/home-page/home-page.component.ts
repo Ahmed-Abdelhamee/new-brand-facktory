@@ -3,9 +3,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { DataService } from 'src/app/model/services/data.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { ToastrService } from 'ngx-toastr';
-import { homeCarasouel } from 'src/app/model/interfaces/homeCarasouel.interface';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { carasouel } from 'src/app/model/interfaces/carasouel.interface';
 
 @Component({
   selector: 'app-home-page',
@@ -22,16 +22,39 @@ export class HomePageComponent {
   type_of_data_in_part: string = "";  // to identify the acting between carasouel & content
   datalist: any[] = []; // to show data 
   photoSize: boolean = true; // to check photo Size
-  globalObject: homeCarasouel={} as homeCarasouel;
+  globalObject: carasouel={} as carasouel;
   updateKey: string = ""
 
-  constructor(private dataServ: DataService, private formBuilder: FormBuilder, 
-    private firestorage: AngularFireStorage, private toastr: ToastrService, private http:HttpClient) { }
+  constructor(private dataServ: DataService, private formBuilder: FormBuilder, private firestorage: AngularFireStorage, private toastr: ToastrService, private http:HttpClient) {
+    dataServ.getpagesContentAPI("pagesTitles").subscribe(data=>{
+      for (const key in data) {
+        this.pagesTitle.patchValue({
+          id: data[key].id,
+          menTitle: data[key].menTitle,
+          menparagraph: data[key].menparagraph,
+          womenTitle: data[key].womenTitle,
+          womenparagraph: data[key].womenparagraph,
+          kidsTitle: data[key].kidsTitle,
+          kidsparagraph: data[key].kidsparagraph,
+        })
+      }
+    })
+   }
 
   addingHomeCarasouel = this.formBuilder.group({
     id: [new Date().getTime()],
     type: ["", Validators.required],
     img: [""]
+  })
+
+  pagesTitle = this.formBuilder.group({
+    id: [new Date().getTime()],
+    menTitle: ["", Validators.required],
+    menparagraph: ["" , Validators.required],
+    womenTitle: ["", Validators.required],
+    womenparagraph: ["" , Validators.required],
+    kidsTitle: ["", Validators.required],
+    kidsparagraph: ["" , Validators.required],
   })
 
   whatsapp=this.formBuilder.group({
@@ -48,6 +71,7 @@ export class HomePageComponent {
     id:["snapchat"],
     social:[""],
   })
+
   // -------------- promo upload --------------
   upload(event: any) {
     this.photoFile = event.target.files[0];
@@ -97,23 +121,14 @@ export class HomePageComponent {
       this.toastr.error("راجع البيانات  من فضلك ");
     }
   }
-
   // ------------------------------------------ show data carasouel ------------------------------------------
   showdata() {
     this.datalist = []
-    if (this.control == "show-carasouel" && this.datalist.length == 0) {
       this.dataServ.getDataAPI("carasouel").subscribe(data => {
         for (const key in data) {
           this.datalist.push(data[key])
         }
       })
-    } else if (this.control == "show-content" && this.datalist.length == 0) {
-      this.dataServ.getDataAPI("content").subscribe(data => {
-        for (const key in data) {
-          this.datalist.push(data[key])
-        }
-      })
-    }
   }
 
   // ----------------------------- find Item -----------------------------
@@ -150,6 +165,10 @@ export class HomePageComponent {
     })
   }
 
+  // ------------ update pages content -------------
+  updateData(){
+    this.dataServ.updatePagesTitle(this.pagesTitle.value)
+  }
   
   //------------------------------------ update what's app ------------------------------------
   submitWhats(){

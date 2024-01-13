@@ -39,8 +39,23 @@
   </div>
 </nav>
 
-<!-- products view -->
 <div class="col-12 global-padding">
+  <div class="page-top-content">
+    <div class="col-lg-6 col-md-6 col-sm-6 ">
+      <img [src]="carasouels[0].img" alt="" class="w-100 h-100 page-top-image">
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6">
+      <div class="page-top-text-content">
+        <h1 class="text-center">{{textContent.menTitle}}</h1>
+        <h5 class="text-center">{{textContent.menparagraph}}</h5>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- products view -->
+<div class="col-12 ">
   <div class="col-sm-3 p-2" *ngFor="let item of products">
     <div class="card product" (click)="productDetails(item)">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16" (click)="setFavourites(item)">

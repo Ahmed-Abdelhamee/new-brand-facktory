@@ -38,39 +38,28 @@
       </div>
     </div>
 </nav>
+<!-- 
+<div class="carousel-item" [class.active]="i === 0" *ngFor="let item of carasouels ; let i=index" >
+  <img [src]="item.img" class="d-block w-100" alt="...">
+</div> 
+-->
 
-<!-- <div class="col-12 global-padding special-height-page-top">
-    <div class="col-lg-4 col-md-4 col-sm-4">
-      <div id="carouselExample" class="carousel slide carousel-slide ">
-        <div class="carousel-inner">
-          <div class="carousel-item">
-            <img src="assets/36.png" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="assets/36.png" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="assets/36.png" class="d-block w-100" alt="...">
-          </div>
+<div class="col-12 global-padding">
+    <div class="page-top-content">
+      <div class="col-lg-6 col-md-6 col-sm-6 ">
+        <img [src]="carasouels[0].img" alt="" class="w-100 h-100 page-top-image">
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="page-top-text-content">
+          <h1 class="text-center">{{textContent.womenTitle}}</h1>
+          <h5 class="text-center">{{textContent.womenparagraph}}</h5>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
       </div>
     </div>
-    <div class="col-lg-6 col-md-6 col-sm-6">
-      <h1 class="title">hello</h1>
-      <h4 class="paragraph">paragraph</h4>
-    </div>
-</div> -->
+</div>
 
 <!-- products view -->
-<div class="col-12 global-padding">
+<div class="col-12">
   <div class="col-lg-3 col-md-4 col-sm-3 p-2 mb-1" *ngFor="let item of products">
     <div class="card product" (click)="productDetails(item)">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16" (click)="setFavourites(item)">

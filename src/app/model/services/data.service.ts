@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { product } from '../interfaces/product.interface';
 import { social } from '../interfaces/social.interface';
+import { carasouel} from '../interfaces/carasouel.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,20 @@ export class DataService {
 
   constructor( private http : HttpClient , private toastr : ToastrService ) { }
   
-  // create and update data 
+  // get data from API
+  getDataAPI(type:string):Observable<product[]>{
+    return this.http.get<product[]>(`${environment.firebase.databaseURL}/${type}.json`)
+  }
+  // get pages carasouel from API
+  getpagesCarasouelAPI(type:string):Observable<carasouel[]>{
+    return this.http.get<carasouel[]>(`${environment.firebase.databaseURL}/${type}.json`)
+  }
+  // get pages content from API
+  getpagesContentAPI(type:string):Observable<any[]>{
+    return this.http.get<product[]>(`${environment.firebase.databaseURL}/${type}.json`)
+  }
+
+  // create and update data products
   createe(key:string ,action:string , product:any){
     if(action=="add-product"){
       this.http.post(`${environment.firebase.databaseURL}/${product.type}.json`,product).subscribe((data)=>{
@@ -25,13 +39,7 @@ export class DataService {
       })
     }
   }
-
-  // get data from API
-  getDataAPI(type:string):Observable<product[]>{
-    return this.http.get<product[]>(`${environment.firebase.databaseURL}/${type}.json`)
-  }
-
-  //  --------------- create and update data page top data ---------------
+  //  --------------- create and update photos-carasouel ---------------
   createCarasouel(key:string , action:string ,type:string , data:any){
     if(action=="add-carasouel"){
       this.http.post(`${environment.firebase.databaseURL}/${type}.json`,data).subscribe((data)=>{
@@ -43,7 +51,17 @@ export class DataService {
       })
     }
   }
-
+  //  --------------- update pages data ---------------
+  updatePagesTitle(item:any){
+    this.getDataAPI("pagesTitles").subscribe(data=>{
+      for (const key in data) {
+        if(data[key].id==item.id)
+        this.http.put(`${environment.firebase.databaseURL}/pagesTitles/${key}.json`,item).subscribe(()=>{
+          this.toastr.warning("تم تعديل العناوين","عملية ناجحة"); 
+        })
+      }
+    })
+  }
   // delete data
   del(type:string,key:string){
     return this.http.delete(`${environment.firebase.databaseURL}/${type}/${key}.json`).subscribe((data)=>{
@@ -51,21 +69,21 @@ export class DataService {
     })
   }
 
-
-// -------------------------- note that update & delete is working in the Component.ts directly -----------------------
-getSocialAPI(socialtype:string):Observable<social[]>{
-  return this.http.get<social[]>(`${environment.firebase.databaseURL}/${socialtype}.json`)
-}
-// --------------------- get data of social Links ---------------------
-returnSoical(social:string):social[]{
-  let arr:social[]=[];
-  this.getSocialAPI(social).subscribe(data=>{
-    for (const key in data) {
-      arr.push(data[key]);
-    }
-  })
-  return arr;
-}
+  //---------------------------------------------------------------------------------------------------------------------
+  // -------------------------- note that update & delete is working in the Component.ts directly -----------------------
+  getSocialAPI(socialtype:string):Observable<social[]>{
+    return this.http.get<social[]>(`${environment.firebase.databaseURL}/${socialtype}.json`)
+  }
+  // --------------------- get data of social Links ---------------------
+  returnSoical(social:string):social[]{
+    let arr:social[]=[];
+    this.getSocialAPI(social).subscribe(data=>{
+      for (const key in data) {
+        arr.push(data[key]);
+      }
+    })
+    return arr;
+  }
   // --------------------------------------- update social media links ---------------------------------------
   updateWhatsapp(whats:any){
     this.getSocialAPI("whatsapp").subscribe(data=>{
@@ -76,7 +94,6 @@ returnSoical(social:string):social[]{
       }
     })
   }
-
   updateSnapChat(snapchat:any){
     this.getSocialAPI("snapchat").subscribe(data=>{
       for(let key in data){
@@ -86,7 +103,6 @@ returnSoical(social:string):social[]{
       }
     })
   }
-
   updateInstagram(insta:any){
     this.getSocialAPI("insta").subscribe(data=>{
       for(let key in data){
