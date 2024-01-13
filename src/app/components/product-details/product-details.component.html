@@ -11,7 +11,7 @@
             <p class="text  text-dark">{{product.details}}</p>
             <p class="text  text-dark text-decoration-line-through" *ngIf="product.department=='occasion'">{{product.prePrice}} د.ك</p>
             <p class="text  text-dark">{{product.price}} د.ك</p>
-            <select name="size" id="size" class="form-select" *ngIf="product.department=='clothes'" size="=value">
+            <select name="size" id="size" class="form-select" *ngIf="product.department=='clothes'" (change)="size=$event.target!;size=size.value">
                 <option value="">اختر المقاس المناسب</option>
                 <option [value]="item" *ngFor="let item of clothes">{{item}}</option>
                 <!-- <ng-template *ngIf="product.type=='kids'">
