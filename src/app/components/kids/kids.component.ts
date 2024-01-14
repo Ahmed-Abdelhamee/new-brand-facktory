@@ -34,12 +34,23 @@ export class KidsComponent implements OnInit {
       }
     })
     // get text content 
-    dataServ.getpagesContentAPI("pagesTitles").subscribe(data=>{
+    dataServ.getpagesContentAPI("pagesTitles").subscribe(
+      data=>{
       for (const key in data) {
         this.textContent=(data[key]);
       }
     })
-    this.setLinkActive("occasion")
+    this.setLinkActive("occasion");
+
+    /*
+    .subscribe({
+        next:(data)=>{
+          console.log(data)
+        },
+        error:()=>{console.log("error")},
+        complete:()=>{console.log("ended")}
+      })
+    */
   }
 
   ngOnInit(): void {

@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { product } from '../interfaces/product.interface';
 import { social } from '../interfaces/social.interface';
 import { carasouel} from '../interfaces/carasouel.interface';
+import { event } from 'jquery';
 
 @Injectable({
   providedIn: 'root'

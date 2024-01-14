@@ -1,37 +1,9 @@
-@media screen and (max-width:991px) {
-    div.position-fixed{
-        background-color: white !important;
-    }
-}
-@media screen and (max-width:"600px") {
-    .icons-div{
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: fit-content;
-    }
-    .icon-link {
-        align-items: start;
-        width: 1.2em;
-        height: 1.2em;
-        margin-left: 10px;
-    }
-    .brand{
-        position: absolute;
-        top: 42px;
-        left: 4px;
-        width: fit-content;
-        width: 100%;
-        background-color: white;
-        padding: 4px;
-    }
-}
-@media screen and (max-width:"300px") {
-    .department-link{
-        padding-right: 4px !important;
-    }
-}
 
+.logo{
+    height: 50px;
+    width: 50px;
+    border-radius: 5px;
+}
 .position-fixed{
     width: 100%;
     z-index: 5;
@@ -86,7 +58,43 @@ form.d-flex{
     margin: 6px;
 }
 
-
+@media screen and (max-width:991px) {
+    div.position-fixed{
+        background-color: white !important;
+    }
+}
+@media screen and (max-width:"600px") {
+    .icons-div{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: fit-content;
+    }
+    .icon-link {
+        align-items: start;
+        width: 1.2em;
+        height: 1.2em;
+        margin-left: 10px;
+    }
+    .brand{
+        position: absolute;
+        top: 42px;
+        left: 4px;
+        width: fit-content;
+        width: 100%;
+        background-color: white;
+        padding: 4px;
+    }
+    .logo{
+        height: 40px;
+        width: 40px;
+    }
+}
+@media screen and (max-width:"300px") {
+    .department-link{
+        padding-right: 4px !important;
+    }
+}
 
 
 

@@ -169,10 +169,19 @@ svg:hover{
 }
 
 @media screen and (max-width:600px) {
+    .page-top-content{
+        height: auto !important;
+    }
+    .page-top-content img{
+        height: 250px !important;
+    }
+    .global-padding{
+        margin-top: 150px;
+    }
     .page-top-text-content{
         padding: 15px;
     }
     .mt-5 {
-        margin-top: 75px !important;
+        margin-top: 85px !important;
     }
 }
