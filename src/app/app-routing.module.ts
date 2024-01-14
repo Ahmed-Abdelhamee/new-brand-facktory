@@ -8,9 +8,9 @@ import { ProductDetailsComponent } from "./components/product-details/product-de
 
 const routes: Routes = [
     // {path:"",redirectTo:"/home",pathMatch:"full"},
-    {path:"",component:WomenComponent},
+    // {path:"",component:WomenComponent},
     {path:"home",component:HomeComponent},
-    {path:"men",component:MenComponent},
+    {path:"",component:MenComponent},
     {path:"women",component:WomenComponent},
     {path:"kids",component:KidsComponent},
     {path:"product/:id",component:ProductDetailsComponent},

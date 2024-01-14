@@ -17,9 +17,9 @@ export class ProductsComponent implements  OnChanges{
   photosPromo:any[]=[];
   photosFiles:File[]=[];
   photosSize:number[]=[];
-  products:product[]=[]
-  adultLinks:string[]=["occasion","clothes","shoes","bags","accessiores","jewellary","whatches","homeWare"];
-  kidsLinks:string[]=["occasion","baby-0-36-monthes","kids-2-12","teenagers"]
+  products:product[]=[];
+  // adultLinks:string[]=["occasion","clothes","shoes","bags","accessiores","jewellary","whatches","homeWare"];
+  // kidsLinks:string[]=["occasion","baby-0-36-monthes","kids-2-12","teenagers"]
   // variables for set a control
   numberOfImages!: number;  
   control:string="";
@@ -125,10 +125,10 @@ export class ProductsComponent implements  OnChanges{
   // ------------------------------------------ add product ------------------------------------------
   // --------- sending the data to firebase backend ---------
   submit() {
-    if ((this.product.get("prePrice")?.value! > this.product.get("price")?.value! || this.product.get("prePrice")?.value! <= 0) &&
-      this.product.get("price")?.value! > 0 && this.product.get("type")?.value != '' &&
-      this.product.get("department")?.value != '' && this.product.get("title")?.value != '' &&
-      this.product.get("details")?.value != '' && this.photosPromo.length > 1) {
+    if ((this.product.get("prePrice")?.value! > this.product.get("price")?.value! || this.product.get("department")?.value! !="occasion") &&
+       this.product.get("price")?.value! > 0 && this.product.get("type")?.value != '' &&
+       this.product.get("department")?.value != '' && this.product.get("title")?.value != '' &&
+       this.product.get("details")?.value != '' && this.photosPromo.length > 1) {
 
       if (this.control == "add-product") {
         this.product.patchValue({

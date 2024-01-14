@@ -73,7 +73,7 @@ svg:hover{
 .global-padding{
     margin-top: 105px;
 }
-.page-top-content{
+/* .page-top-content{
     height: 450px;
 }
 .page-top-image{
@@ -82,8 +82,7 @@ svg:hover{
 }
 .page-top-text-content{
     padding: 60px 40px;
-}
-
+} */
 
 .carousel-item{
     display: flex;
@@ -106,7 +105,7 @@ svg:hover{
 }
 .product img{
     width: 100%;
-    height: 300px;
+    height: 370px;
     border-radius: 15px !important;
 }
 .product:hover img:last-of-type{
@@ -169,11 +168,25 @@ svg:hover{
 }
 
 @media screen and (max-width:600px) {
-    .page-top-content{
+    .col-sm-3{
+        width: 50%;
+        margin-bottom: 5px;
+    }
+    svg{
+        top: 0px;
+        left: 5px;
+    }
+    /* .page-top-content{
         height: auto !important;
     }
     .page-top-content img{
         height: 250px !important;
+    } */
+    .product{
+        padding: 5px;
+    }
+    .product img{
+        height: 185px !important;
     }
     .global-padding{
         margin-top: 150px;

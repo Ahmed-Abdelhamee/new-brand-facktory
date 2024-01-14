@@ -7,12 +7,14 @@
   <div class="form-group p-3">
     <select class="form-select" aria-label="Default select example" (change)="productsFilter=$event.target; productsFilter=productsFilter.value; ngOnChanges()" *ngIf="control=='show-product'">
       <option selected>اختر فئة المنتجات</option>
-      <ng-container *ngIf="typeOfDataFromParent != 'kids' ">
+        <option value="occasion">عروض</option>
+        <option value="clothes">ملابس</option> 
+      <!-- <ng-container *ngIf="typeOfDataFromParent != 'kids' ">
         <option [value]="item" *ngFor="let item of adultLinks">{{item}}</option>
       </ng-container>
       <ng-container *ngIf="typeOfDataFromParent == 'kids' ">
         <option [value]="item" *ngFor="let item of kidsLinks">{{item}}</option>
-      </ng-container>
+      </ng-container> -->
     </select>
   </div>
 
@@ -60,21 +62,23 @@
       <div class="form-group">
         <label for="type">اختر النوع </label>
         <select class="form-select mb-1" aria-label="Default select example" formControlName="type" id="type" (change)="emptyDep()">
-          <option value="men">men</option>
-          <option value="women">women</option>
-          <option value="kids">kids</option>
+          <option value="men">رجال</option>
+          <!-- <option value="women">women</option> -->
+          <option value="kids">اطفال</option>
         </select>
       </div>
       <div class="form-group">
         <label for="department">اختر فئة المنتج</label>
         <select class="form-select mb-1" aria-label="Default select example" formControlName="department" id="department">
           <option value=""></option>
-          <ng-container *ngIf="product.get('type')?.value != 'kids' ">
+          <option value="occasion">عروض</option>
+          <option value="clothes">ملابس</option>
+          <!-- <ng-container *ngIf="product.get('type')?.value != 'kids' ">
             <option [value]="item" *ngFor="let item of adultLinks">{{item}}</option>
           </ng-container>
           <ng-container *ngIf="product.get('type')?.value == 'kids' ">
             <option [value]="item" *ngFor="let item of kidsLinks">{{item}}</option>
-          </ng-container>
+          </ng-container> -->
         </select>
       </div>
       <div class="form-group">
@@ -85,7 +89,7 @@
         <label for="department">تفاصيل المنتج </label>
         <input class="form-control mb-1" type="text" aria-label="default input example" formControlName="details">
       </div>
-      <div class="form-group">
+      <div class="form-group" *ngIf="this.product.get('department')?.value! == 'occasion'">
         <label for="department">سعر المنتج قبل الخصم</label>
         <input class="form-control mb-1" type="number" placeholder="سعر المنتج" aria-label="default input example" formControlName="prePrice">
       </div>
