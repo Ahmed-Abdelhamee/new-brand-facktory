@@ -77,12 +77,12 @@ export class MenComponent implements OnInit {
   }
 
   isFavourite(id:number):boolean{
-    // let founded=false;
-    // this.favouriteproducts=(JSON.parse(localStorage.getItem("favo-items-brand-store")!));
-    // for(let i in this.favouriteproducts)
-    //  if(id==this.favouriteproducts[i].id)
-    //  founded = true;
-    // return founded;
-    return false;
+    let founded=false;
+    this.favouriteproducts=(JSON.parse(localStorage.getItem("favo-items-brand-store")!));
+    for(let i in this.favouriteproducts)
+     if(id==this.favouriteproducts[i].id)
+     founded = true;
+    return founded;
+    // return false;
   }
 }
