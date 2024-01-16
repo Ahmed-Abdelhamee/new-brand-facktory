@@ -1,7 +1,7 @@
 <!-- products header links for filter -->
 <nav class="navbar position-fixed navbar-expand-lg bg-body-tertiary bg-light mt-5">
     <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" id="btnToggle" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse " id="navbarSupportedContent">
@@ -12,6 +12,18 @@
           <li class="nav-item" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <a class="nav-link clothes-link" (click)="filter('clothes')" id="clothes" >ملابس</a>
           </li>
+          <li class="nav-item">
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                براندات
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item dropdown-brand-list-desktop" (click)="filter(item)" id="{{item}}" *ngFor="let item of brands">{{item}}</a></li>
+                <li><a class="dropdown-item dropdown-brand-list-mobile" (click)="filter(item)" id="{{item}}" *ngFor="let item of brands" type="button" id="btnToggle" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">{{item}}</a></li>
+              </ul>
+            </div>
+          </li>
+          <!-- removed by customer request -->
           <!-- <li class="nav-item" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <a class="nav-link clothes-link" (click)="filter('baby-0-36-monthes')" id="baby-0-36-monthes" >ملابس</a>
           </li>
@@ -25,15 +37,14 @@
         </ul>
         <form class="d-flex" role="search">
           <input class="form-control me-2 searchItem" type="search" placeholder="Search" aria-label="Search">
-          <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
         </form>
       </div>
     </div>
 </nav>
 
+<!--
 <div class="col-12 global-padding">
-  <h5 class="text-center">{{textContent.kidsparagraph}}</h5>
-  <!-- <div class="page-top-content">
+   <div class="page-top-content">
     <div class="col-lg-6 col-md-6 col-sm-6 ">
       <img [src]="carasouels[0].img" alt="" class="w-100 h-100 page-top-image">
     </div>
@@ -43,14 +54,15 @@
         <h5 class="text-center">{{textContent.kidsparagraph}}</h5>
       </div>
     </div>
-  </div> -->
+  </div> 
 </div>
+-->
 
 <!-- products view -->
-<div class="col-12">
-  <div class="col-lg-3 col-md-4 col-sm-3 p-2" *ngFor="let item of products">
-    <div class="card product" (click)="productDetails(item)">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16" (click)="setFavourites(item)" [ngStyle]="{fill: (isFavourite(item.id))?'#ff1212':'darkgrey'}">
+<div class="col-12 global-padding">
+  <div class="col-lg-3 col-md-4 col-sm-3 p-2" *ngFor="let item of products;let i=index">
+    <div class="card product">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16" [ngStyle]="{fill: (isFavourite(item.id))?'#ff1212':'darkgrey'}" (click)="setFavourites(item,i)">
         <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1"/>
       </svg>
       <div (click)="productDetails(item)">
@@ -58,14 +70,12 @@
         <img [src]="item.productImages['1'].img" class="" alt="...">
         <div class="card-body">
           <p class="card-title">{{item.title}}</p>
+          <p>{{item.brand}} </p>
           <p class="card-text">{{item.details}} </p>
           <p *ngIf="item.department=='occasion'">{{item.price}} د.ك {{ (item.prePrice - item.price ) / item.prePrice *100 | number:'.1-2'}}%   <span class="text-decoration-line-through ml-2"> {{item.prePrice}} د.ك</span></p>
           <p *ngIf="item.department!='occasion'">{{item.price}} د.ك </p>
         </div>
       </div>
-      <!-- <div class="text-center">
-        <button class="btn-more">تفاصيل </button>
-      </div> -->
     </div>
   </div>
 </div>

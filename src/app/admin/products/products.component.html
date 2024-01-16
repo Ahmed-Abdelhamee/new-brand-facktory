@@ -4,6 +4,7 @@
     <button class="btn btn-primary btn-add" (click)="control='add-product';emptyProuct()" [disabled]="control=='add-product'">اضافة منتج</button>
     <button class="btn btn-secondary " (click)="control='show-product';ngOnChanges()" [disabled]="control=='show-product'">عرض المنتجات</button>
   </div>
+   <!-- for filtering the data in admin view -->
   <div class="form-group p-3">
     <select class="form-select" aria-label="Default select example" (change)="productsFilter=$event.target; productsFilter=productsFilter.value; ngOnChanges()" *ngIf="control=='show-product'">
       <option selected>اختر فئة المنتجات</option>
@@ -17,45 +18,7 @@
       </ng-container> -->
     </select>
   </div>
-
-  <!-- table for show products  -->
-  <div class="table-responsive" *ngIf="control=='show-product'">
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">اسم المنتج</th>
-          <th scope="col">تفاصيل المنتج</th>
-          <th scope="col">نوع المنتج</th>
-          <th scope="col">فئة المنتج</th>
-          <th scope="col">سعر المنتج</th>
-          <th scope="col">السعر المطلوب</th>
-          <th scope="col">صورة المنتج</th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of products; let i=index">
-          <th scope="row">{{i+1}}</th>
-          <td>{{item.title}}</td>
-          <td><textarea class="form-control" name="department" id="department" [value]="item.details" cols="30"
-              rows="4" readonly></textarea></td>
-          <td>{{item.department}}</td>
-          <td>{{item.type}}</td>
-          <td>{{item.prePrice}}</td>
-          <td>{{item.price}}</td>
-          <td><img class="small-image" [src]="item.productImages['0'].img" alt=""></td>
-          <td>
-            <button type="button" class="btn btn-warning" (click)="edit(item);control='edit-product'">edit</button>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#exampleModal"
-              (click)="getItem(item)">X</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
+  
   <!-- form for adding a product  -->
   <form [formGroup]="product" *ngIf="control=='add-product'||control=='edit-product'" (ngSubmit)="submit()">
     <div class="form-group p-4">
@@ -79,6 +42,11 @@
           <ng-container *ngIf="product.get('type')?.value == 'kids' ">
             <option [value]="item" *ngFor="let item of kidsLinks">{{item}}</option>
           </ng-container> -->
+        </select>
+        <label for="department">اختر البراند</label>
+        <select class="form-select mb-1" name="brand" id="brand" formControlName="brand">
+          <option value=""></option>
+          <option [value]="item" *ngFor="let item of brands">{{item}}</option>
         </select>
       </div>
       <div class="form-group">
@@ -124,6 +92,46 @@
       </div>
     </div>
   </form>
+
+  <!-- table for show products  -->
+  <div class="table-responsive" *ngIf="control=='show-product'">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">اسم المنتج</th>
+          <th scope="col">تفاصيل المنتج</th>
+          <th scope="col">نوع المنتج</th>
+          <th scope="col">فئة المنتج</th>
+          <th scope="col">البراند</th>
+          <th scope="col">سعر المنتج</th>
+          <th scope="col">السعر المطلوب</th>
+          <th scope="col">صورة المنتج</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of products; let i=index">
+          <th scope="row">{{i+1}}</th>
+          <td>{{item.title}}</td>
+          <td><textarea class="form-control" name="department" id="department" [value]="item.details" cols="30"
+              rows="4" readonly></textarea></td>
+          <td>{{item.department}}</td>
+          <td>{{item.type}}</td>
+          <td>{{item.brand}}</td>
+          <td>{{item.prePrice}}</td>
+          <td>{{item.price}}</td>
+          <td><img class="small-image" [src]="item.productImages['0'].img" alt=""></td>
+          <td>
+            <button type="button" class="btn btn-warning m-1" (click)="edit(item);control='edit-product'">edit</button>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#exampleModal"
+              (click)="getItem(item)">X</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
   <!-- showing modal before delete -->
   <!-- Modal -->

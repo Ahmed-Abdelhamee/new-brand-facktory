@@ -19,7 +19,9 @@ export class MenComponent implements OnInit {
   carasouels:carasouel[]=[]
   textContent:textContent={} as textContent;
   favouriteproducts:product[]=[]
-  
+  brands:string[]=["Dior","Gucci","Prada","Armani","Louis Vuitton","Hermes","Burberry","Ralph Lauren","Balenciaga","Fendi","Rolex","Saint Laurent",'Versace',"Dolce&Gabbana","Givenchy","Valentino","Balmain","Bvlgari","Cartier","Swarovski","Bottega Veneta","Coach","Michael Kors","Chanel" ];
+  setTogglerWork:string=""
+
   constructor(private dataServ:DataService,private route:Router){
     // get products
     dataServ.getDataAPI("men").subscribe((data)=>{
@@ -44,13 +46,17 @@ export class MenComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void { }
 
-  filter(part:string){
-    this.products=this.allproducts.filter(item => item.department == part).reverse()
-    this.setLinkActive(part)
+  filter(part: string) {
+    if (part == "occasion" || part == "clothes") {
+      this.products = this.allproducts.filter(item => item.department == part).reverse()
+      this.setLinkActive(part)
+    } else {
+      this.products = this.allproducts.filter(item => item.brand == part).reverse();
+      if(window.innerWidth <=991)
+      this.setTogglerWork="#navbarSupportedContent"
+    }
   }
 
   setLinkActive(part:string){
@@ -66,14 +72,28 @@ export class MenComponent implements OnInit {
     $(`#${part}`).addClass("text-danger")
   }
   
-  setFavourites(item:product){
-    this.favouriteproducts=JSON.parse(localStorage.getItem("favo-items-brand-store")!)? JSON.parse(localStorage.getItem("favo-items-brand-store")!):[];
-    this.favouriteproducts.push(item);
-    localStorage.setItem("favo-items-brand-store",JSON.stringify(this.favouriteproducts))
-  }
-
   productDetails(item:product){
     this.route.navigate([`/product/${item.type}-${item.id}`])
+  }
+
+  setFavourites(item:product,index:number){
+    let productListedBefore=false
+    for(let i=0; i< this.favouriteproducts.length;i++){
+      if(this.favouriteproducts[i].id==item.id){
+        productListedBefore=true;
+        index=i;
+        break;
+      }
+    }
+    if(productListedBefore){
+      this.favouriteproducts.splice(index,1);
+      localStorage.setItem("favo-items-brand-store",JSON.stringify(this.favouriteproducts));
+    }
+    else{
+      this.favouriteproducts=JSON.parse(localStorage.getItem("favo-items-brand-store")!)? JSON.parse(localStorage.getItem("favo-items-brand-store")!):[];
+      this.favouriteproducts.push(item);
+      localStorage.setItem("favo-items-brand-store",JSON.stringify(this.favouriteproducts))
+    }
   }
 
   isFavourite(id:number):boolean{
@@ -83,6 +103,5 @@ export class MenComponent implements OnInit {
      if(id==this.favouriteproducts[i].id)
      founded = true;
     return founded;
-    // return false;
   }
 }

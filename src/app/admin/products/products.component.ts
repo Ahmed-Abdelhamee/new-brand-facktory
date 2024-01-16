@@ -18,6 +18,7 @@ export class ProductsComponent implements  OnChanges{
   photosFiles:File[]=[];
   photosSize:number[]=[];
   products:product[]=[];
+  brands:string[]=["Dior","Gucci","Prada","Armani","Louis Vuitton","Hermes","Burberry","Ralph Lauren","Balenciaga","Fendi","Rolex","Saint Laurent",'Versace',"Dolce&Gabbana","Givenchy","Valentino","Balmain","Bvlgari","Cartier","Swarovski","Bottega Veneta","Coach","Michael Kors","Chanel" ];
   // adultLinks:string[]=["occasion","clothes","shoes","bags","accessiores","jewellary","whatches","homeWare"];
   // kidsLinks:string[]=["occasion","baby-0-36-monthes","kids-2-12","teenagers"]
   // variables for set a control
@@ -34,6 +35,7 @@ export class ProductsComponent implements  OnChanges{
     id:[new Date().getTime(),],
     type:["",Validators.required],
     department:["",Validators.required],
+    brand:["",Validators.required],
     title:["",Validators.required],
     details:["",Validators.required],
     prePrice:[0,Validators.required],
@@ -65,6 +67,7 @@ export class ProductsComponent implements  OnChanges{
       id:0,
       type:"",
       department:"",
+      brand:"",
       title:"",
       details:"",
       prePrice:0,
@@ -126,9 +129,8 @@ export class ProductsComponent implements  OnChanges{
   // --------- sending the data to firebase backend ---------
   submit() {
     if ((this.product.get("prePrice")?.value! > this.product.get("price")?.value! || this.product.get("department")?.value! !="occasion") &&
-       this.product.get("price")?.value! > 0 && this.product.get("type")?.value != '' &&
-       this.product.get("department")?.value != '' && this.product.get("title")?.value != '' &&
-       this.product.get("details")?.value != '' && this.photosPromo.length > 1) {
+       this.product.get("price")?.value! > 0 && this.product.get("type")?.value != '' && this.product.get("brand")?.value != '' &&
+       this.product.get("department")?.value != '' && this.product.get("title")?.value != '' && this.product.get("details")?.value != '' && this.photosPromo.length > 1) {
 
       if (this.control == "add-product") {
         this.product.patchValue({
@@ -167,6 +169,7 @@ export class ProductsComponent implements  OnChanges{
       id:item.id,
       type:item.type,
       department:item.department,
+      brand:item.brand,
       title:item.title,
       details:item.details,
       prePrice:item.prePrice,

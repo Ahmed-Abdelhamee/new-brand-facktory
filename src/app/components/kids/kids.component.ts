@@ -9,38 +9,40 @@ import { textContent } from 'src/app/model/interfaces/textContent.interface';
 @Component({
   selector: 'app-kids',
   templateUrl: './kids.component.html',
-  styleUrls: ['./kids.component.scss',"../../model/css-styles/user-css.css"]
+  styleUrls: ['./kids.component.scss', "../../model/css-styles/user-css.css"]
 })
 export class KidsComponent implements OnInit {
 
-  allproducts:product[]=[]
-  products:product[]=[]
-  carasouels:carasouel[]=[]
-  textContent:textContent={} as textContent;
-  favouriteproducts:product[]=[]
-  
-  constructor(private dataServ:DataService, private route:Router){
+  allproducts: product[] = []
+  products: product[] = []
+  carasouels: carasouel[] = []
+  textContent: textContent = {} as textContent;
+  favouriteproducts: product[] = []
+  brands: string[] = ["Dior", "Gucci", "Prada", "Armani", "Louis Vuitton", "Hermes", "Burberry", "Ralph Lauren", "Balenciaga", "Fendi", "Rolex", "Saint Laurent", 'Versace', "Dolce&Gabbana", "Givenchy", "Valentino", "Balmain", "Bvlgari", "Cartier", "Swarovski", "Bottega Veneta", "Coach", "Michael Kors", "Chanel"];
+  setTogglerWork: string = ""
+
+  constructor(private dataServ: DataService, private route: Router) {
     // get products
-    this.dataServ.getDataAPI("kids").subscribe((data)=>{
+    this.dataServ.getDataAPI("kids").subscribe((data) => {
       for (const key in data) {
         this.allproducts.push(data[key])
       }
-      this.products=this.allproducts.filter(item => item.department =="occasion").reverse()
+      this.products = this.allproducts.filter(item => item.department == "occasion").reverse()
     })
     // get carasouel 
-    dataServ.getpagesCarasouelAPI("carasouel").subscribe(data=>{
+    dataServ.getpagesCarasouelAPI("carasouel").subscribe(data => {
       for (const key in data) {
-        if(data[key].type=="kids")
-        this.carasouels.push(data[key])
+        if (data[key].type == "kids")
+          this.carasouels.push(data[key])
       }
     })
     // get text content 
     dataServ.getpagesContentAPI("pagesTitles").subscribe(
-      data=>{
-      for (const key in data) {
-        this.textContent=(data[key]);
-      }
-    })
+      data => {
+        for (const key in data) {
+          this.textContent = (data[key]);
+        }
+      })
     this.setLinkActive("occasion");
     /*
     .subscribe({
@@ -53,18 +55,24 @@ export class KidsComponent implements OnInit {
     */
   }
 
-  ngOnInit(): void {
-    
+  ngOnInit(): void { }
+
+  filter(part: string) {
+    if (part == "occasion" || part == "clothes") {
+      this.products = this.allproducts.filter(item => item.department == part).reverse()
+      this.setLinkActive(part)
+    } else {
+      this.products = this.allproducts.filter(item => item.brand == part).reverse();
+      if(window.innerWidth <=991)
+      this.setTogglerWork="#navbarSupportedContent"
+    }
   }
 
-  filter(part:string){
-    this.products=this.allproducts.filter(item => item.department == part).reverse()
-    this.setLinkActive(part)
-  }
-
-  setLinkActive(part:string){
+  setLinkActive(part: string) {
     $(`#occasion`).removeClass("text-danger")
     $(`#clothes`).removeClass("text-danger")
+    $(`#brand`).removeClass("text-danger")
+    // removed by customer request
     // $(`#baby-0-36-monthes`).removeClass("text-danger")
     // $(`#kids-2-12`).removeClass("text-danger")
     // $(`#teenagers`).removeClass("text-danger")
@@ -72,28 +80,36 @@ export class KidsComponent implements OnInit {
     $(`#${part}`).addClass("text-danger")
   }
 
-  setFavourites(item:product){
-    this.favouriteproducts=(JSON.parse(localStorage.getItem("favo-items-brand-store")!,(key,value)=>{
-      return value
-    }));
-    this.favouriteproducts.push(item);
-    localStorage.setItem("favo-items-brand-store",JSON.stringify(this.favouriteproducts))
-  }
-  
-  productDetails(item:product){
+  productDetails(item: product) {
     this.route.navigate([`/product/${item.type}-${item.id}`])
   }
 
-  isFavourite(id:number):boolean{
-    let founded=false;
-    this.favouriteproducts=(JSON.parse(localStorage.getItem("favo-items-brand-store")!,(key,value)=>{
-      return value
-    }));
-    for(let i in this.favouriteproducts)
-     if(id==this.favouriteproducts[i].id)
-     founded = true;
-    return founded;
-    // return false;
+  setFavourites(item: product, index: number) {
+    let productListedBefore = false
+    for (let i = 0; i < this.favouriteproducts.length; i++) {
+      if (this.favouriteproducts[i].id == item.id) {
+        productListedBefore = true;
+        index = i;
+        break;
+      }
+    }
+    if (productListedBefore) {
+      this.favouriteproducts.splice(index, 1);
+      localStorage.setItem("favo-items-brand-store", JSON.stringify(this.favouriteproducts));
+    }
+    else {
+      this.favouriteproducts = JSON.parse(localStorage.getItem("favo-items-brand-store")!) ? JSON.parse(localStorage.getItem("favo-items-brand-store")!) : [];
+      this.favouriteproducts.push(item);
+      localStorage.setItem("favo-items-brand-store", JSON.stringify(this.favouriteproducts))
+    }
   }
 
+  isFavourite(id: number): boolean {
+    let founded = false;
+    this.favouriteproducts = JSON.parse(localStorage.getItem("favo-items-brand-store")!) ? JSON.parse(localStorage.getItem("favo-items-brand-store")!) : [];
+    for (let i in this.favouriteproducts)
+      if (id == this.favouriteproducts[i].id)
+        founded = true;
+    return founded;
+  }
 }
