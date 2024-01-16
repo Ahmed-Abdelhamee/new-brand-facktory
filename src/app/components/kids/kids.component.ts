@@ -17,6 +17,7 @@ export class KidsComponent implements OnInit {
   products:product[]=[]
   carasouels:carasouel[]=[]
   textContent!:textContent;
+  favouriteproducts:product[]=[]
   
   constructor(private dataServ:DataService, private route:Router){
     // get products
@@ -41,7 +42,6 @@ export class KidsComponent implements OnInit {
       }
     })
     this.setLinkActive("occasion");
-
     /*
     .subscribe({
         next:(data)=>{
@@ -64,17 +64,20 @@ export class KidsComponent implements OnInit {
 
   setLinkActive(part:string){
     $(`#occasion`).removeClass("text-danger")
-    $(`#baby-0-36-monthes`).removeClass("text-danger")
-    $(`#kids-2-12`).removeClass("text-danger")
-    $(`#teenagers`).removeClass("text-danger")
+    $(`#clothes`).removeClass("text-danger")
+    // $(`#baby-0-36-monthes`).removeClass("text-danger")
+    // $(`#kids-2-12`).removeClass("text-danger")
+    // $(`#teenagers`).removeClass("text-danger")
 
     $(`#${part}`).addClass("text-danger")
   }
 
   setFavourites(item:product){
-    localStorage.setItem("department",item.department);
-    localStorage.setItem("id",item.id.toString())
+    this.favouriteproducts=(JSON.parse(localStorage.getItem("favo-items-brand-store")!));
+      this.favouriteproducts.push(item);
+      localStorage.setItem("favo-items-brand-store",JSON.stringify(this.favouriteproducts))
   }
+  
   productDetails(item:product){
     this.route.navigate([`/product/${item.type}-${item.id}`])
   }

@@ -10,8 +10,27 @@
         height: 320px;
         margin-right: 10%;
     }
+    .img-details{
+        display: none;
+    }
+    #img1{
+        display: block !important;
+    }
+    .pb-5 {
+        padding-bottom: 0rem!important;
+    }
+    .product-image{
+        position: relative;
+    }
+    .product-image .bi{
+        position: absolute;
+        top: 41%;
+        display: block;
+    }
+    .bi-caret-left-fill{
+        left: 0;
+    }
 }
-
 .img-details{
     width: 80%;
     height: 410px;
@@ -19,6 +38,7 @@
     border-radius: 10px;
     box-shadow: 0px 0px 13px #d1d1f5;
 }
+
 .title{
     font-size: 25px;
     font-weight: 500;
@@ -40,4 +60,8 @@
 .bi{
     font-size: 1.2em;
     margin: 6px;
+}
+.bi-caret-left-fill,
+.bi-caret-right-fill{
+    display: none;
 }

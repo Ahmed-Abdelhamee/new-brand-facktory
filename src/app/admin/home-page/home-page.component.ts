@@ -30,11 +30,11 @@ export class HomePageComponent {
       for (const key in data) {
         this.pagesTitle.patchValue({
           id: data[key].id,
-          menTitle: data[key].menTitle,
+          // menTitle: data[key].menTitle,
           menparagraph: data[key].menparagraph,
-          womenTitle: data[key].womenTitle,
-          womenparagraph: data[key].womenparagraph,
-          kidsTitle: data[key].kidsTitle,
+          // womenTitle: data[key].womenTitle,
+          // womenparagraph: data[key].womenparagraph,
+          // kidsTitle: data[key].kidsTitle,
           kidsparagraph: data[key].kidsparagraph,
         })
       }
@@ -49,11 +49,11 @@ export class HomePageComponent {
 
   pagesTitle = this.formBuilder.group({
     id: [new Date().getTime()],
-    menTitle: ["", Validators.required],
+    // menTitle: ["", Validators.required],
     menparagraph: ["" , Validators.required],
-    womenTitle: ["", Validators.required],
-    womenparagraph: ["" , Validators.required],
-    kidsTitle: ["", Validators.required],
+    // womenTitle: ["", Validators.required],
+    // womenparagraph: ["" , Validators.required],
+    // kidsTitle: ["", Validators.required],
     kidsparagraph: ["" , Validators.required],
   })
 

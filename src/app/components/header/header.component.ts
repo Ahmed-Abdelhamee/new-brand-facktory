@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery'
+import { product } from 'src/app/model/interfaces/product.interface';
 import { social } from 'src/app/model/interfaces/social.interface';
 import { DataService } from 'src/app/model/services/data.service';
 
@@ -8,11 +9,9 @@ import { DataService } from 'src/app/model/services/data.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
-  getFavourites(){
-    console.log(localStorage.getItem("department"))
-      localStorage.setItem("department","kkk")
-  }
+export class HeaderComponent implements OnInit{
+  
+  favouriteproducts:product[]=[]
 
   // icons form dash 
   whatsapp:social[]=[]
@@ -26,5 +25,18 @@ export class HeaderComponent {
   this.instagram=dataServ.returnSoical("insta");
   // ----------------------- get snapchat -----------------------
   this.snapchat=dataServ.returnSoical("snapchat");
+  }
+
+  ngOnInit(){
+    this.favouriteproducts=(JSON.parse(localStorage.getItem("favo-items-brand-store")!));
+  }
+
+  showFavourit(){
+    this.favouriteproducts=(JSON.parse(localStorage.getItem("favo-items-brand-store")!));
+  }
+
+  del(itemIndex:number){
+    this.favouriteproducts.splice(itemIndex,1);
+    localStorage.setItem("favo-items-brand-store",JSON.stringify(this.favouriteproducts))
   }
 }

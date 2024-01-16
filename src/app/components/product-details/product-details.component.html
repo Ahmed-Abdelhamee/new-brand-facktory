@@ -2,8 +2,10 @@
 <div class="col-12 global-padding">
     <div class="container-fluid">
         <div class="col-sm-8 pb-5">
-            <div  class="col-lg-6 col-md-6 col-ms-6" *ngFor="let item of product.productImages; let i=index">
-                <img  [src]="item.img" alt="" class="img-details">
+            <div  class="col-lg-6 col-md-6 col-ms-6 product-image" *ngFor="let item of product.productImages; let i=index">
+                <i class="bi bi-caret-left-fill" *ngIf="i==0" (click)="moveLeft()"></i>
+                <img  [src]="item.img" alt="" class="img-details" id="img{{i+1}}">
+                <i class="bi bi-caret-right-fill" *ngIf="i==0" (click)="moveRight()"></i>
             </div>
         </div>
         <div class="col-sm-4 p-4">
