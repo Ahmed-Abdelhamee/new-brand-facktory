@@ -16,7 +16,8 @@ export class WomenComponent implements OnInit {
   allproducts:product[]=[]
   products:product[]=[]
   carasouels:carasouel[]=[]
-  textContent!:textContent;
+  textContent:textContent={} as textContent;
+  favouriteproducts:product[]=[]
   image:string=""
   
   constructor(private dataServ:DataService, private route:Router){
@@ -71,4 +72,14 @@ export class WomenComponent implements OnInit {
   productDetails(item:product){
     this.route.navigate([`/product/${item.type}-${item.id}`])
   }
+
+  isFavourite(id:number):boolean{
+    let founded=false;
+    this.favouriteproducts=(JSON.parse(localStorage.getItem("favo-items-brand-store")!));
+    for(let i of JSON.parse(localStorage.getItem("favo-items-brand-store")!))
+     if(id==i.id)
+     founded = true;
+    return founded;
+  }
+
 }
