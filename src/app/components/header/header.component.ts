@@ -29,6 +29,7 @@ export class HeaderComponent implements OnInit{
 
   ngOnInit(){
     this.favouriteproducts=(JSON.parse(localStorage.getItem("favo-items-brand-store")!));
+    console.log(localStorage.getItem("favo-items-brand-store")?.split)
   }
 
   showFavourit(){
