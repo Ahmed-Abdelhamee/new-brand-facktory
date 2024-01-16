@@ -67,9 +67,7 @@ export class MenComponent implements OnInit {
   }
   
   setFavourites(item:product){
-    this.favouriteproducts=(JSON.parse(localStorage.getItem("favo-items-brand-store")!,(key,value)=>{
-      return value
-    }));
+    this.favouriteproducts=JSON.parse(localStorage.getItem("favo-items-brand-store")!)? JSON.parse(localStorage.getItem("favo-items-brand-store")!):[];
     this.favouriteproducts.push(item);
     localStorage.setItem("favo-items-brand-store",JSON.stringify(this.favouriteproducts))
   }
@@ -80,9 +78,7 @@ export class MenComponent implements OnInit {
 
   isFavourite(id:number):boolean{
     let founded=false;
-    this.favouriteproducts=(JSON.parse(localStorage.getItem("favo-items-brand-store")!,(key,value)=>{
-      return value
-    }));
+    this.favouriteproducts=JSON.parse(localStorage.getItem("favo-items-brand-store")!)? JSON.parse(localStorage.getItem("favo-items-brand-store")!):[];
     for(let i in this.favouriteproducts)
      if(id==this.favouriteproducts[i].id)
      founded = true;
