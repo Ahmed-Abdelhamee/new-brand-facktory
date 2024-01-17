@@ -14,15 +14,19 @@ import { textContent } from 'src/app/model/interfaces/textContent.interface';
 })
 export class MenComponent implements OnInit {
 
-  allproducts:product[]=[]
+  allproducts:product[]=[];
   products:product[]=[];
-  carasouels:carasouel[]=[]
+  carasouels:carasouel[]=[];
   textContent:textContent={} as textContent;
-  favouriteproducts:product[]=[]
+  favouriteproducts:product[]=[];
   brands:string[]=["Dior","Gucci","Prada","Armani","Louis Vuitton","Hermes","Burberry","Ralph Lauren","Balenciaga","Fendi","Rolex","Saint Laurent",'Versace',"Dolce&Gabbana","Givenchy","Valentino","Balmain","Bvlgari","Cartier","Swarovski","Bottega Veneta","Coach","Michael Kors","Chanel" ];
-  setTogglerWork:string=""
+  setTogglerWork:string="";
 
   constructor(private dataServ:DataService,private route:Router){
+    if(sessionStorage.getItem("page-attitude")!="men-page-working-fine"){
+      sessionStorage.setItem("page-attitude","men-page-working-fine")
+      window.location.reload()
+    }
     // get products
     dataServ.getDataAPI("men").subscribe((data)=>{
       for (const key in data) {
@@ -37,6 +41,7 @@ export class MenComponent implements OnInit {
         if(data[key].type=="men")
         this.carasouels.push(data[key])
       }
+      console.log(this.carasouels)
     })
     // get text content 
     dataServ.getpagesContentAPI("pagesTitles").subscribe(data=>{
@@ -50,12 +55,12 @@ export class MenComponent implements OnInit {
 
   filter(part: string) {
     if (part == "occasion" || part == "clothes") {
-      this.products = this.allproducts.filter(item => item.department == part).reverse()
+      this.products = this.allproducts.filter(item => item.department == part).reverse();
       this.setLinkActive(part)
     } else {
       this.products = this.allproducts.filter(item => item.brand == part).reverse();
       if(window.innerWidth <=991)
-      this.setTogglerWork="#navbarSupportedContent"
+      this.setTogglerWork="#navbarSupportedContent";
     }
   }
 

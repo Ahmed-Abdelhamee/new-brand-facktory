@@ -21,6 +21,10 @@ export class ProductDetailsComponent implements OnInit {
   size:any=""
 
   constructor( private router:ActivatedRoute, private dataServ:DataService, private route:Router){
+    if(sessionStorage.getItem("page-attitude")!="product-details-page-working-fine"){
+      sessionStorage.setItem("page-attitude","product-details-page-working-fine")
+      window.location.reload()
+    }
     route.events.subscribe(()=>{
       router.paramMap.subscribe(data=>
         this.getLinkData=data.get("id")?.toString().split("-")

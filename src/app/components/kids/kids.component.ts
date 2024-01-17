@@ -22,6 +22,10 @@ export class KidsComponent implements OnInit {
   setTogglerWork: string = ""
 
   constructor(private dataServ: DataService, private route: Router) {
+    if(sessionStorage.getItem("page-attitude")!="kids-page-working-fine"){
+      sessionStorage.setItem("page-attitude","kids-page-working-fine")
+      window.location.reload()
+    }
     // get products
     this.dataServ.getDataAPI("kids").subscribe((data) => {
       for (const key in data) {
