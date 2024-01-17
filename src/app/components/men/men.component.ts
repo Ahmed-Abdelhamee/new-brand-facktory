@@ -16,6 +16,7 @@ export class MenComponent implements OnInit {
 
   allproducts:product[]=[];
   products:product[]=[];
+  searches:product[]=[];
   carasouels:carasouel[]=[];
   textContent:textContent={} as textContent;
   favouriteproducts:product[]=[];
@@ -107,5 +108,11 @@ export class MenComponent implements OnInit {
      if(id==this.favouriteproducts[i].id)
      founded = true;
     return founded;
+  }
+  
+  searcha(fitch:string){
+    this.searches=this.allproducts.filter(item=> item.title.includes(fitch) || item.brand.includes(fitch))
+    if(fitch=="")
+    this.searches=[]
   }
 }

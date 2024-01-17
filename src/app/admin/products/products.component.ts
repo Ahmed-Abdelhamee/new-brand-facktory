@@ -40,7 +40,6 @@ export class ProductsComponent implements  OnChanges{
     details:["",Validators.required],
     prePrice:[0,Validators.required],
     price:[0,Validators.required],
-    size:[""],
     productImages:this.formBuilder.array([])
   })
   get images(){

@@ -44,8 +44,10 @@
         </li> -->
       </ul>
       <form class="d-flex" role="search">
-        <input class="form-control me-2 searchItem" type="search" placeholder="Search" aria-label="Search">
-        <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
+        <input class="form-control me-2 searchItem" type="search" placeholder="Search" aria-label="Search" (keyup)="searcha(val.value)" #val>
+        <div class="search-list" *ngIf="searches.length != 0 && val.value!=''">
+          <p *ngFor="let item of searches"><a  (click)="productDetails(item)">{{item.title}}</a></p>
+        </div>
       </form>
     </div>
   </div>
@@ -71,9 +73,9 @@
 
 <!-- products view -->
 <div class="col-12 global-padding">
-
-  <img [src]="carasouels[0].img" class="d-block w-100 img-carasouel-view" alt="...">
-
+  <!-- one carasouels image -->
+  <img [src]="carasouels['0'].img!" class="d-block w-100 img-carasouel-view" alt="...">
+  <!-- products -->
   <div class="col-lg-3 col-md-4 col-sm-3 p-2" *ngFor="let item of products;let i=index">
     <div class="card product">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16" [ngStyle]="{fill: (isFavourite(item.id))?'#ff1212':'darkgrey'}"  (click)="setFavourites(item!,i)">

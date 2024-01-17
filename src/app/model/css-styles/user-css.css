@@ -53,6 +53,22 @@ form.d-flex{
     padding-right: 11px;
     font-size: 1rem;
 }
+.search-list{
+    position: absolute;
+    top: 51px;
+    left: auto;
+    background-color: white;
+    width: 17%;
+    padding: 6px;
+    border-radius: 6px;
+    height: 40vh !important;
+    overflow-y: scroll;
+}
+.search-list p{
+    margin-bottom: 3px;
+    padding: 5px;
+    border-bottom: 1px solid lightgoldenrodyellow;
+}
 /* // ------------------------- favourites of products ------------------------ */
 
 svg{
@@ -85,7 +101,7 @@ svg:hover{
 } */
 
 .img-carasouel-view{
-    height: 40vh;
+    height: 35vh;
 }
 ul.dropdown-menu{
     position: absolute;
@@ -93,7 +109,8 @@ ul.dropdown-menu{
     overflow-y: auto;
     left: -47%;
 }
-ul.dropdown-menu::-webkit-scrollbar {
+ul.dropdown-menu::-webkit-scrollbar,
+.search-list::-webkit-scrollbar {
     width: 5px;
 }
 .dropdown-brand-list-desktop{
@@ -199,6 +216,9 @@ p{
 }
 
 @media screen and (max-width:600px) {
+    .img-carasouel-view{
+        height: 40vh;
+    }
     .col-sm-3{
         width: 50%;
         margin-bottom: 5px;
@@ -206,6 +226,10 @@ p{
     svg{
         top: 0px;
         left: 5px;
+    }
+    .search-list{
+        width: 91%;
+        top: 30vh;
     }
     /* .page-top-content{
         height: auto !important;

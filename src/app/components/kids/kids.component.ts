@@ -5,6 +5,7 @@ import * as $ from 'jquery'
 import { Router } from '@angular/router';
 import { carasouel } from 'src/app/model/interfaces/carasouel.interface';
 import { textContent } from 'src/app/model/interfaces/textContent.interface';
+import { searchWords } from 'src/app/model/interfaces/search.products';
 
 @Component({
   selector: 'app-kids',
@@ -15,6 +16,7 @@ export class KidsComponent implements OnInit {
 
   allproducts: product[] = []
   products: product[] = []
+  searches:product[]=[]
   carasouels: carasouel[] = []
   textContent: textContent = {} as textContent;
   favouriteproducts: product[] = []
@@ -115,5 +117,11 @@ export class KidsComponent implements OnInit {
       if (id == this.favouriteproducts[i].id)
         founded = true;
     return founded;
+  }
+
+  search(fitch:string){
+    this.searches=this.allproducts.filter(item=> item.title.includes(fitch) || item.brand.includes(fitch))
+    if(fitch=="")
+    this.searches=[]
   }
 }
