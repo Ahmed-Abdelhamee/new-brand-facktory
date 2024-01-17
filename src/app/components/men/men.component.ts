@@ -41,7 +41,6 @@ export class MenComponent implements OnInit {
         if(data[key].type=="men")
         this.carasouels.push(data[key])
       }
-      console.log(this.carasouels)
     })
     // get text content 
     dataServ.getpagesContentAPI("pagesTitles").subscribe(data=>{
@@ -51,7 +50,7 @@ export class MenComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {  }
 
   filter(part: string) {
     if (part == "occasion" || part == "clothes") {

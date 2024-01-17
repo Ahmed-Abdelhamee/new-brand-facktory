@@ -84,14 +84,8 @@ svg:hover{
     padding: 60px 40px;
 } */
 
-.carousel-item{
-    display: flex;
-    justify-content:center ;
-    height: 350px;
-}
-.carousel-item img{
-    height: 100%;
-    width: 100%;
+.img-carasouel-view{
+    height: 40vh;
 }
 ul.dropdown-menu{
     position: absolute;

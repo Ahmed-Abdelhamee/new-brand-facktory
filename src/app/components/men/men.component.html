@@ -71,43 +71,9 @@
 
 <!-- products view -->
 <div class="col-12 global-padding">
-  <!-- <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item" [ngClass]="{'active' : i === 0}" *ngFor="let item of carasouels ; let i=index" >
-        <img [src]="item.img" class="d-block w-100" alt="...">
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-  </div> -->
 
-  <div id="carouselExampleIndicators" class="carousel slide">
-    <div class="carousel-inner">
-      <ng-container *ngFor="let item of carasouels ; let i=index">
-        <div class="carousel-item active" *ngIf="i==0" >
-          <img [src]="item.img" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item"*ngIf="i!=0" >
-          <img [src]="item.img" class="d-block w-100" alt="...">
-        </div>
-      </ng-container>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-  
+  <img [src]="carasouels[0].img" class="d-block w-100 img-carasouel-view" alt="...">
+
   <div class="col-lg-3 col-md-4 col-sm-3 p-2" *ngFor="let item of products;let i=index">
     <div class="card product">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16" [ngStyle]="{fill: (isFavourite(item.id))?'#ff1212':'darkgrey'}"  (click)="setFavourites(item!,i)">
