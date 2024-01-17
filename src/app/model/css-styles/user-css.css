@@ -217,7 +217,7 @@ p{
 
 @media screen and (max-width:600px) {
     .img-carasouel-view{
-        height: 40vh;
+        height: 24vh;
     }
     .col-sm-3{
         width: 50%;
@@ -228,8 +228,10 @@ p{
         left: 5px;
     }
     .search-list{
-        width: 91%;
-        top: 30vh;
+        width: 86%;
+        top: 31vh;
+        margin-right: 3%;
+        height: 30vh !important;
     }
     /* .page-top-content{
         height: auto !important;
