@@ -26,19 +26,20 @@ export class HomePageComponent {
   updateKey: string = ""
 
   constructor(private dataServ: DataService, private formBuilder: FormBuilder, private firestorage: AngularFireStorage, private toastr: ToastrService, private http:HttpClient) {
-    dataServ.getpagesContentAPI("pagesTitles").subscribe(data=>{
-      for (const key in data) {
-        this.pagesTitle.patchValue({
-          id: data[key].id,
-          // menTitle: data[key].menTitle,
-          menparagraph: data[key].menparagraph,
-          // womenTitle: data[key].womenTitle,
-          // womenparagraph: data[key].womenparagraph,
-          // kidsTitle: data[key].kidsTitle,
-          kidsparagraph: data[key].kidsparagraph,
-        })
-      }
-    })
+    // get titles & paragraphs in the front of pages 
+    // dataServ.getpagesContentAPI("pagesTitles").subscribe(data=>{
+    //   for (const key in data) {
+    //     this.pagesTitle.patchValue({
+    //       id: data[key].id,
+    //       menTitle: data[key].menTitle,
+    //       menparagraph: data[key].menparagraph,
+    //       womenTitle: data[key].womenTitle,
+    //       womenparagraph: data[key].womenparagraph,
+    //       kidsTitle: data[key].kidsTitle,
+    //       kidsparagraph: data[key].kidsparagraph,
+    //     })
+    //   }
+    // })
    }
 
   addingHomeCarasouel = this.formBuilder.group({
@@ -46,16 +47,16 @@ export class HomePageComponent {
     type: ["", Validators.required],
     img: [""]
   })
-
-  pagesTitle = this.formBuilder.group({
-    id: [new Date().getTime()],
-    // menTitle: ["", Validators.required],
-    menparagraph: ["" , Validators.required],
-    // womenTitle: ["", Validators.required],
-    // womenparagraph: ["" , Validators.required],
-    // kidsTitle: ["", Validators.required],
-    kidsparagraph: ["" , Validators.required],
-  })
+  // titles & paragraphs in the front of pages 
+  // pagesTitle = this.formBuilder.group({
+  //   id: [new Date().getTime()],
+  //   menTitle: ["", Validators.required],
+  //   menparagraph: ["" , Validators.required],
+  //   womenTitle: ["", Validators.required],
+  //   womenparagraph: ["" , Validators.required],
+  //   kidsTitle: ["", Validators.required],
+  //   kidsparagraph: ["" , Validators.required],
+  // })
 
   whatsapp=this.formBuilder.group({
     id:["phone"],
@@ -111,6 +112,7 @@ export class HomePageComponent {
         if (this.photoPromo != this.globalObject.img) {
           this.uploadCarasoul(this.photoFile).then(() => {
             this.dataServ.createCarasouel(this.updateKey, "edit-carasouel", "carasouel", this.addingHomeCarasouel.value)
+            this.firestorage.storage.refFromURL(this.globalObject.img).delete() // to remove all the images which are being stored in the firebase storage
           })
         } else {
           this.dataServ.createCarasouel(this.updateKey, "edit-carasouel", "carasouel", this.addingHomeCarasouel.value)
@@ -144,14 +146,13 @@ export class HomePageComponent {
       for (const key in data) {
         if (data[key].id == item.id) {
           this.updateKey = key;
-          console.log(this.updateKey)
           break;
         }
       }
     })
   }
   // ----------------------------- delete Item  -----------------------------
-  del(item:any){
+  del(item:carasouel){
     this.dataServ.getDataAPI("carasouel").subscribe(data => {
       for (const key in data) {
         if (data[key].id == item.id) {
@@ -159,6 +160,7 @@ export class HomePageComponent {
             this.toastr.success("تم حذف الصورة","عملية ناجحة"); 
             this.showdata()
           })
+          this.firestorage.storage.refFromURL(item.img).delete() // to remove all the images which are being stored in the firebase storage
           break;
         }
       }
@@ -166,9 +168,9 @@ export class HomePageComponent {
   }
 
   // ------------ update pages content -------------
-  updateData(){
-    this.dataServ.updatePagesTitle(this.pagesTitle.value)
-  }
+  // updateData(){
+  //   this.dataServ.updatePagesTitle(this.pagesTitle.value)
+  // }
   
   //------------------------------------ update what's app ------------------------------------
   submitWhats(){

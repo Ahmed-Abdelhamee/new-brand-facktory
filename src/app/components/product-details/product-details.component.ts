@@ -30,28 +30,32 @@ export class ProductDetailsComponent implements OnInit {
       router.paramMap.subscribe(data=>{
         this.getLinkData=data.get("id")?.toString().split("-");
         this.product_link_On_whastsapp=data.get("id")?.toString()!;
-      }
-      )
-      dataServ.getDataAPI(this.getLinkData[0]).subscribe(data =>{
+    })
+    let subscription=dataServ.getDataAPI(this.getLinkData[0]).subscribe({
+      next:(data) =>{
         for (const key in data) {
           if(data[key].id==this.getLinkData[1])
           this.product=data[key]
-        }
+        } 
+      },
+      complete:()=>{subscription.unsubscribe()}
       })
     })
     // ----------------------- get whatsapp -----------------------
       this.whatsapp=dataServ.returnSoical("whatsapp");
   }
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void { }
 
   moveLeft(){
    this.product.productImages.push(this.product.productImages.shift())
   }
   moveRight(){
     this.product.productImages.unshift(this.product.productImages.pop())
-   }
+  }
+
+  x(){
+    console.log(this.size)
+  }
  
 }

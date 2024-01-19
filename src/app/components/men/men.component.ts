@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { product } from 'src/app/model/interfaces/product.interface';
 import { DataService } from 'src/app/model/services/data.service';
 import * as $ from 'jquery'
 import { Router } from '@angular/router';
 import { carasouel } from 'src/app/model/interfaces/carasouel.interface';
 import { textContent } from 'src/app/model/interfaces/textContent.interface';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -12,8 +13,8 @@ import { textContent } from 'src/app/model/interfaces/textContent.interface';
   templateUrl: './men.component.html',
   styleUrls: ['./men.component.scss',"../../model/css-styles/user-css.css"]
 })
-export class MenComponent implements OnInit {
-
+export class MenComponent implements OnInit,OnDestroy {
+  subscriptions:Subscription[]=[]
   allproducts:product[]=[];
   products:product[]=[];
   searches:product[]=[];
@@ -29,26 +30,26 @@ export class MenComponent implements OnInit {
       window.location.reload()
     }
     // get products
-    dataServ.getDataAPI("men").subscribe((data)=>{
+    this.subscriptions.push(dataServ.getDataAPI("men").subscribe((data)=>{
       for (const key in data) {
         this.allproducts.push(data[key])
       }
       this.products=this.allproducts.filter(item => item.department =="occasion").reverse();
       this.setLinkActive("occasion")
-    })
+    }))
     // get carasouel 
-    dataServ.getpagesCarasouelAPI("carasouel").subscribe(data=>{
+    this.subscriptions.push(dataServ.getpagesCarasouelAPI("carasouel").subscribe(data=>{
       for (const key in data) {
         if(data[key].type=="men")
         this.carasouels.push(data[key])
       }
-    })
+    }))
     // get text content 
-    dataServ.getpagesContentAPI("pagesTitles").subscribe(data=>{
-      for (const key in data) {
-        this.textContent=(data[key]);
-      }
-    })
+    // this.subscriptions.push(dataServ.getpagesContentAPI("pagesTitles").subscribe(data=>{
+    //   for (const key in data) {
+    //     this.textContent=(data[key]);
+    //   }
+    // }))
   }
 
   ngOnInit(): void {  }
@@ -114,5 +115,10 @@ export class MenComponent implements OnInit {
     this.searches=this.allproducts.filter(item=> item.title.includes(fitch) || item.brand.includes(fitch))
     if(fitch=="")
     this.searches=[]
+  }
+
+  ngOnDestroy(): void {
+    for( let subscription of this.subscriptions)
+      subscription.unsubscribe()
   }
 }

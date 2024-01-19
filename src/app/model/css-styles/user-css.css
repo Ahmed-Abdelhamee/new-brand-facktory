@@ -222,6 +222,9 @@ p{
         width: 98%;
         left: 1%;
     }
+    .product p{
+        font-size: 14px;
+    }
 }
 
 @media screen and (max-width:600px) {

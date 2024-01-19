@@ -108,8 +108,6 @@ export class ProductsComponent implements  OnChanges{
   }
   /// uploading files & products on firebase 
   async activeUpload(){
-    console.log(this.images.value)
-    console.log(this.photosFiles.length)
     this.toastr.info("يتم رفع  تفاصيل المنتج حاليا")
     for(let i=0; i < this.photosFiles.length ; i++){
       const path=`ecommerce/${new Date().getTime()}${this.photosFiles[i].name}`; // we make name of file in firebase storage 
@@ -148,8 +146,8 @@ export class ProductsComponent implements  OnChanges{
             this.dataServ.createe(this.globalKey, "edit-product", this.product.value)
             this.emptyProuct();
           })
-          this.deleteImagesFromFireStorage()
-          // if there is no any new uploads
+          this.deleteImagesFromFireStorage() // to remove all the images which are being stored in the firebase storage
+          // if there is no any new uploads the website will set the same photos
         } else {
           this.dataServ.createe(this.globalKey, "edit-product", this.product.value)
           this.emptyProuct();
@@ -197,7 +195,7 @@ export class ProductsComponent implements  OnChanges{
       }
     })
   }
-  // for the active delete from database server
+  //  ----------------------  for the active delete from database server ---------------------
   deleteProd(){
     this.toastr.info("يتم حذف المنتج حاليا")
     /* this variable for identify which data will be edit */
@@ -207,6 +205,7 @@ export class ProductsComponent implements  OnChanges{
     })
     this.deleteImagesFromFireStorage()
   }
+  // to remove all the images which are being stored in the firebase storage
   deleteImagesFromFireStorage(){
     for (const temp in this.globalProduct.productImages) {
       this.firestorage.storage.refFromURL(this.globalProduct.productImages[temp].img).delete()
