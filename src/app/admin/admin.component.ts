@@ -10,6 +10,7 @@ import * as $ from 'jquery'
 export class AdminComponent {
 
   typeOfDataFromParent:string="";
+  constructor(private route : Router){}
 
   setAcitve(link:string){
     $(`#basic`).removeClass("active")
@@ -17,5 +18,10 @@ export class AdminComponent {
     $(`#women`).removeClass("active")
     $(`#kids`).removeClass("active")
     $(`#${link}`).addClass("active")
+  }
+
+  logout(){
+    sessionStorage.removeItem("Admin");
+    this.route.navigate(["/"])
   }
 }

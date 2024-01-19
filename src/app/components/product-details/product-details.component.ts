@@ -18,7 +18,8 @@ export class ProductDetailsComponent implements OnInit {
   kidsSizeShoes:string[]=["25","26","27","28","29","30","31","32","33","34","35","36","37","38","39"]
   shoes:string[]=["37","38","39","40","41","42","43","44","45","other-size"]
   clothes:string[]=["Small","Medium","Large","X-Large","XX-Large","other-size"]
-  size:any=""
+  size:any="";
+  product_link_On_whastsapp:string=""
 
   constructor( private router:ActivatedRoute, private dataServ:DataService, private route:Router){
     if(sessionStorage.getItem("page-attitude")!="product-details-page-working-fine"){
@@ -26,8 +27,10 @@ export class ProductDetailsComponent implements OnInit {
       window.location.reload()
     }
     route.events.subscribe(()=>{
-      router.paramMap.subscribe(data=>
-        this.getLinkData=data.get("id")?.toString().split("-")
+      router.paramMap.subscribe(data=>{
+        this.getLinkData=data.get("id")?.toString().split("-");
+        this.product_link_On_whastsapp=data.get("id")?.toString()!;
+      }
       )
       dataServ.getDataAPI(this.getLinkData[0]).subscribe(data =>{
         for (const key in data) {
