@@ -4,7 +4,7 @@
     <button class="btn btn-primary btn-add" (click)="control='add-product';emptyProuct()" [disabled]="control=='add-product'">اضافة منتج</button>
     <button class="btn btn-secondary " (click)="control='show-product';ngOnChanges()" [disabled]="control=='show-product'">عرض المنتجات</button>
   </div>
-   <!-- for filtering the data in admin view -->
+   <!-- sellect for filtering the data in admin view -->
   <div class="form-group p-3">
     <select class="form-select" aria-label="Default select example" (change)="productsFilter=$event.target; productsFilter=productsFilter.value; ngOnChanges()" *ngIf="control=='show-product'">
       <option selected>اختر فئة المنتجات</option>
@@ -123,7 +123,7 @@
           <td>{{item.price}}</td>
           <td><img class="small-image" [src]="item.productImages['0'].img" alt=""></td>
           <td>
-            <button type="button" class="btn btn-warning m-1" (click)="edit(item);control='edit-product'">edit</button>
+            <button type="button" class="btn btn-warning m-1" (click)="edit(item);control='edit-product'"><i class="bi bi-pencil-square"></i></button>
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#exampleModal"
               (click)="getItem(item)">X</button>

@@ -53,9 +53,5 @@ export class ProductDetailsComponent implements OnInit {
   moveRight(){
     this.product.productImages.unshift(this.product.productImages.pop())
   }
-
-  x(){
-    console.log(this.size)
-  }
  
 }

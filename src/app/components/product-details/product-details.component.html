@@ -27,7 +27,7 @@
                     <option [value]="" *ngFor="let item of kidsSizeShoes">{{item}}</option>
                 </ng-template> 
             </select> -->
-            <div class="text-center mt-2" (click)="x()">
+            <div class="text-center mt-2">
                 <a href="https://wa.me/{{temp.social}}?text=مرحباً اريد الحصول علي هذا المنتج . %0aاسم المنتج%20:%20{{product.title}}%0aتفاصيل المنتج : %20{{product.details}} %0a%20النوع : {{product.type=='men'?'رجالي':(product.type=='women')?'نسائي':'اطفال'}} %0a%20من قسم : {{product.department=='clothes'?'ملابس':'عروض'}} %0a%20 {{size!=''?'مقاس : ':''}} {{size!=''? size :''}} {{size!=''? '%0a' :''}} السعر المطلوب%20:%20{{product.price}} د.ك %0a%20 لينك المنتج :%0a https://brandfactorykw.com/%23/product/{{product_link_On_whastsapp}}" *ngFor="let temp of whatsapp" target="_blank" class="btn btn-success request" style="font-size: 16px !important">
                 اطلب الان
                 <i class="bi bi-whatsapp"></i>
