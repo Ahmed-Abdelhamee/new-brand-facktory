@@ -22,22 +22,13 @@ export class KidsComponent implements OnInit ,OnDestroy {
   textContent: textContent = {} as textContent;
   favouriteproducts: product[] = []
   brands: string[] = ["Dior", "Gucci", "Prada", "Armani", "Louis Vuitton", "Hermes", "Burberry", "Ralph Lauren", "Balenciaga", "Fendi", "Rolex", "Saint Laurent", 'Versace', "Dolce&Gabbana", "Givenchy", "Valentino", "Balmain", "Bvlgari", "Cartier", "Swarovski", "Bottega Veneta", "Coach", "Michael Kors", "Chanel"];
-  setTogglerWork: string = ""
+  // setTogglerWork: string = ""     // to remove the toggler hide event from disktop in =>   data-bs-target
 
   constructor(private dataServ: DataService, private route: Router) {
     if(sessionStorage.getItem("page-attitude")!="kids-page-working-fine"){
       sessionStorage.setItem("page-attitude","kids-page-working-fine")
       window.location.reload()
     }
-    // get products
-    // this.dataServ.getDataAPI("kids").subscribe((data) => {
-      
-    //   for (const key in data) {
-    //     this.allproducts.push(data[key])
-    //   }
-    //   this.products = this.allproducts.filter(item => item.department == "occasion").reverse()
-    // })
-
     // basic stucture of observable with subscription // get products
     this.subscribtions.push(this.dataServ.getDataAPI("kids").subscribe({
       next:(data)=>{
@@ -49,13 +40,18 @@ export class KidsComponent implements OnInit ,OnDestroy {
       complete:()=>{ this.products = this.allproducts.filter(item => item.department == "occasion").reverse()}
     }))
     // get carasouel 
-    this.subscribtions.push(dataServ.getpagesCarasouelAPI("carasouel").subscribe(data => {
-      for (const key in data) {
-        if (data[key].type == "kids")
-          this.carasouels.push(data[key])
-      }
+    this.subscribtions.push(dataServ.getpagesCarasouelAPI("carasouel").subscribe({
+      next:(data) => {
+        for (const key in data) {
+          if (data[key].type == "kids")
+            this.carasouels.push(data[key])
+        }
+      },
+      error:()=>{console.log("error")},
+      complete:()=>{},
     }))
-    // get text content 
+    this.setLinkActive("occasion");
+    // get text content  // removed by customer request
     // this.subscribtions.push(dataServ.getpagesContentAPI("pagesTitles").subscribe(
     //   data => {
     //     for (const key in data) {
@@ -63,7 +59,6 @@ export class KidsComponent implements OnInit ,OnDestroy {
     //     }
     //   })
     // )
-    this.setLinkActive("occasion");
     /*
     .subscribe({
         next:(data)=>{
@@ -85,8 +80,8 @@ export class KidsComponent implements OnInit ,OnDestroy {
       this.setLinkActive(part)
     } else {
       this.products = this.allproducts.filter(item => item.brand == part).reverse();
-      if(window.innerWidth <=991)
-      this.setTogglerWork="#navbarSupportedContent"
+      // if(window.innerWidth <=991)
+      // this.setTogglerWork="#navbarSupportedContent"
     }
   }
 
