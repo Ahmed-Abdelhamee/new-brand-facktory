@@ -176,6 +176,9 @@ p{
     margin-bottom: 0px;
     line-break: anywhere;
 }
+.occasion-price span{
+    margin-right: 10px;
+}
 .btn{
     font-size: 14px !important;
 }
@@ -230,6 +233,7 @@ p{
     .card-title{
         max-height: 18px;
     }
+    
 }
 
 @media screen and (max-width:600px) {
@@ -288,5 +292,8 @@ p{
     .card-text{
         height: 35px;
         font-size: .9rem;
+    }
+    .occasion-price span{
+        margin-right: 6px;
     }
 }
