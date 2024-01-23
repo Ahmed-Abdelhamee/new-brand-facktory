@@ -37,8 +37,7 @@ form.d-flex{
 }
 .position-fixed{
     width: 100%;
-    position: fixed;
-    top: 2px;
+    top: 7px;
     z-index: 3;
 }
 .departments{
@@ -96,7 +95,7 @@ svg:hover{
 /* ---------------------------------------------------- */
 
 .global-padding{
-    margin-top: 105px;
+    margin-top: 111px;
 }
 /* .page-top-content{
     height: 450px;
@@ -137,6 +136,7 @@ ul.dropdown-menu::-webkit-scrollbar,
     border-radius: 4px !important;
     width: 100%;
     padding: 25px;
+    padding-bottom: 15px;
 }
 .product img{
     width: 90%;
@@ -237,6 +237,9 @@ p{
 }
 
 @media screen and (max-width:600px) {
+    .position-fixed{
+        top: 3px;
+    }
     .img-carasouel-view{
         height: 24vh;
     }

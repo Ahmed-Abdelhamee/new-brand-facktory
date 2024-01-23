@@ -87,7 +87,7 @@
         <div class="card-body">
           <p class="card-title">{{item.title}}</p>
           <p>{{item.brand}} </p>
-          <p class="card-text">{{item.details}} </p>
+          <!-- <p class="card-text">{{item.details}} </p> -->
           <p class="occasion-price" *ngIf="item.department=='occasion'">{{item.price}} د.ك <span>{{ (item.prePrice - item.price ) / item.prePrice *100 | number:'.1-2'}}% </span>  <span class="text-decoration-line-through text-danger"> {{item.prePrice}} د.ك</span></p>
           <p *ngIf="item.department!='occasion'">{{item.price}} د.ك </p>
         </div>

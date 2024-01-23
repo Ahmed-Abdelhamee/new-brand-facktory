@@ -53,10 +53,10 @@
         <label for="department">اسم المنتج</label>
         <input class="form-control mb-1" type="text" aria-label="default input example" formControlName="title">
       </div>
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label for="department">تفاصيل المنتج </label>
         <input class="form-control mb-1" type="text" aria-label="default input example" formControlName="details">
-      </div>
+      </div> -->
       <div class="form-group" *ngIf="this.product.get('department')?.value! == 'occasion'">
         <label for="department">سعر المنتج قبل الخصم</label>
         <input class="form-control mb-1" type="number" placeholder="سعر المنتج" aria-label="default input example" formControlName="prePrice">
@@ -100,7 +100,7 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">اسم المنتج</th>
-          <th scope="col">تفاصيل المنتج</th>
+          <!-- <th scope="col">تفاصيل المنتج</th> -->
           <th scope="col">نوع المنتج</th>
           <th scope="col">فئة المنتج</th>
           <th scope="col">البراند</th>
@@ -114,8 +114,7 @@
         <tr *ngFor="let item of products; let i=index">
           <th scope="row">{{i+1}}</th>
           <td>{{item.title}}</td>
-          <td><textarea class="form-control" name="department" id="department" [value]="item.details" cols="30"
-              rows="4" readonly></textarea></td>
+          <!-- <td><textarea class="form-control" name="department" id="department" [value]="item.details" cols="30" rows="4" readonly></textarea></td> -->
           <td>{{item.department}}</td>
           <td>{{item.type}}</td>
           <td>{{item.brand}}</td>
@@ -125,8 +124,7 @@
           <td>
             <button type="button" class="btn btn-warning m-1" (click)="edit(item);control='edit-product'"><i class="bi bi-pencil-square"></i></button>
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#exampleModal"
-              (click)="getItem(item)">X</button>
+            <button type="button" class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getItem(item)">X</button>
           </td>
         </tr>
       </tbody>
