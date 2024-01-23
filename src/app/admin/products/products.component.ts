@@ -37,7 +37,7 @@ export class ProductsComponent implements  OnChanges{
     department:["",Validators.required],
     brand:["",Validators.required],
     title:["",Validators.required],
-    details:["",Validators.required],
+    // details:["",Validators.required],
     prePrice:[0,Validators.required],
     price:[0,Validators.required],
     productImages:this.formBuilder.array([])
@@ -68,7 +68,7 @@ export class ProductsComponent implements  OnChanges{
       department:"",
       brand:"",
       title:"",
-      details:"",
+      // details:"",
       prePrice:0,
       price:0,
     })
@@ -127,7 +127,7 @@ export class ProductsComponent implements  OnChanges{
   submit() {
     if ((this.product.get("prePrice")?.value! > this.product.get("price")?.value! || this.product.get("department")?.value! !="occasion") &&
        this.product.get("price")?.value! > 0 && this.product.get("type")?.value != '' && this.product.get("brand")?.value != '' &&
-       this.product.get("department")?.value != '' && this.product.get("title")?.value != '' && this.product.get("details")?.value != '' && this.photosPromo.length > 1) {
+       this.product.get("department")?.value != '' && this.product.get("title")?.value != '' && this.photosPromo.length > 1) {
 
       if (this.control == "add-product") {
         this.product.patchValue({
@@ -168,7 +168,7 @@ export class ProductsComponent implements  OnChanges{
       department:item.department,
       brand:item.brand,
       title:item.title,
-      details:item.details,
+      // details:item.details,
       prePrice:item.prePrice,
       price:item.price,
     })
