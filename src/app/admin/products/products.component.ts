@@ -12,13 +12,14 @@ import { environment } from 'src/environments/environment';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements  OnChanges{
+export class ProductsComponent implements  OnChanges{ 
+  // -------------------------------- variables of the website ----------------------------
   // important arrays 
   photosPromo:any[]=[];
   photosFiles:File[]=[];
   photosSize:number[]=[];
   products:product[]=[];
-  brands:string[]=["Dior","Gucci","Prada","Armani","Louis Vuitton","Hermes","Burberry","Ralph Lauren","Balenciaga","Fendi","Rolex","Saint Laurent",'Versace',"Dolce&Gabbana","Givenchy","Valentino","Balmain","Bvlgari","Cartier","Swarovski","Bottega Veneta","Coach","Michael Kors","Chanel" ];
+  brands:string[]=["Dior","Gucci","Prada","Armani","Louis Vuitton","Hermes","Burberry","Ralph Lauren","Balenciaga","Fendi","Rolex","Saint Laurent",'Versace',"Dolce&Gabbana","Givenchy","Valentino","Balmain","Bvlgari","Cartier","Swarovski","Bottega Veneta","Coach","Michael Kors","Chanel","others" ];
   // adultLinks:string[]=["occasion","clothes","shoes","bags","accessiores","jewellary","whatches","homeWare"];
   // kidsLinks:string[]=["occasion","baby-0-36-monthes","kids-2-12","teenagers"]
   // variables for set a control
@@ -45,6 +46,7 @@ export class ProductsComponent implements  OnChanges{
   get images(){
     return this.product.get("productImages") as FormArray
   }
+  // ----------------------------------------------------------------------------------------------------
 
   constructor(private formBuilder:FormBuilder,private toastr:ToastrService , private dataServ:DataService , private firestorage:AngularFireStorage,private http:HttpClient){ }
   
@@ -74,7 +76,7 @@ export class ProductsComponent implements  OnChanges{
     })
     this.emptyProductImages() // empty product images array
   }
- // empty product images for a new adding     or    editing peice of product 
+  // empty product images for a new adding     or    editing peice of product 
   emptyProductImages(){
     for (let i in this.images) { // delete all the images
       this.images.removeAt(0);
@@ -106,7 +108,7 @@ export class ProductsComponent implements  OnChanges{
       }
     }
   }
-  /// uploading files & products on firebase 
+  /// ----------- uploading files & products on firebase -----------
   async activeUpload(){
     this.toastr.info("يتم رفع  تفاصيل المنتج حاليا")
     for(let i=0; i < this.photosFiles.length ; i++){
@@ -129,6 +131,7 @@ export class ProductsComponent implements  OnChanges{
        this.product.get("price")?.value! > 0 && this.product.get("type")?.value != '' && this.product.get("brand")?.value != '' &&
        this.product.get("department")?.value != '' && this.product.get("title")?.value != '' && this.photosPromo.length > 1) {
 
+      // if (this.control == "add-product"  || (this.control=="edit-product" && this.product.get("type")?.value != this.globalProduct.type ) ) {
       if (this.control == "add-product") {
         this.product.patchValue({
           id: new Date().getTime(),

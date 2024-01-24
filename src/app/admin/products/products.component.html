@@ -22,7 +22,7 @@
   <!-- form for adding a product  -->
   <form [formGroup]="product" *ngIf="control=='add-product'||control=='edit-product'" (ngSubmit)="submit()">
     <div class="form-group p-4">
-      <div class="form-group">
+      <div class="form-group" *ngIf="control!='edit-product'">
         <label for="type">اختر النوع </label>
         <select class="form-select mb-1" aria-label="Default select example" formControlName="type" id="type" (change)="emptyDep()">
           <option value="men">رجال</option>

@@ -21,7 +21,7 @@ export class MenComponent implements OnInit,OnDestroy {
   carasouels:carasouel[]=[];
   textContent:textContent={} as textContent;
   favouriteproducts:product[]=[];
-  brands:string[]=["Dior","Gucci","Prada","Armani","Louis Vuitton","Hermes","Burberry","Ralph Lauren","Balenciaga","Fendi","Rolex","Saint Laurent",'Versace',"Dolce&Gabbana","Givenchy","Valentino","Balmain","Bvlgari","Cartier","Swarovski","Bottega Veneta","Coach","Michael Kors","Chanel" ];
+  brands:string[]=["Dior","Gucci","Prada","Armani","Louis Vuitton","Hermes","Burberry","Ralph Lauren","Balenciaga","Fendi","Rolex","Saint Laurent",'Versace',"Dolce&Gabbana","Givenchy","Valentino","Balmain","Bvlgari","Cartier","Swarovski","Bottega Veneta","Coach","Michael Kors","Chanel","others" ];
   setTogglerWork:string="";
 
   constructor(private dataServ:DataService,private route:Router){

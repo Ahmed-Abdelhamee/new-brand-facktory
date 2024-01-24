@@ -21,7 +21,7 @@ export class KidsComponent implements OnInit ,OnDestroy {
   carasouels: carasouel[] = []
   textContent: textContent = {} as textContent;
   favouriteproducts: product[] = []
-  brands: string[] = ["Dior", "Gucci", "Prada", "Armani", "Louis Vuitton", "Hermes", "Burberry", "Ralph Lauren", "Balenciaga", "Fendi", "Rolex", "Saint Laurent", 'Versace', "Dolce&Gabbana", "Givenchy", "Valentino", "Balmain", "Bvlgari", "Cartier", "Swarovski", "Bottega Veneta", "Coach", "Michael Kors", "Chanel"];
+  brands: string[] = ["Dior", "Gucci", "Prada", "Armani", "Louis Vuitton", "Hermes", "Burberry", "Ralph Lauren", "Balenciaga", "Fendi", "Rolex", "Saint Laurent", 'Versace', "Dolce&Gabbana", "Givenchy", "Valentino", "Balmain", "Bvlgari", "Cartier", "Swarovski", "Bottega Veneta", "Coach", "Michael Kors", "Chanel","others"];
   // setTogglerWork: string = ""     // to remove the toggler hide event from disktop in =>   data-bs-target
 
   constructor(private dataServ: DataService, private route: Router) {
@@ -71,7 +71,6 @@ export class KidsComponent implements OnInit ,OnDestroy {
   }
   
   ngOnInit(): void { 
-    this.dataServ.getDataAPI("kids").subscribe()
   }
 
   filter(part: string) {
