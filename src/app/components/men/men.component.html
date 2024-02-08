@@ -9,17 +9,17 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <!-- desktop view -->
         <li class="nav-item desktop">
-          <a class="nav-link text-danger clothes-link" (click)="filter('clothes')" id="clothes" >ملابس</a>
+          <a class="nav-link text-danger clothes-link" (click)="filter('clothes'); setLinkActive('clothes-desktop')" id="clothes-desktop" >ملابس</a>
         </li>
         <li class="nav-item desktop">
-          <a class="nav-link ocasion-link" aria-current="page" (click)="filter('occasion')" id="occasion" >عروض</a>
+          <a class="nav-link ocasion-link" aria-current="page" (click)="filter('occasion'); setLinkActive('occasion-desktop')" id="occasion-desktop" >عروض</a>
         </li>
         <!-- mobile view -->
         <li class="nav-item mobile" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <a class="nav-link text-danger clothes-link" (click)="filter('clothes')" id="clothes" >ملابس</a>
+          <a class="nav-link text-danger clothes-link" (click)="filter('clothes'); setLinkActive('clothes-mobile')" id="clothes-mobile" >ملابس</a>
         </li>
         <li class="nav-item mobile" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <a class="nav-link ocasion-link" aria-current="page" (click)="filter('occasion')" id="occasion" >عروض</a>
+          <a class="nav-link ocasion-link" aria-current="page" (click)="filter('occasion'); setLinkActive('occasion-mobile')" id="occasion-mobile" >عروض</a>
         </li>
         <li class="nav-item">
           <div class="btn-group" role="group">

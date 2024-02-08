@@ -82,7 +82,6 @@ export class KidsComponent implements OnInit ,OnDestroy {
   filter(part: string) {
     if (part == "occasion" || part == "clothes") {
       this.products = this.allproducts.filter(item => item.department == part).reverse()
-      this.setLinkActive(part)
     } else {
       this.products = this.allproducts.filter(item => item.brand == part).reverse();
       // if(window.innerWidth <=991)
@@ -91,8 +90,10 @@ export class KidsComponent implements OnInit ,OnDestroy {
   }
 
   setLinkActive(part: string) {
-    $(`#occasion`).removeClass("text-danger")
-    $(`#clothes`).removeClass("text-danger")
+    $(`#occasion-desktop`).removeClass("text-danger")
+    $(`#clothes-desktop`).removeClass("text-danger")
+    $(`#occasion-mobile`).removeClass("text-danger")
+    $(`#clothes-mobile`).removeClass("text-danger")
     $(`#brand`).removeClass("text-danger")
     // removed by customer request
     // $(`#baby-0-36-monthes`).removeClass("text-danger")

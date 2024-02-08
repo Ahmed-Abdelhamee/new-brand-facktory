@@ -230,7 +230,7 @@ p{
     }
     ul.dropdown-menu {
         position: fixed;
-        height: 84vh;
+        max-height: 84vh;
         overflow-y: auto;
         top: 5px;
         width: 98%;
