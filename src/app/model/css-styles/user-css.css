@@ -96,6 +96,8 @@ svg:hover{
 
 .global-padding{
     margin-top: 111px;
+    display: flex;
+    flex-wrap: wrap;
 }
 /* .page-top-content{
     height: 450px;
@@ -163,8 +165,9 @@ p{
     font-size: 1.1rem;
     font-weight: 500;
     text-align: center;
-    max-height: 26px;
     overflow: hidden;
+    display: flex;
+    align-items: center;
 }
 .card-text{
     overflow: hidden;
@@ -230,10 +233,6 @@ p{
     .product p{
         font-size: .75rem;
     }
-    .card-title{
-        max-height: 18px;
-    }
-    
 }
 
 @media screen and (max-width:600px) {
@@ -290,7 +289,6 @@ p{
         font-size: 1rem;
         justify-content: center;
         font-weight: 600;
-        max-height: 18px;
     }
     .card-text{
         height: 35px;

@@ -21,7 +21,7 @@ export class KidsComponent implements OnInit ,OnDestroy {
   carasouels: carasouel[] = []
   textContent: textContent = {} as textContent;
   favouriteproducts: product[] = []
-  brands: string[] = ["Dior", "Gucci", "Prada", "Armani", "Louis Vuitton", "Hermes", "Burberry", "Ralph Lauren", "Balenciaga", "Fendi", "Rolex", "Saint Laurent", 'Versace', "Dolce&Gabbana", "Givenchy", "Valentino", "Balmain", "Bvlgari", "Cartier", "Swarovski", "Bottega Veneta", "Coach", "Michael Kors", "Chanel","others"];
+  brands: string[] = ["Dior", "Gucci", "Prada", "Armani", "Louis Vuitton", "Hermes", "Burberry", "Ralph Lauren", "Balenciaga", "Fendi", "Rolex", "Saint Laurent", 'Versace', "Dolce&Gabbana", "Givenchy", "Valentino", "Balmain", "Bvlgari", "Cartier", "Swarovski", "Bottega Veneta", "Coach", "Michael Kors", "Chanel","Moncler","AMIRI","others"].sort();
   // setTogglerWork: string = ""     // to remove the toggler hide event from disktop in =>   data-bs-target
 
   constructor(private dataServ: DataService, private route: Router) {
@@ -37,7 +37,7 @@ export class KidsComponent implements OnInit ,OnDestroy {
         }
       },
       error:()=>{console.log("error")},
-      complete:()=>{ this.products = this.allproducts.filter(item => item.department == "occasion").reverse()}
+      complete:()=>{ this.products = this.allproducts.filter(item => item.department == "clothes").reverse()}
     }))
     // get carasouel 
     this.subscribtions.push(dataServ.getpagesCarasouelAPI("carasouel").subscribe({
@@ -50,7 +50,7 @@ export class KidsComponent implements OnInit ,OnDestroy {
       error:()=>{console.log("error")},
       complete:()=>{},
     }))
-    this.setLinkActive("occasion");
+    this.setLinkActive("clothes");
     // get text content  // removed by customer request
     // this.subscribtions.push(dataServ.getpagesContentAPI("pagesTitles").subscribe(
     //   data => {

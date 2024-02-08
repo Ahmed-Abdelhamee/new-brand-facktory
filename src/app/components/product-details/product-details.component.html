@@ -10,7 +10,7 @@
         </div>
         <div class="col-sm-4 p-4">
             <p class="title text-dark">{{product.title}}</p>
-            <p class="text  text-dark">{{product.details}}</p>
+            <!-- <p class="text  text-dark">{{product.details}}</p> -->
             <p class="text  text-dark text-decoration-line-through" *ngIf="product.department=='occasion'">{{product.prePrice}} د.ك</p>
             <p class="text  text-dark">{{product.price}} د.ك</p>
             <select name="size" id="size" class="form-select" *ngIf="product.department=='clothes'" (change)="size=$event.target!;size=size.value" #c>

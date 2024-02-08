@@ -19,7 +19,7 @@ export class ProductsComponent implements  OnChanges{
   photosFiles:File[]=[];
   photosSize:number[]=[];
   products:product[]=[];
-  brands:string[]=["Dior","Gucci","Prada","Armani","Louis Vuitton","Hermes","Burberry","Ralph Lauren","Balenciaga","Fendi","Rolex","Saint Laurent",'Versace',"Dolce&Gabbana","Givenchy","Valentino","Balmain","Bvlgari","Cartier","Swarovski","Bottega Veneta","Coach","Michael Kors","Chanel","others" ];
+  brands:string[]=["Dior","Gucci","Prada","Armani","Louis Vuitton","Hermes","Burberry","Ralph Lauren","Balenciaga","Fendi","Rolex","Saint Laurent",'Versace',"Dolce&Gabbana","Givenchy","Valentino","Balmain","Bvlgari","Cartier","Swarovski","Bottega Veneta","Coach","Michael Kors","Chanel","Moncler","AMIRI","others" ].sort();
   // adultLinks:string[]=["occasion","clothes","shoes","bags","accessiores","jewellary","whatches","homeWare"];
   // kidsLinks:string[]=["occasion","baby-0-36-monthes","kids-2-12","teenagers"]
   // variables for set a control
@@ -99,8 +99,8 @@ export class ProductsComponent implements  OnChanges{
     this.photosFiles=[];
     for (let i=0;i < event.target.files.length ;i++) {
       let loader=new FileReader();
-      if(event.target.files[i].size/1024 > 30)
-      this.photosSize.push(i+1)
+      if(event.target.files[i].size/1024 > 30) // to  fill  the photosSize array  with  the  huge images  
+      this.photosSize.push(i+1) // to  fill  the photosSize array  with  the  huge images  
       loader.readAsDataURL(event.target.files[i])
       this.photosFiles.push(event.target.files[i]) // adding file in the array
       loader.onload=(event)=>{

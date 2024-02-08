@@ -6,15 +6,21 @@
 }
 
 @media screen and (max-width:600px) {
+    
     img.img-details{
-        height: 320px;
+        height: 350px;
         margin-right: 9.8%;
+        margin-bottom: 0px;
     }
     .img-details{
         display: none;
     }
-    .text, .title{
-        padding: 12px;
+    p.text, p.title{
+        padding: 5px;
+        font-size: 1.2em;
+    }
+    p.title{
+        font-weight: 600;
     }
     #img1{
         display: block !important;

@@ -15,9 +15,10 @@ export class ProductDetailsComponent implements OnInit {
   getLinkData:any="";
   whatsapp:social[]=[]
   product:product={} as product;
-  kidsSizeShoes:string[]=["25","26","27","28","29","30","31","32","33","34","35","36","37","38","39"]
-  shoes:string[]=["37","38","39","40","41","42","43","44","45","other-size"]
+  // kidsSizeShoes:string[]=["25","26","27","28","29","30","31","32","33","34","35","36","37","38","39"]
+  // shoes:string[]=["37","38","39","40","41","42","43","44","45","other-size"]
   clothes:string[]=["Small","Medium","Large","X-Large","XX-Large","other-size"]
+  kidsClothes:string[]=["2-3","4-5","6-7","8-9","10-11","12-13","14-15"]
   size:any="";
   product_link_On_whastsapp:string=""
 
@@ -40,6 +41,9 @@ export class ProductDetailsComponent implements OnInit {
       },
       complete:()=>{subscription.unsubscribe()}
       })
+      if(this.getLinkData[0]=='kids'){
+        this.clothes=this.kidsClothes
+      }
     })
     // ----------------------- get whatsapp -----------------------
       this.whatsapp=dataServ.returnSoical("whatsapp");
