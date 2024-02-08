@@ -21,7 +21,7 @@ export class KidsComponent implements OnInit ,OnDestroy {
   carasouels: carasouel[] = []
   textContent: textContent = {} as textContent;
   favouriteproducts: product[] = []
-  brands: string[] = ["Dior", "Gucci", "Prada", "Armani", "Louis Vuitton", "Hermes", "Burberry", "Ralph Lauren", "Balenciaga", "Fendi", "Rolex", "Saint Laurent", 'Versace', "Dolce&Gabbana", "Givenchy", "Valentino", "Balmain", "Bvlgari", "Cartier", "Swarovski", "Bottega Veneta", "Coach", "Michael Kors", "Chanel","Moncler","AMIRI","others"].sort();
+  brands: string[] = [];
   // setTogglerWork: string = ""     // to remove the toggler hide event from disktop in =>   data-bs-target
 
   constructor(private dataServ: DataService, private route: Router) {
@@ -37,7 +37,13 @@ export class KidsComponent implements OnInit ,OnDestroy {
         }
       },
       error:()=>{console.log("error")},
-      complete:()=>{ this.products = this.allproducts.filter(item => item.department == "clothes").reverse()}
+      complete:()=>{ this.products = this.allproducts.filter(item => item.department == "clothes").reverse();
+        for(let item of this.products){
+          if(!this.brands.find(el=> el==item.brand))
+            this.brands.push(item.brand)
+        }
+        this.brands.sort()
+      }
     }))
     // get carasouel 
     this.subscribtions.push(dataServ.getpagesCarasouelAPI("carasouel").subscribe({

@@ -21,7 +21,7 @@ export class MenComponent implements OnInit,OnDestroy {
   carasouels:carasouel[]=[];
   textContent:textContent={} as textContent;
   favouriteproducts:product[]=[];
-  brands:string[]=["Dior","Gucci","Prada","Armani","Louis Vuitton","Hermes","Burberry","Ralph Lauren","Balenciaga","Fendi","Rolex","Saint Laurent",'Versace',"Dolce&Gabbana","Givenchy","Valentino","Balmain","Bvlgari","Cartier","Swarovski","Bottega Veneta","Coach","Michael Kors","Chanel","Moncler","AMIRI","others" ].sort();
+  brands:string[]=[].sort();
   setTogglerWork:string="";
 
   constructor(private dataServ:DataService,private route:Router){
@@ -30,12 +30,20 @@ export class MenComponent implements OnInit,OnDestroy {
       window.location.reload()
     }
     // get products
-    this.subscriptions.push(dataServ.getDataAPI("men").subscribe((data)=>{
-      for (const key in data) {
-        this.allproducts.push(data[key])
+    this.subscriptions.push(dataServ.getDataAPI("men").subscribe({
+      next:(data)=>{
+        for (const key in data) {
+          this.allproducts.push(data[key])
+        }
+      },
+      error:()=>{console.log("error")},
+      complete:()=>{ this.products = this.allproducts.filter(item => item.department == "clothes").reverse();
+        for(let item of this.products){
+          if(!this.brands.find(el=> el==item.brand))
+            this.brands.push(item.brand)
+        }
+        this.brands.sort()
       }
-      this.products=this.allproducts.filter(item => item.department =="clothes").reverse();
-      this.setLinkActive("clothes")
     }))
     // get carasouel 
     this.subscriptions.push(dataServ.getpagesCarasouelAPI("carasouel").subscribe(data=>{

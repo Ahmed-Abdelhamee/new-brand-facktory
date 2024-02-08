@@ -7,11 +7,19 @@
     </button>
     <div class="collapse navbar-collapse " id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <a class="nav-link clothes-link" (click)="filter('clothes')"  id="clothes" >ملابس</a>
+        <!-- desktop view -->
+        <li class="nav-item desktop">
+          <a class="nav-link text-danger clothes-link" (click)="filter('clothes')" id="clothes" >ملابس</a>
         </li>
-        <li class="nav-item" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <a class="nav-link ocasion-link" aria-current="page" (click)="filter('occasion')" id="occasion">عروض</a>
+        <li class="nav-item desktop">
+          <a class="nav-link ocasion-link" aria-current="page" (click)="filter('occasion')" id="occasion" >عروض</a>
+        </li>
+        <!-- mobile view -->
+        <li class="nav-item mobile" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <a class="nav-link text-danger clothes-link" (click)="filter('clothes')" id="clothes" >ملابس</a>
+        </li>
+        <li class="nav-item mobile" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <a class="nav-link ocasion-link" aria-current="page" (click)="filter('occasion')" id="occasion" >عروض</a>
         </li>
         <li class="nav-item">
           <div class="btn-group" role="group">

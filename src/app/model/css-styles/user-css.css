@@ -1,5 +1,11 @@
 
 /* // ----------------------- user header style -------------------------- */
+.desktop{
+    display: block !important;
+}
+.mobile{
+    display: none !important;
+}
 .navbar-toggler {
     margin-bottom: 5px;
 }
@@ -115,7 +121,7 @@ svg:hover{
 }
 ul.dropdown-menu{
     position: absolute;
-    height: 50vh;
+    max-height: 50vh;
     overflow-y: auto;
     left: -47%;
 }
@@ -236,6 +242,12 @@ p{
 }
 
 @media screen and (max-width:600px) {
+    .desktop{
+        display: none !important;
+    }
+    .mobile{
+        display: block !important;
+    }
     .position-fixed{
         top: 3px;
     }
