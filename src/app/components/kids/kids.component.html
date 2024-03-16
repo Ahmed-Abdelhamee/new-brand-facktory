@@ -60,6 +60,8 @@
         <input class="form-control me-2 searchItem" type="search" placeholder="Search" aria-label="Search"
           (keyup)="search(val.value)" #val>
         <div class="search-list" *ngIf="searches.length != 0 && val.value!='' ">
+          <button class="btn btn-close float-start" (click)="emptySearches()"></button>
+          <br>
           <p *ngFor="let item of searches" (click)="productDetails(item)"><img [src]="item.productImages['0'].img"
               class="img-search-list" alt="">{{item.title}}</p>
         </div>

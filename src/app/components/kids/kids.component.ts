@@ -141,6 +141,10 @@ export class KidsComponent implements OnInit ,OnDestroy {
     if(fitch=="")
     this.searches=[]
   }
+  
+  emptySearches(){
+    this.searches=[]
+  }
 
   ngOnDestroy(): void {
     for(let subscribtion of this.subscribtions)

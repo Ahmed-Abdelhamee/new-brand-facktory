@@ -126,6 +126,10 @@ export class MenComponent implements OnInit,OnDestroy {
     this.searches=[]
   }
 
+  emptySearches(){
+    this.searches=[]
+  }
+
   ngOnDestroy(): void {
     for( let subscription of this.subscriptions)
       subscription.unsubscribe()

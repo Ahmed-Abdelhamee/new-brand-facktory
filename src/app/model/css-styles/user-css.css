@@ -298,6 +298,14 @@ p {
     .product p {
         font-size: .75rem;
     }
+
+    .search-list {
+        width: 88%;
+        top: 220px;
+        margin-right: 2%;
+        height: 35vh !important;
+    }
+
 }
 
 @media screen and (max-width:600px) {
@@ -327,15 +335,8 @@ p {
         left: 3px;
     }
 
-    .search-list {
-        width: 88%;
-        top: 220px;
-        margin-right: 2%;
-        height: 30vh !important;
-    }
-
     .search-list p {
-        font-size: 4.8vw;
+        font-size: 15px;
     }
 
     /* .page-top-content{
