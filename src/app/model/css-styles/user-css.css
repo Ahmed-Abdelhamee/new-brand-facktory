@@ -1,55 +1,68 @@
-
 /* // ----------------------- user header style -------------------------- */
-.desktop{
+.desktop {
     display: block !important;
 }
-.mobile{
+
+.mobile {
     display: none !important;
 }
+
 .navbar-toggler {
     margin-bottom: 5px;
 }
-.active,.text-danger{
+
+.active,
+.text-danger {
     font-weight: 600;
 }
+
 .navbar-toggler:focus {
     box-shadow: none;
 }
-.navbar-nav{
+
+.navbar-nav {
     width: 100%;
     display: flex;
     justify-content: flex-start;
     padding-right: 2%;
 }
-.nav-item{
+
+.nav-item {
     display: flex;
     align-items: center;
     text-align: center;
 }
-.nav-link{
+
+.nav-link {
     position: relative;
     z-index: 2;
 }
-.nav-link:hover{
+
+.nav-link:hover {
     border-radius: 3px;
     background-color: #e1e1ff;
 }
-form.d-flex{
+
+form.d-flex {
     padding-left: 4%;
 }
-.bg-light{
+
+.bg-light {
     background-color: #ffffffb8 !important;
     backdrop-filter: blur(9px) !important;
 }
-.position-fixed{
+
+.position-fixed {
     width: 100%;
     top: 7px;
     z-index: 3;
 }
-.departments{
+
+.departments {
     padding-right: 5%
 }
-.department-link{
+
+.department-link {
     display: inline-block;
     padding: 5px;
     text-align: center;
@@ -58,34 +71,52 @@ form.d-flex{
     padding-right: 11px;
     font-size: 1rem;
 }
-.search-list{
+
+/* --------------------------- search list ------------------------- */
+.search-list {
     position: absolute;
     top: 51px;
     left: auto;
     background-color: white;
-    width: 17%;
+    width: 17.5%;
     padding: 6px;
     border-radius: 6px;
     height: 40vh !important;
     overflow-y: scroll;
     z-index: 4;
 }
-.search-list p{
+
+.img-search-list {
+    vertical-align: middle;
+    height: 35px !important;
+    width: 35px !important;
+    border-radius: 5px;
+    margin-left: 3px;
+}
+
+.search-list p {
     margin-bottom: 3px;
     padding: 5px;
     border-bottom: 1px solid lightgoldenrodyellow;
     cursor: pointer;
     border-radius: 5px;
+    display: flex;
+    align-items: center;
+    font-size: 1.2vw;
+    justify-content: space-between;
 }
-.search-list p a{
+
+.search-list p a {
     width: 100%;
 }
-.search-list p:hover{
+
+.search-list p:hover {
     background-color: #eee;
 }
+
 /* // ------------------------- favourites of products ------------------------ */
 
-svg{
+svg {
     position: absolute;
     top: 15px;
     left: 15px;
@@ -94,17 +125,19 @@ svg{
     z-index: 2;
     fill: darkgrey;
 }
-svg:hover{
+
+svg:hover {
     fill: #ff1212;
 }
 
 /* ---------------------------------------------------- */
 
-.global-padding{
+.global-padding {
     margin-top: 111px;
     display: flex;
     flex-wrap: wrap;
 }
+
 /* .page-top-content{
     height: 450px;
 }
@@ -116,29 +149,35 @@ svg:hover{
     padding: 60px 40px;
 } */
 
-.img-carasouel-view{
+.img-carasouel-view {
     height: 35vh;
 }
-ul.dropdown-menu{
+
+ul.dropdown-menu {
     position: absolute;
     max-height: 50vh;
     overflow-y: auto;
     left: -47%;
 }
+
 ul.dropdown-menu::-webkit-scrollbar,
 .search-list::-webkit-scrollbar {
     width: 5px;
 }
-.dropdown-brand-list-desktop{
+
+.dropdown-brand-list-desktop {
     display: block;
 }
-.dropdown-brand-list-mobile{
+
+.dropdown-brand-list-mobile {
     display: none;
 }
-.col-sm-3{
+
+.col-sm-3 {
     float: right !important;
 }
-.product{
+
+.product {
     border: none !important;
     float: right;
     border-radius: 4px !important;
@@ -146,28 +185,35 @@ ul.dropdown-menu::-webkit-scrollbar,
     padding: 25px;
     padding-bottom: 15px;
 }
-.product img{
+
+.product img {
     width: 90%;
     height: 310px;
-    border-radius: 15px!important;
+    border-radius: 15px !important;
     margin-right: 5%;
 }
-.product:hover img:last-of-type{
+
+.product:hover img:last-of-type {
     display: block;
 }
-.product:hover img:first-of-type{
+
+.product:hover img:first-of-type {
     display: none;
 }
-.product img:last-of-type{
+
+.product img:last-of-type {
     display: none;
 }
-.card-body{
+
+.card-body {
     padding-bottom: 0px !important;
 }
-p{
+
+p {
     margin-bottom: 3px;
 }
-.card-title{
+
+.card-title {
     font-size: 1.1rem;
     font-weight: 500;
     text-align: center;
@@ -175,7 +221,8 @@ p{
     display: flex;
     align-items: center;
 }
-.card-text{
+
+.card-text {
     overflow: hidden;
     max-height: 50px;
     /* height: 50px; */
@@ -185,13 +232,16 @@ p{
     margin-bottom: 0px;
     line-break: anywhere;
 }
-.occasion-price span{
+
+.occasion-price span {
     margin-right: 10px;
 }
-.btn{
+
+.btn {
     font-size: 14px !important;
 }
-.btn-more{
+
+.btn-more {
     background: none;
     border: none;
     background-color: #e7e7e7;
@@ -199,35 +249,43 @@ p{
     border-top-left-radius: 15px;
     border-bottom-right-radius: 15px;
 }
-.btn-more:hover{
+
+.btn-more:hover {
     color: cornsilk;
     background-color: #478e91;
 }
 
 @media screen and (max-width:991px) {
-    .dropdown-brand-list-desktop{
+    .dropdown-brand-list-desktop {
         display: none;
     }
-    .dropdown-brand-list-mobile{
+
+    .dropdown-brand-list-mobile {
         display: block;
     }
-    .bg-light{
+
+    .bg-light {
         background-color: white !important;
     }
-    .navbar-nav{
+
+    .navbar-nav {
         padding-right: 0%;
     }
+
     .navbar-collapse {
         padding-bottom: 5px;
     }
-    .navbar-nav .nav-item .nav-link{
+
+    .navbar-nav .nav-item .nav-link {
         padding-right: 0%;
         width: 100%;
         text-align: start;
     }
-    .navbar-nav .nav-item .nav-link:hover{
+
+    .navbar-nav .nav-item .nav-link:hover {
         background-color: white;
     }
+
     ul.dropdown-menu {
         position: fixed;
         max-height: 84vh;
@@ -236,77 +294,97 @@ p{
         width: 98%;
         left: 1%;
     }
-    .product p{
+
+    .product p {
         font-size: .75rem;
     }
 }
 
 @media screen and (max-width:600px) {
-    .desktop{
+    .desktop {
         display: none !important;
     }
-    .mobile{
+
+    .mobile {
         display: block !important;
     }
-    .position-fixed{
+
+    .position-fixed {
         top: 3px;
     }
-    .img-carasouel-view{
+
+    .img-carasouel-view {
         height: 24vh;
     }
-    .col-sm-3{
+
+    .col-sm-3 {
         width: 50%;
         margin-bottom: 5px;
     }
-    svg{
+
+    svg {
         top: 3px;
         left: 3px;
     }
-    .search-list{
+
+    .search-list {
         width: 86%;
         top: 31vh;
         margin-right: 3%;
         height: 30vh !important;
     }
+
+    .search-list p {
+        font-size: 4.8vw;
+    }
+
     /* .page-top-content{
         height: auto !important;
     }
     .page-top-content img{
         height: 250px !important;
     } */
-    .product{
+    .product {
         padding: 3px;
         /* height: 380px; */
-        box-shadow: 0px 0px 3px #b8b8b87a;
+        /* box-shadow: 0px 0px 3px #b8b8b87a; */
         overflow: hidden;
     }
-    .product img{
+
+    .product img {
         height: 210px !important;
     }
-    .global-padding{
+
+    .global-padding {
         margin-top: 150px;
     }
-    .page-top-text-content{
+
+    .page-top-text-content {
         padding: 15px;
     }
+
     .mt-5 {
         margin-top: 85px !important;
     }
-    .card-body p{
+
+    .card-body p {
         margin-right: -6px;
         display: flex;
         align-items: center;
     }
-    .card-title{
+
+    .card-title {
         font-size: 1rem;
         justify-content: center;
         font-weight: 600;
     }
-    .card-text{
+
+    .card-text {
         height: 35px;
         font-size: .9rem;
     }
-    .occasion-price span{
+
+    .occasion-price span {
         margin-right: 6px;
     }
 }

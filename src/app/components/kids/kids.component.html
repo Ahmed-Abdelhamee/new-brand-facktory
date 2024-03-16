@@ -1,38 +1,51 @@
 <!-- products header links for filter -->
 <nav class="navbar position-fixed navbar-expand-lg bg-body-tertiary bg-light mt-5">
-    <div class="container-fluid">
-      <button class="navbar-toggler" type="button" id="btnToggle" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse " id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <!-- desktop view -->
-          <li class="nav-item desktop">
-            <a class="nav-link text-danger clothes-link" (click)="filter('clothes'); setLinkActive('clothes-desktop')" id="clothes-desktop" >ملابس</a>
-          </li>
-          <li class="nav-item desktop">
-            <a class="nav-link ocasion-link" aria-current="page" (click)="filter('occasion'); setLinkActive('occasion-desktop')" id="occasion-desktop" >عروض</a>
-          </li>
-          <!-- mobile view -->
-          <li class="nav-item mobile" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <a class="nav-link text-danger clothes-link" (click)="filter('clothes'); setLinkActive('clothes-mobile')" id="clothes-mobile" >ملابس</a>
-          </li>
-          <li class="nav-item mobile" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <a class="nav-link ocasion-link" aria-current="page" (click)="filter('occasion'); setLinkActive('occasion-mobile')" id="occasion-mobile" >عروض</a>
-          </li>
-          <li class="nav-item">
-            <div class="btn-group" role="group">
-              <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                براندات
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item dropdown-brand-list-desktop" (click)="filter(item)" id="{{item}}" *ngFor="let item of brands">{{item}}</a></li>
-                <li><a class="dropdown-item dropdown-brand-list-mobile" (click)="filter(item)" id="{{item}}" *ngFor="let item of brands" type="button" id="btnToggle" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">{{item}}</a></li>
-              </ul>
-            </div>
-          </li>
-          <!-- removed by customer request -->
-          <!-- <li class="nav-item" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" id="btnToggle" data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse " id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <!-- desktop view -->
+        <li class="nav-item desktop">
+          <a class="nav-link text-danger clothes-link" (click)="filter('clothes'); setLinkActive('clothes-desktop')"
+            id="clothes-desktop">ملابس</a>
+        </li>
+        <li class="nav-item desktop">
+          <a class="nav-link ocasion-link" aria-current="page"
+            (click)="filter('occasion'); setLinkActive('occasion-desktop')" id="occasion-desktop">عروض</a>
+        </li>
+        <!-- mobile view -->
+        <li class="nav-item mobile" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <a class="nav-link text-danger clothes-link" (click)="filter('clothes'); setLinkActive('clothes-mobile')"
+            id="clothes-mobile">ملابس</a>
+        </li>
+        <li class="nav-item mobile" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <a class="nav-link ocasion-link" aria-current="page"
+            (click)="filter('occasion'); setLinkActive('occasion-mobile')" id="occasion-mobile">عروض</a>
+        </li>
+        <li class="nav-item">
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              براندات
+            </button>
+            <ul class="dropdown-menu">
+              <button class="btn btn-close float-end dropdown-brand-list-mobile" style="margin-right: 5px;"></button>
+              <li><a class="dropdown-item dropdown-brand-list-desktop" (click)="filter(item)" id="{{item}}"
+                  *ngFor="let item of brands">{{item}}</a></li>
+              <li><a class="dropdown-item dropdown-brand-list-mobile" (click)="filter(item)" id="{{item}}"
+                  *ngFor="let item of brands" type="button" id="btnToggle" data-bs-toggle="collapse"
+                  data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                  aria-label="Toggle navigation">{{item}}</a></li>
+            </ul>
+          </div>
+        </li>
+        <!-- removed by customer request -->
+        <!-- <li class="nav-item" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <a class="nav-link clothes-link" (click)="filter('baby-0-36-monthes')" id="baby-0-36-monthes" >ملابس</a>
           </li>
           <li class="nav-item" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,15 +55,17 @@
             <a class="nav-link bags-link" (click)="filter('teenagers')" id="teenagers" >فتيات وشباب (13-16 سنة)
             </a>
           </li> -->
-        </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2 searchItem" type="search" placeholder="Search" aria-label="Search" (keyup)="search(val.value)" #val>
-          <div class="search-list" *ngIf="searches.length != 0 && val.value!='' ">
-            <p *ngFor="let item of searches" (click)="productDetails(item)">{{item.title}}</p>
-          </div>
-        </form>
-      </div>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2 searchItem" type="search" placeholder="Search" aria-label="Search"
+          (keyup)="search(val.value)" #val>
+        <div class="search-list" *ngIf="searches.length != 0 && val.value!='' ">
+          <p *ngFor="let item of searches" (click)="productDetails(item)"><img [src]="item.productImages['0'].img"
+              class="img-search-list" alt="">{{item.title}}</p>
+        </div>
+      </form>
     </div>
+  </div>
 </nav>
 
 <!--
@@ -76,8 +91,11 @@
   <!-- products -->
   <div class="col-lg-3 col-md-4 col-sm-3 p-2" *ngFor="let item of products;let i=index">
     <div class="card product">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16" [ngStyle]="{fill: (isFavourite(item.id))?'#ff1212':'darkgrey'}" (click)="setFavourites(item,i)">
-        <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1"/>
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill"
+        viewBox="0 0 16 16" [ngStyle]="{fill: (isFavourite(item.id))?'#ff1212':'darkgrey'}"
+        (click)="setFavourites(item,i)">
+        <path
+          d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1" />
       </svg>
       <div (click)="productDetails(item)">
         <img [src]="item.productImages['0'].img" class="" alt="...">
@@ -86,7 +104,9 @@
           <p class="card-title">{{item.title}}</p>
           <p>{{item.brand}} </p>
           <!-- <p class="card-text">{{item.details}} </p> -->
-          <p class="occasion-price" *ngIf="item.department=='occasion'">{{item.price}} د.ك <span>{{ (item.prePrice - item.price ) / item.prePrice *100 | number:'.1-2'}}% </span>  <span class="text-decoration-line-through text-danger"> {{item.prePrice}} د.ك</span></p>
+          <p class="occasion-price" *ngIf="item.department=='occasion'">{{item.price}} د.ك <span>{{ (item.prePrice -
+              item.price ) / item.prePrice *100 | number:'.1-2'}}% </span> <span
+              class="text-decoration-line-through text-danger"> {{item.prePrice}} د.ك</span></p>
           <p *ngIf="item.department!='occasion'">{{item.price}} د.ك </p>
         </div>
       </div>
