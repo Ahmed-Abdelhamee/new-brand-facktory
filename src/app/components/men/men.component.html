@@ -97,7 +97,14 @@
 <!-- products view -->
 <div class="col-12 global-padding">
   <!-- one carasouels image -->
-  <img [src]="carasouels['0'].img!" class="d-block w-100 img-carasouel-view" alt="...">
+  <!-- <img [src]="carasouels['0'].img!" class="d-block w-100 img-carasouel-view" alt="..."> -->
+  <div class="col-12">
+    <swiper-container navigation="true" pagination="true" pagination-clickable="true">
+      <swiper-slide *ngFor="let item of carasouels">
+        <img [src]="item.img" alt="" class="d-block w-100 img-carasouel-view">
+      </swiper-slide>
+    </swiper-container>
+  </div>
   <!-- products -->
   <div class="col-lg-3 col-md-4 col-sm-3 p-2" *ngFor="let item of products;let i=index">
     <div class="card product">
@@ -126,3 +133,9 @@
     </div>
   </div>
 </div>
+
+<!-- <swiper-container>
+  <swiper-slide>Slide 1</swiper-slide>
+  <swiper-slide>Slide 2</swiper-slide>
+  <swiper-slide>Slide 3</swiper-slide>
+</swiper-container> -->

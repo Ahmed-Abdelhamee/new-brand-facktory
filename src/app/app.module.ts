@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -22,6 +22,12 @@ import {AngularFireModule, FIREBASE_OPTIONS} from '@angular/fire/compat'; // wri
 import {HttpClientModule} from "@angular/common/http";
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { provideAuth,getAuth } from '@angular/fire/auth'
+// import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
+
+// import function to register Swiper custom elements
+import { register } from 'swiper/element/bundle';
+// register Swiper custom elements
+register();
 
 @NgModule({
   declarations: [
@@ -41,14 +47,16 @@ import { provideAuth,getAuth } from '@angular/fire/auth'
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    // NgxUsefulSwiperModule,
     ToastrModule.forRoot(),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideDatabase(() => getDatabase()),
     provideStorage(() => getStorage()),
     AngularFireModule,
     HttpClientModule,
-    provideAuth(() => getAuth())
+    provideAuth(() => getAuth()),
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     // write this special code for upload img 
     { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
