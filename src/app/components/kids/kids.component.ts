@@ -13,11 +13,11 @@ import { Subscription } from 'rxjs';
   templateUrl: './kids.component.html',
   styleUrls: ['./kids.component.scss', "../../model/css-styles/user-css.css"]
 })
-export class KidsComponent implements OnInit ,OnDestroy {
-  subscribtions:Subscription[]=[]
+export class KidsComponent implements OnInit, OnDestroy {
+  subscribtions: Subscription[] = []
   allproducts: product[] = []
   products: product[] = []
-  searches:product[]=[]
+  searches: product[] = []
   carasouels: carasouel[] = []
   textContent: textContent = {} as textContent;
   favouriteproducts: product[] = []
@@ -25,39 +25,40 @@ export class KidsComponent implements OnInit ,OnDestroy {
   // setTogglerWork: string = ""     // to remove the toggler hide event from disktop in =>   data-bs-target
 
   constructor(private dataServ: DataService, private route: Router) {
-    if(sessionStorage.getItem("page-attitude")!="kids-page-working-fine"){
-      sessionStorage.setItem("page-attitude","kids-page-working-fine")
+    if (sessionStorage.getItem("page-attitude") != "kids-page-working-fine") {
+      sessionStorage.setItem("page-attitude", "kids-page-working-fine")
       window.location.reload()
     }
     // basic stucture of observable with subscription // get products
     this.subscribtions.push(this.dataServ.getDataAPI("kids").subscribe({
-      next:(data)=>{
+      next: (data) => {
         for (const key in data) {
           this.allproducts.push(data[key])
         }
       },
-      error:()=>{console.log("error")},
-      complete:()=>{ this.products = this.allproducts.filter(item => item.department == "clothes").reverse();
-        for(let item of this.products){
-          if(!this.brands.find(el=> el==item.brand))
+      error: () => { console.log("error") },
+      complete: () => {
+        this.products = this.allproducts.filter(item => item.department == "clothes").reverse();
+        for (let item of this.products) {
+          if (!this.brands.find(el => el == item.brand))
             this.brands.push(item.brand)
         }
         this.brands.sort()
       }
     }))
-    // get carasouel 
+    // -------------- get carasouel --------------
     this.subscribtions.push(dataServ.getpagesCarasouelAPI("carasouel").subscribe({
-      next:(data) => {
+      next: (data) => {
         for (const key in data) {
           if (data[key].type == "kids")
             this.carasouels.push(data[key])
         }
       },
-      error:()=>{console.log("error")},
-      complete:()=>{},
+      error: () => { console.log("error") },
+      complete: () => { },
     }))
     this.setLinkActive("clothes");
-    // get text content  // removed by customer request
+    // --------------------------get text content  // removed by customer request-------------------------
     // this.subscribtions.push(dataServ.getpagesContentAPI("pagesTitles").subscribe(
     //   data => {
     //     for (const key in data) {
@@ -75,8 +76,8 @@ export class KidsComponent implements OnInit ,OnDestroy {
       })
     */
   }
-  
-  ngOnInit(): void { 
+
+  ngOnInit(): void {
   }
 
   filter(part: string) {
@@ -136,18 +137,18 @@ export class KidsComponent implements OnInit ,OnDestroy {
     return founded;
   }
 
-  search(fitch:string){
-    this.searches=this.allproducts.filter(item=> item.title.includes(fitch) || item.brand.includes(fitch))
-    if(fitch=="")
-    this.searches=[]
+  search(fitch: string) {
+    this.searches = this.allproducts.filter(item => item.title.includes(fitch) || item.brand.includes(fitch))
+    if (fitch == "")
+      this.searches = []
   }
-  
-  emptySearches(){
-    this.searches=[]
+
+  emptySearches() {
+    this.searches = []
   }
 
   ngOnDestroy(): void {
-    for(let subscribtion of this.subscribtions)
+    for (let subscribtion of this.subscribtions)
       subscribtion.unsubscribe()
   }
 
