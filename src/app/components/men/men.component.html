@@ -99,7 +99,8 @@
   <!-- one carasouels image -->
   <!-- <img [src]="carasouels['0'].img!" class="d-block w-100 img-carasouel-view" alt="..."> -->
   <div class="col-12">
-    <swiper-container navigation="true" pagination="true" pagination-clickable="true">
+    <!-- <swiper-container navigation="true" pagination="true" pagination-clickable="true"> -->
+    <swiper-container  pagination-clickable="true">
       <swiper-slide *ngFor="let item of carasouels">
         <img [src]="item.img" alt="" class="d-block w-100 img-carasouel-view">
       </swiper-slide>

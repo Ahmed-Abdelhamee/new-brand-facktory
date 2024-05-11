@@ -151,6 +151,7 @@ svg:hover {
 
 .img-carasouel-view {
     height: 35vh;
+    height: 40vh;
     /* height: calc(100vh - 400px); */
 }
 
@@ -324,6 +325,7 @@ p {
 
     .img-carasouel-view {
         height: 25vh;
+        height: 31vh;
     }
 
     .col-sm-3 {
